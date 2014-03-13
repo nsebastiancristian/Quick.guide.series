@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>4. Edges</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+
+</head>
+
+<body>
+<div id="wrapper">
+
+
+	<a name="4" class="clicked orange" href="#"><h1>4. Edges </h1></a>
+	<ul class="no_bullet">
+	    <li>
+        <a class="clicked orange"  href="#"><h2>4.1. Adding new edges to an existing mesh</h2> </a>  
+        </li>
+        <li>
+        	<ul>
+            	 <li><a href="#4.1.1"><h2>4.1.1. Creating new vertices and adding them to the mesh by creating new edges with those vertices </h2> </a></li>
+                 <li><a href="#4.1.2"><h2>4.1.2. Creating new edges(and faces) by sudividing a face </h2> </a></li>
+            </ul>
+        </li> 	
+	
+	</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone_big"> 4. Edges </h1>
+
+<h1 class="standalone">4.1. Adding new edges to an existing mesh  </h1>
+
+<div class="unit">
+	 <a name="4.1.1">
+    	<h1>4.1.1.  Creating new vertices and adding them to the mesh by creating new edges with those vertices  </h1>
+     </a>
+        <p>
+        	Back to the default cube, and Edit mode. Ensure you are in vertex-select mode, with nothing selected. Left-click with the control key down ( CTRL + LMB ) somewhere near the cube. Do you see a little orangey-yellow dot appear where you clicked? You just added a new, unconnected vertex to the mesh.
+</br>
+Undo your addition ( CTRL + Z ). Select an existing vertex with  RMB . Now  CTRL + LMB  to add a new vertex again, and you will notice that it is connected to the previously-selected vertex by a newly-added edge as well. Since the newly-added vertex is now the selected vertex, doing  CTRL + LMB  again at another position, and so on repeatedly, lets you construct a whole chain of new edges in this way. 
+</br>
+To close the loop without filling in the face, then select only the first and last vertex in the chain before pressing  F ; since only two vertices are selected, this will not construct a new face, it will only add an edge joining those vertices.
+</br>
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#4">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="4.1.2">
+    	<h1>4.1.2.  Creating new edges(and faces) by sudividing a face   </h1>
+     </a>
+        <p>
+        	You split a face and create several faces (along with the coresponding edges and vertices) into that face. In order to do that just select in face mode a face and press the subdivide button located in the tool shelf to the left of 3D View window (you can also press W and then select the "Subdivide" option from the context menu that appears). You can control how many subdivisions will be built by going to the bottom of the tool shelf and using the "Number of cuts" slider.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#4">Top </a>
+
+
+
+</div>
+</body>
+</html>

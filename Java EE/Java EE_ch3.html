@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3. JSP</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="3" class="clicked orange" href="#">
+<h1>3. JSP </h1></a>
+	
+	<ul class="no_bullet">
+	    <li>
+        <a href="Java EE/Java EE_ch3.html?target=3.1" target="_blank"><h2 class="unfinished">3.1. Creating and testing a simple JSP in Eclipse </h2> </a> 
+		</li>
+        <li>
+      	<a  class="clicked orange" href="#"><h2>3.2. Scopes </h2> </a> 
+        </li>
+		<li>
+        	<ul>
+			<li><a href="Java EE/Java EE_ch3.html?target=3.2.1" target="_blank"><h2 class="unfinished">3.2.1. Request scope. Passing and getting parameters into/from the request scope </h2> </a></li>
+			<li><a href="Java EE/Java EE_ch3.html?target=3.2.2" target="_blank"><h2 class="unfinished">3.2.2. Session scope. Passing and getting parameters into/from the session scope </h2> </a></li>
+            <li><a href="Java EE/Java EE_ch3.html?target=3.2.3" target="_blank"><h2 class="unfinished">3.2.3. Application scope. Passing and getting parameters into/from the Application Scope </h2> </a></li>
+            <li><a href="Java EE/Java EE_ch3.html?target=3.2.4" target="_blank"><h2 class="unfinished">3.2.4. Page Context scope. Passing and getting parameters into/from the Page Context Scope </h2> </a></li>
+            <li><a href="Java EE/Java EE_ch3.html?target=3.2.5" target="_blank"><h2 class="unfinished">3.2.5. Recap </h2> </a></li>
+            </ul>
+        </li> 
+
+	    <li>
+        <a href="Java EE/Java EE_ch3.html?target=3.3" target="_blank"><h2 class="unfinished">3.3. Init parameters for a JSP configured with the web.xml file </h2> </a> 
+        </li>
+	</ul>	
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.2.1"><h1>3.2.1. Request scope. Passing and getting parameters into/from the request scope </h1></a>
+
+	<p>
+	      Getting and setting request parameters in a jsp work the same way as in a servlet (a jsp is a servlet, after all).<br />
+	        <br />
+	        While how the request object behaves is the same the actuall method of accessing the request parameters in a jsp is a little different.<br />
+	        <br />
+	        Here is how you access the request parameters inside a jsp:</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Create a jsp and enter the following code :  </li>
+		<img class="hide big" src="Java EE Pics/3_2_1_1.jpg" />
+
+		<li class="clicked white"> Test the jsp and you will see this because there are no parameters passed inside the request :  </li>
+		<img class="hide medium" src="Java EE Pics/3_2_1_2.jpg" />
+
+		<li class="clicked white"> Add "?requestParam=Foo" to the end of the url and refresh the page. You will see this. :  </li>
+		<img class="hide medium" src="Java EE Pics/3_2_1_3.jpg" />
+
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+        
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;%
+	String name =  request.getParameter("requestParam");
+%&gt;
+&lt;h2&gt;The string from the request  is &lt;%= name  %&gt;&lt;/h2&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;  
+
+      </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#3">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.2.2"><h1>3.2.2. Session scope. Passing and getting parameters into/from the session scope </h1></a>
+
+	<p>
+	      Getting and setting session parameters in a jsp work the same way as in a servlet (a jsp is a servlet, after all).<br />
+	        <br />
+	        While how the session object behaves is the same the actuall method of accessing the session parameters in a jsp is a little different.<br />
+	        <br />
+	        Here is how you access the session parameters inside a jsp:
+    </p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Create a jsp and enter the following code :  </li>
+		<img class="hide big" src="Java EE Pics/3_2_2_1.jpg" />
+
+		<li class="clicked white"> Test the jsp and you will see this because there are no parameters passed inside the request :  </li>
+		<img class="hide medium" src="Java EE Pics/3_2_2_2.jpg" />
+
+		<li class="clicked white"> Add "?requestParam=Foobar" to the end of the url and refresh the page. You will see this. :  </li>
+		<img class="hide medium" src="Java EE Pics/3_2_2_3.jpg" />
+
+		<li class="clicked white"> Delete the last part of the url and refresh the page. You will see this :  </li>
+		<img class="hide medium" src="Java EE Pics/3_2_2_4.jpg" />
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;%
+	String name =  request.getParameter("requestParam");
+%&gt;
+&lt;h2&gt;The string from the request  is &lt;%= name  %&gt;&lt;/h2&gt;
+
+&lt;%
+  if(name != null)
+  {	  
+	session.setAttribute("requestParam", name);
+  }
+%&gt;
+
+&lt;h2&gt; The string from the session is &lt;%= session.getAttribute("requestParam")%&gt;&lt;/h2&gt;
+&lt;/body&gt;
+&lt;/html&gt;   
+     </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#3">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.2.3"><h1>3.2.3. Application scope. Passing and getting parameters into/from the Application Scope </h1></a>
+
+	<p>
+	       Application scope for jsp is the same as  servlet context scope for servlets. <br />
+	       <br />
+	       Here is how you access parameters inside the application scope :
+    </p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Create a jsp and enter the following code :  </li>
+		<img class="hide big" src="Java EE Pics/3_2_3_1.jpg" />
+
+		<li class="clicked white"> Test the jsp and you will see this because there are no parameters passed inside the request :  </li>
+		<img class="hide medium" src="Java EE Pics/3_2_3_2.jpg" />
+        
+		<li class="clicked white"> Add "?requestParam=Foo" to the end of the url and refresh the page. You will see this. : </li>
+		<img class="hide medium" src="Java EE Pics/3_2_3_3.jpg" />
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;%
+	String name =  request.getParameter("requestParam");
+%&gt;
+&lt;h2&gt;The string from the request  is &lt;%= name  %&gt;&lt;/h2&gt;
+
+&lt;%
+  if(name != null)
+  {	  
+	session.setAttribute("requestParam", name);
+	application.setAttribute("requestParam" , name);
+  }
+%&gt;
+
+&lt;h2&gt; The string from the session is &lt;%= session.getAttribute("requestParam")%&gt;&lt;/h2&gt;
+
+&lt;h2&gt; The string from the application scope is &lt;%= application.getAttribute("requestParam") %&gt;&lt;/h2&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#1">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+
+
+</div>
+</body>
+</html>

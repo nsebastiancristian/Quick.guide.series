@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>5. Faces</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+
+
+</head>
+
+<body>
+<div id="wrapper">
+
+
+<a name="5" class="clicked orange" href="#"><h1>5. Faces </h1></a>
+	<ul class="no_bullet">
+	    <li>
+        <a class="clicked orange" href="#"><h2>5.1. Adding new faces to an existing mesh</h2> </a>  
+        </li>
+        <li>
+        	<ul>
+            	<li>
+            	 <a href="#5.1.1"><h2>5.1.1. Creating new vertices and adding them to the mesh by creating new faces with those vertices </h2> </a>
+                </li>
+                <li> 
+                 <a href="#5.1.2"><h2>5.1.2. Creating new faces by extruding a selected edge with CTRL+LMB </h2></a>
+                </li>
+                <li>
+                 <a href="#5.1.3"><h2>5.1.3. Creating new edges(and faces) by sudividing a face </h2></a>
+                </li>
+            </ul>
+        </li> 	
+        <li><a href="#5.2"><h2>5.2. Proper extrusion </h2></a></li> 
+        <li><a href="#5.3"><h2>5.3. More extrusion options</h2></a></li>     
+	</ul>	
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone_big"> 5. Faces </h1>
+
+<h1 class="standalone">5.1. Adding new faces to an existing mesh  </h1>
+
+<div class="unit">
+	 <a name="5.1.1">
+    	<h1>5.1.1. Creating new vertices and adding them to the mesh (including creating new faces with those vertices) </h1>
+     </a>
+        <p>
+        	Back to the default cube, and Edit mode. Ensure you are in vertex-select mode, with nothing selected. Left-click with the control key down ( CTRL + LMB ) somewhere near the cube. Do you see a little orangey-yellow dot appear where you clicked? You just added a new, unconnected vertex to the mesh.
+</br>
+Undo your addition ( CTRL + Z ). Select an existing vertex with  RMB . Now  CTRL + LMB  to add a new vertex again, and you will notice that it is connected to the previously-selected vertex by a newly-added edge as well. Since the newly-added vertex is now the selected vertex, doing  CTRL + LMB  again at another position, and so on repeatedly, lets you construct a whole chain of new edges in this way. But what good are edges and vertices without faces?
+</br>
+To construct a face, you need a closed loop of edges. To close a loop of edges, select all the vertices in the chain, and press  F ; this will add another edge joining the first and last vertex into a complete loop of edges, and at the same time it will fill in the loop with a new face.
+</br>
+Alternatively, if you just wanted to close the loop without filling in the face, then select only the first and last vertex in the chain before pressing  F ; since only two vertices are selected, this will not construct a new face, it will only add an edge joining those vertices.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#5">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="5.1.2">
+    	<h1>5.1.2.  Creating new faces by extruding a selected edge with CTRL+LMB </h1>
+     </a>
+        <p>
+        	You can create new face by extruding existing edges of the mesh. After you have selected an edge in edit mode simply CTRL+LMB on an empty space on screen and a new face will be created resulted from the extrusion of the edge.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#5">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="5.1.3">
+    	<h1>5.1.3. Creating new edges(and faces) by sudividing a face  </h1>
+     </a>
+        <p>
+        	You split a face and create several faces (along with the coresponding edges and vertices) into that face. In order to do that just select in face mode a face and press the subdivide button located in the tool shelf to the left of 3D View window (you can also press W and then select the "Subdivide" option from the context menu that appears). You can control how many subdivisions will be built by going to the bottom of the tool shelf and using the "Number of cuts" slider.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#5">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="5.2">
+    	<h1>5.2. Proper extrusion </h1>
+     </a>
+        <p>
+        	Blender also has a proper Extrude function, which lets you do this with a bit more control.
+
+Start with the default cube, as usual. Go into Edit mode. Select just the top four vertices. Press  E  to start extruding, and move the mouse roughly along the direction of the Z-axis. You will find yourself dragging out a whole new face formed from four new vertices connected to the ones you previously selected. You will notice also that the movement of the newly-added part of the mesh is automatically constrained to be parallel to the Z-axis. Press  LMB  or  ENTER  to finish the extrusion operation.
+</br>
+Deselect everything. Now try selecting another four vertices of the original cube, say making up a face pointing along the X-axis. Now if you extrude these, you will see that the extrusion is automatically constrained to move only parallel to the X-axis.
+</br>
+A quirk of the extrusion function is that if you press  E  and then immediately abort with  RMB  or  ESC , the additional mesh piece is still created, but it is left in the same position as the original mesh. To really abort the extrusion, you have to undo it with  CTRL + Z .
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#5">Top </a>
+
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="5.3">
+    	<h1>5.3. More extrusion options </h1>
+     </a>
+        <p>
+        	 ALT + E  brings up the Extrude menu, which gives you access to more options, depending on what you have selected:
+</br>
+</br>
+<ul>
+    <li> Region — extrude the entire selected area as one, exactly equivalent to  E . </li>
+    <li> Individual Faces — if you have more than one face selected, then they are extruded separately. In particular, any edge common to two selected faces will give rise to two separate extruded edges, rather than one. </li>
+    <li> Edges Only — extrudes only the edges; new faces are created only connecting the new edges to the existing ones, not between the new edges. </li>
+    <li> Vertices Only — extrudes only the vertices; edges are created only connecting the new vertices to the existing ones, not between the new vertices, and no new faces are created. </li>
+    
+</ul>
+
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#5">Top </a>
+
+
+
+</div>
+</body>
+</html>

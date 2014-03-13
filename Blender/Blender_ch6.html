@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>6. Mesh</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="6" class="clicked orange" href="#"><h1>6.Mesh </h1></a>
+    <ul class="no_bullet">
+	    <li><a href="#6.1"><h2>6.1. Adding more mesh pieces </h2> </a></li>        
+	    <li><a href="#6.2"><h2>6.2.Separating and Joining Meshes </h2> </a></li>
+   
+    </ul>	<!-- /hide -->
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone_big"> 6. Mesh </h1>
+
+<div class="unit">
+	 <a name="6.1">
+    	<h1>6.1. Adding More Mesh Pieces </h1>
+     </a>
+        <p>
+        	Start with a default cube again. Select it and  TAB  into Edit mode. Press  SHIFT + A  to bring up the Add menu; instead of all the submenus with all the objects you could add in Object mode, now you will see only a single menu containing only mesh objects. Select, say, another cube, and use  G  to move it away from the first cube. </br>
+
+If you  TAB  into Object mode, you will see that the two cubes look like separate, disconnected objects, but they are in fact one object, and cannot be selected separately in Object mode. You can  TAB  back into Edit mode, and make connections between the vertices of the two cubes, which you cannot do with separate objects. Therefore: A single mesh object can be made of separate, disconnected pieces.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#6">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="6.2">
+    	<h1>6.2. Separating and Joining Meshes </h1>
+     </a>
+        <p>
+        	You can separate a part of a mesh into its own object. The part you are separating doesn’t have to be disconnected from the rest of the mesh. Simply select the part you want to separate in Edit mode, and press  P , and in the menu that appears, choose “Selection”. You will see the selected part immediately change to a reddish-orange highlight, indicating it is part of the object selection but not the active object. </br>
+
+Conversely, you can join two or more mesh objects into one. Select all the desired objects in Object mode, and press  CTRL + J , and you will see them all immediately take on the orangey-yellow highlight indicating they are all the active object.  TAB  into Edit mode, and you can confirm that you can now edit them all as part of the same mesh object.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#6">Top </a>
+
+
+</div>
+</body>
+</html>

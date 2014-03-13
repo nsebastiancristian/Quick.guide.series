@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3. PHP Object Oriented Programming</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="3" class="clicked orange" href="#"><h1>3. PHP Object Oriented Programming </h1></a>
+	
+	<ul class="no_bullet">
+	    <li><a href="#3.1"> <h2>3.1. Defining classes with public properties and methods</h2> </a> </li>
+	    <li><a href="#3.2"> <h2>3.2. Private properties</h2> </a> </li>
+	    <li><a href="#3.3"> <h2>3.3. __get() Magic Method</h2> </a> </li>
+	    <li><a href="#3.4"> <h2>3.4. __construct() Magic Method</h2> </a> </li> 
+	    <li><a href="#3.5"> <h2>3.5. __toString() Magic Method</h2> </a> </li>
+       
+	</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone_big"> 3. PHP Object Oriented Programming </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.1"><h1>3.1. Defining classes with public properties and methods </h1></a>
+
+	<p>
+	      You use classes to instantiate objects. 
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you define and instantiate classes :  </li>
+		<img class="hide big" src="Php Pics/3_1.jpg" />
+   		<li class="clicked white"> Here is another version of the Person class :  </li>
+		<img class="hide big" src="Php Pics/3_1_2.jpg" />
+
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	
+	class Person
+	{
+		public $name = "John";
+		public $last_name = "Doe";	
+		
+		public $age = 29 ;
+		
+		function display($n)
+		{
+			$returned = '';
+			
+			for($i = 0; $i &lt; $n; $i++)
+			{
+				$returned .= $this-&gt;name ." ". $this-&gt;last_name." ";	
+			}
+			return $returned;		
+		}
+		
+		function display_all()
+		{
+			echo "&lt;p&gt;My name is ".$this-&gt;name." ".$this-&gt;last_name." and I'm ".$this-&gt;age." years old &lt;/p&gt;";	
+		}
+	}
+	
+	$me = new Person();
+	
+	echo $me-&gt;display(3);
+	$me-&gt;display_all();
+?&gt;
+
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#3">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.2"><h1>3.2. Private properties  </h1></a>
+
+	<p>
+	       Private properties can not be accesed from outside the object but you can however display them by using magic methods
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> If we try to acces some private properties from the outside we get an error :  </li>
+		<img class="hide big" src="Php Pics/3_2_1.jpg" />
+
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+			
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#3">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.3"><h1>3.3. __get() Magic Method  </h1></a>
+
+	<p>
+	       Magic methods methods are methods that are called "behind the scenes". They are not called explicitly by the user. They are usefull when we want to acces an undefined property for example. A magic __get() method can be used to secretly look behind the scenes in a database for example to populate with values for that unset property. 
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Part 1 :  </li>
+		<img class="hide big" src="Php Pics/3_3_1.jpg" />
+
+		<li class="clicked white"> Part 2 :  </li>
+		<img class="hide small" src="Php Pics/3_3_2.jpg" />    
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	class Person
+	{
+		protected $_name;
+		public $age = 29;
+		
+		function display()
+		{
+			$output = '&lt;p&gt;My name is '.$this-&gt;name.' and my age is '.$this-&gt;age.'.&lt;/p&gt;';
+			return $output;	
+		}
+		
+		//	---- Magic Method __get. ----
+		function __get($name)
+		{
+			if(!$this-&gt;_name)
+			{
+				$this-&gt;_name = $this-&gt;_name_quess();	
+			}
+			
+			//attemp to return a procteted property name
+			$protected_property_name = '_'.$name;
+			if(property_exists($this, $protected_property_name))
+			{
+				return $this-&gt;$protected_property_name;
+			}
+			
+			// Unable to acces property; trigger error
+			trigger_error("Undefined or unallowed property via __get(): ".$name);
+			return NULL;
+		}
+
+		//	---- Magic Method __get. ----
+		function __set($name, $value)
+		{
+			if('postal_code' == $name)
+			{
+				$this-&gt;$name = $value;
+				return;	
+			}
+			
+			// Unable to acces property; trigger error
+			trigger_error("Undefined or unallowed property via __set(): ".$name);
+		}
+		
+		// Guess the name 
+		// @todo Replace with a database lookup
+		protected function _name_quess()
+		{
+			return "LOOKUP";	
+		}
+	}
+	
+	$girl = new Person();
+	
+	echo "&lt;h2&gt;Access the person name when is undefined&lt;/h2&gt;";
+	echo $girl-&gt;display();
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#3">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.4"><h1>3.4. __construct() Magic Method </h1></a>
+
+	<p>
+	      __construct() magic method is used instead of a normal constructor. It is invoked behind the scenes whenever we create a new object.
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> This is the included Person class file :  </li>
+		<img class="hide medium" src="Php Pics/3_4_1.jpg" />
+
+		<li class="clicked white">This is the test php file :  </li>
+		<img class="hide big" src="Php Pics/3_4_2.jpg" />    
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+//----------------------class.Person.inc.php----------------------------        
+&lt;?php
+	class Person {
+		protected $_name;
+		protected $_last_name;
+		
+		public $age = 29;
+		public $adress;
+		
+		function __construct($data = array())
+		{
+			//check if value supplied to constructor is array
+			if(!is_array($data)) {
+				trigger_error("The value suplied to the ".get_class($this)." constructor is not an array");	
+			}
+			
+			if(count($data) &gt; 0) {
+				foreach($data as $name =&gt; $value)
+				{
+					//special case
+					if(in_array($name, array("name", "last_name")))
+					{
+						$name = '_'.$name;	
+					}
+					
+					$this-&gt;$name = $value;
+				}
+			}
+		}
+		
+		function display()
+		{
+			$output = "&lt;p&gt;Hello! My name is ".$this-&gt;_name." ".$this-&gt;_last_name.". I'm ".$this-&gt;age." years old and I live on ".$this-&gt;adress.".&lt;/p&gt;";
+			return $output;
+		}
+		
+	}	//end Person class
+	
+?&gt;
+
+//---------------------------------test.php---------------------------------------
+
+&lt;?php
+	require("class.Person.inc.php");
+
+	$pers = new Person(array(
+		"name" =&gt; "George",
+		"last_name" =&gt; "Orwell",
+		"age" =&gt; 30,
+		"adress" =&gt; "Bulevard of Broken Dreams"
+	));
+	echo $pers-&gt;display();
+
+?&gt;
+
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#3">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="3.5"><h1>3.5. __toString() Magic Method </h1></a>
+
+	<p>
+	       You can output directly with the "echo" command  the content of an object by implementing the __toString() magic method
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> This is how you use the __toString() magic method :  </li>
+		<img class="hide big" src="Php Pics/3_5.jpg" />
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	class Person 
+	{
+		protected $_name = "John";
+		protected $_last_name = "Doe";
+		
+		protected function display()
+		{
+				$output = "My name is ".$this-&gt;_name." ".$this-&gt;_last_name.".";
+				return $output;
+		}
+		
+		//Magic Method 
+		function __toString()
+		{
+			return $this-&gt;display();	
+		}
+	}
+	
+	$person = new Person();
+	echo $person;
+?&gt;	
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#3">Top </a></li>
+</ul>
+
+
+
+</div>
+</body>
+</html>

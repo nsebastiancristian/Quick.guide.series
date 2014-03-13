@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>1. PHP General</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="1" class="clicked orange" href="#">
+<h1>1. PHP General </h1></a>
+	
+	<ul class="no_bullet">
+	   <li>
+        <a href="#1.1">
+      <h2>1.1. Installing XAMPP on Windows</h2> </a> 
+       </li>
+       <li>
+        <a href="#1.2">
+      <h2>1.2. Setting up a new site with PHP and MySQL in DreamWeaver</h2> </a> 
+       </li>
+       <li>
+        <a href="#1.3">
+        <h2>1.3. Installing and setting up the Zend Framework</h2> </a> 
+       </li>
+	</ul>	
+
+
+<h1 class="standalone_big"> 1. PHP General </h1>
+
+<div class="unit">
+	 <a name="1.1">
+    	<h1>1.1. Undo/Redo </h1>
+     </a>
+        <p>
+        	You can undo your last Edit-mode operation with  CTRL + Z , and undo your undo with  CTRL + SHIFT + Z , similarly to Object mode. However, Edit mode maintains its own undo stack, separate from the Object-mode one; to undo/redo an Edit-mode operation, you must be in Edit mode, not Object mode.
+        </p>
+
+<div class="code">
+	<pre>
+    		This     is my     formatted    code
+            Ho  ho  ho 
+    </pre>
+</div>	<!-- /code -->
+
+</div>	<!-- /unit -->
+
+
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#1">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="1.2">
+    	<h1>1.2. Setting up a new site with PHP and MySQL in DreamWeaver </h1>
+     </a>
+        <p>
+        	We will present now the steps you will have to do in order to setup a new site with PHP and MySQL in DreamWeaver CS5
+        </p>
+        
+         <div class="step_by_step">
+        	<ol>
+            <li class="clicked white">Press the Site Manager toolbar icon located on the upper part of the DreamWeaver window (the icon looks like 3 boxes arranged in a pyramid shape), then select "Manage Sites..." from the menu that appears :  </li>
+        	<img class="hide big" src="Php Pics/1_2_1.jpg" />
+            	
+            <li class="clicked white">A new dialog icon will appear that shows all the sites that you have created. Here you can create new sites or edit existing ones. For this tutorial we need to create a new one so press the "New..." button:  </li>
+        	<img class="hide big" src="Php Pics/1_2_2.jpg" />    
+            
+             <li class="clicked white">In the new dialog icon that appears you can name the site <span class="orange">(1)</span>; you can give any name you want and use spaces in the name, this is just for internal use inside DreamWeaver so you will be able to recognize easily your new created site
+			 . </br>
+			 Next you will have to select the folder where all the files of your website (html files, css files, pictures and various assets, php files, javascript files etc.) are going to be stored <span class="orange">(2)</span>. Keep in mind that you can select an existing folder with existing files inside, and in this 
+			 case DreamWeaver will import all the existing files in that folder to your new created website, or you can create a new empty folder to store your future files regarding that site.</br>
+			 For the purpose of this tutorial I have selected a folder with existing files inside it. Another thing to keep in mind is that for this step it doesn't matter where the actual folder is located on disk (it can be on C, D drive, desktop, My Documents, anywhere you want):  </li>
+        	<img class="hide big" src="Php Pics/1_2_3.jpg" />    
+			
+			<li class="clicked white"> Next, click on the "Servers" tab (the 2nd option in the left menu) of the dialog box. Here we will setup in Dreamweaver a new server to use for the site. Click on the "+" icon on the bottom to add a new server:  </li>
+        	<img class="hide big" src="Php Pics/1_2_4.jpg" /> 
+
+			<li class="clicked white"> In the dialog window that appears we are going to set 4 things:
+				<ol>
+					<li> Give the server a name (this can be anything we want). I have named the server <span class="orange">"Local Server"</span>.</li>
+					<li> In the "Connect Using" box we must choose <span class="orange">"Local/Network"</span></li>
+					<li> In the "Server Folder" box we must choose the folder where the server will put all the site related files but pay attention that unlike the previouse step where we also selected a folder for the site, here it does matter where this 
+					folder will reside on disk. The location will depend on your server software installed on your computer (if you are using the XAMPP bundle on Windows the location will have to be a folder inside the <span class="orange">"htdocs"</span> folder inside the XAMPP installation folder, if you are using WAMP the folder will be
+					named "www"). For this tutorial we have created a new folder named <span class="orange">"remote_folder"</span> inside the "htdocs" subfolder of the XAMPP installation folder </li>
+					<li> In the "Web URL" box we will choose the url of the new site. If we are using a local server like we are using now the url will have to be <span class="orange">"http://localhost/xxx"</span> where instead of "xxx" we must provide the relative path from the <span class="orange">"htdocs"</span> directory (and it's "htdocs" because we are using XAMPP, had we used another server or server bundle we 
+					would have used the relative path from another folder specific to that server or server bundle ... for example for WAMP it would have been "www"). So in our case the url will be <span class="orange">"http://localhost/remote_folder"</span> (yes, what is after "localhost" must be the same path like we specified in the above sub-step, in our case the "remote_folder" folder)
+				</ol>  
+			</li>
+        	<img class="hide big" src="Php Pics/1_2_5.jpg" /> 
+			
+			<li class="clicked white">Click on the "Advanced" tab and in the "Server Model" box choose "PHP MySQL" then click on the "Save" button:  </li>
+        	<img class="hide big" src="Php Pics/1_2_6.jpg" /> 
+
+			<li class="clicked white">In the list you will see your new created server. Uncheck the "Remote" box and check the "Testing" box, then click on the "Save" button:  </li>
+        	<img class="hide big" src="Php Pics/1_2_7.jpg" />  
+
+			<li class="clicked white">In the list that appears you can see your new created website. In my case it's named "New Testing Site". Just select it from the list and press the "Done" button:  </li>
+        	<img class="hide big" src="Php Pics/1_2_8.jpg" /> 
+
+			<li class="clicked white">The File section of the user interface will be updated with all the files from the folder we have selected for the new website:  </li>
+        	<img class="hide big" src="Php Pics/1_2_9.jpg" /> 
+
+			<li class="clicked white">Open a file from inside the websitefolder (I have opened "index.php" in my case), or create a new file and write some php or html code inside it and press the toolbar icon that is shaped like the world globe. Choose one of the selected browsers and click "Yes" on the following 2 dialog boxes that
+			will inform you the current file along with the corresponding assests will be copied to the folder inside the server (i.e. the "remote_folder" folder). Don't worry, this is the standard procedure so just press "Yes" on the dialog boxes. :  </li>
+        	<img class="hide big" src="Php Pics/1_2_10.jpg" />
+			
+			<li class="clicked white">A new browser window will be opened and you can see in the url box that the url for the page is "localhost/remote_folder/index.php". That means the file is handed to the browser via the local Apache server, instead of opening directly from the local hard disk:  </li>
+        	<img class="hide big" src="Php Pics/1_2_11.jpg" /> 
+            </ol>
+        </div>
+        
+
+        
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#1">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+
+<div class="unit">
+	 <a name="1.3">
+    	<h1>1.3. Installing and setting up the Zend Framework </h1>
+     </a>
+    <p>
+        	Here's how you can install the Zend Framework and set it up for code hinting in Dreamweaver
+    </p>
+
+	<div class="step_by_step">
+		<ol>
+		    <li class="clicked white"> Go to "http://framework.zend.com/downloads/latest" and download the minimal package of the Zend Framework: </li>
+		    <img src="Php Pics/1_3_1.jpg" alt="" class="hide big" />
+		    <li class="clicked white">Make a new directory on the C: drive and name it &quot;phpincludes&quot;, than copy the downloaded Zend framework in a new folder named &quot;ZendFramework&quot;: </li>
+		    <img src="Php Pics/1_3_2.jpg" alt="" class="hide big" />
+			<li class="clicked white">Open the "php.ini" file with a note editor and look for "include_path". It should be the second occurence (the first one being just a comment). Change the second line after the Windows appearance with this one
+				<div class="code_sh">
+					<pre>	  include_path=".;C:\phpincludes\ZendFramework\library"
+					</pre>
+				</div>	<!-- /code -->
+			 </li>
+		    <img src="Php Pics/1_3_10.jpg" alt="" class="hide big" />
+            <li class="clicked white"> Restart the Apache server in order for the changes to take place. After that the Zend framework should be installed: </li>
+		    <img src="Php Pics/1_3_11.jpg" alt="" class="hide big" />
+		    <li class="clicked white">Now we must let Dreamweaver know about the new Framework that we have just installed in order to make use of the code hints provided by the program. In Dreamweaver after you have opened a site go to "Site > Site-Specific Code Hints..." in the upper menu : </li>
+		    <img src="Php Pics/1_3_3.jpg" alt="" class="hide big" />
+			<li class="clicked white">In the new dialog box that appears leave the first list box as it is with &quot;New from blank&quot; <span class="orange">(1)</span>. In the second box <span class="orange">(2)</span> 
+			choose the path to the ZendFramework library on disk. The full path is "C:\phpincludes\ZendFramework\library". Than click on the "+" sign <span class="orange">(3)</span>: </li>
+		    <img src="Php Pics/1_3_4.jpg" alt="" class="hide big" />
+			<li class="clicked white">In the new dialog box that appears leave the first list box as it is with &quot;New from blank&quot; <span class="orange">(1)</span>. In the second box <span class="orange">(2)</span> 
+			choose the path to the ZendFramework library on disk. The full path is "C:\phpincludes\ZendFramework\library". Than click on the "+" sign <span class="orange">(3)</span>: </li>
+		    <img src="Php Pics/1_3_4.jpg" alt="" class="hide big" />
+			<li class="clicked white">In the new dialog box that appears select first the path to "C:\phpincludes\ZendFramework\library\Zend" in the first input box <span class="orange">(1)</span>. Leave the "Recursive" checkbox unchecked. <span class="orange">(2)</span> 
+			 Than click on the "+" sign and add ".php" to the list as in the image.<span class="orange">(3)</span> Click on the "Add" button: </li>
+		    <img src="Php Pics/1_3_5.jpg" alt="" class="hide big" />
+			<li class="clicked white"> The new dialog box will look like bellow. Click again on the "+" sign again: </li>
+		    <img src="Php Pics/1_3_6.jpg" alt="" class="hide big" />
+			<li class="clicked white">Because we are going to use classes from the Date folder we need to point to this folder. In the first dialog box select the path "C:\phpincludes\ZendFramework\library\Zend\Date" <span class="orange">(1)</span>. This time you need to check the "Recursive" checkbox to let Dreamweaver know that it should scan also the subfolders of the "Date" folder <span class="orange">(2)</span> 
+			As we have done before we must also provide the extension of the files in order to let Dreamweaver know what kind of files to look for. So click the "+" sign and add the ".php" extension to the list <span class="orange">(3)</span>. Click on the "Add" button: </li>
+		    <img src="Php Pics/1_3_7.jpg" alt="" class="hide big" />
+			<li class="clicked white"> The final version of the dialog box should look like bellow. Click on the "Ok" button and when prompted give a name to the setup we have just created. I named my setup "Zend": </li>
+		    <img src="Php Pics/1_3_8.jpg" alt="" class="hide big" />
+			<li class="clicked white"> After that the dialog box will be closed. Again, go to "Site > Site-Specific Code Hints..." in the upper menu. The dialog box should look like bellow. If the list box doesn't have the "Zend"
+				setup you can choose it by selecting the list box and scrolling in the list (if everything is done right it should appear in there). Remember that this setup is site specific and should be done every time you create
+				a new site. Click on the "Ok" button to close the dialog box: </li>
+		    <img src="Php Pics/1_3_9.jpg" alt="" class="hide big" />
+			<li class="clicked white"> To check that the code hinting capabilites of DreamWeaver for the Zend framwork are configured correctly go to the Files section of the interface and look for the "dw_php_codehinting.config". Open it and it should look like bellow. This is the proof that the code hints are working: </li>
+		    <img src="Php Pics/1_3_12.jpg" alt="" class="hide big" />
+			<li class="clicked white"> Test the new installed Zend framework along with Dreamweaver third partie's code hinting capabilities by creating a new file name "phpinfo.php" and entering the following code. : </li>
+		    <img src="Php Pics/1_3_13.jpg" alt="" class="hide big" />
+      	</ol>
+    </div>
+    
+    <div class="code">
+    	<pre>
+&lt;?php
+
+    include_once("Zend/Date.php");
+        
+    $zendDate = new Zend_Date();
+        
+    echo "The date is ";
+    echo $zendDate->toString("MMMM d, YYYY"); 
+
+?&gt;
+        </pre>
+    </div>
+
+</div>	<!-- /unit -->
+
+
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#1">Top </a></li>
+</ul>
+
+
+</div>
+</body>
+</html>

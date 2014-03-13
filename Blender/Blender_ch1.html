@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>1. Blender General</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<ul class="no_bullet" >
+	<li>
+       <a name="1" class="clicked orange" href="#"><h1>1. General </h1></a>
+	</li>
+    <li>
+		<ul>
+           <li> <a href="#1.1"><h2>1.1. Undo/ Redo </h2> </a> </li>
+           <li> <a href="#1.2"><h2>1.2. Creating New Faces </h2> </a> </li>
+           <li> <a href="#1.3"><h2>1.3. Creating New Edges </h2> </a> </li>
+           <li> <a href="#1.4"><h2>1.4. Creating New Vertices </h2></a> </li>
+           <li> <a href="#1.5"><h2>1.5. Proper extrusion </h2></a> </li>
+           <li> <a href="#1.6"><h2>1.6. More extrusion options </h2></a> </li> 
+           <li> <a href="#1.7"><h2>1.7. Duplicating an object </h2></a> </li>
+           <li> <a href="#1.8"><h2>1.8. Changing the 3D cursor to a vertex of a mesh </h2></a> </li>
+           <li> <a href="#1.9"><h2>1.9. How to change the pivot point of an object </h2></a> </li>
+           <li> <a href="#1.10"><h2>1.10. How to use the Snap feature </h2></a> </li>
+           <li> <a href="#1.11"><h2>1.11. Relocating the 3D cursor to the origin </h2></a> </li>
+        
+        </ul>
+    </li>
+</ul>	
+
+<h1 class="standalone_big"> 1. General </h1>
+
+<div class="unit">
+	 <a name="1.1">
+    	<h1>1.1. Undo/Redo </h1>
+     </a>
+        <p>
+        	You can undo your last Edit-mode operation with  CTRL + Z , and undo your undo with  CTRL + SHIFT + Z , similarly to Object mode. However, Edit mode maintains its own undo stack, separate from the Object-mode one; to undo/redo an Edit-mode operation, you must be in Edit mode, not Object mode.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<div class="unit">
+	 <a name="1.2">
+    	<h1>1.2. Creating New Faces </h1>
+     </a>
+        <p>
+        	Select 3 (or more) vertices and press F. A new face will be created between them. If during the edit mode another mesh is selected then that face will be belonging to that mesh.
+            Another way to create new face is by extruding an edge. While in edit mode select an edge and then CTRL+LMB elsewhere on screen. The edge will be extruded and a new face will be created.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="1.3">
+    	<h1>1.3. Creating New Edges </h1>
+     </a>
+        <p>
+        	If you are in edit mode having a mesh previously selected and you select an existing edge of that mesh (by clicking RMB), than if you press SHIFT and LMB on a point in space you will see that a new point is created in that location and will be linked by an edge to the previously selected point. </br>
+            Another way to create an edge is to select two points (vertices) and then press F ; a new edge will be created between them.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="1.4">
+    	<h1>1.4. Creating New Verices </h1>
+     </a>
+        <p>
+        	Just press (when in edit mode) the LMB + SHIFT in a spot on the screen. A new vertex will be created there.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="1.5">
+    	<h1>1.5. Proper extrusion </h1>
+     </a>
+        <p>
+        	Blender also has a proper Extrude function, which lets you do this with a bit more control.
+
+Start with the default cube, as usual. Go into Edit mode. Select just the top four vertices. Press  E  to start extruding, and move the mouse roughly along the direction of the Z-axis. You will find yourself dragging out a whole new face formed from four new vertices connected to the ones you previously selected. You will notice also that the movement of the newly-added part of the mesh is automatically constrained to be parallel to the Z-axis. Press  LMB  or  ENTER  to finish the extrusion operation.
+</br>
+Deselect everything. Now try selecting another four vertices of the original cube, say making up a face pointing along the X-axis. Now if you extrude these, you will see that the extrusion is automatically constrained to move only parallel to the X-axis.
+</br>
+A quirk of the extrusion function is that if you press  E  and then immediately abort with  RMB  or  ESC , the additional mesh piece is still created, but it is left in the same position as the original mesh. To really abort the extrusion, you have to undo it with  CTRL + Z .
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="1.6">
+    	<h1>1.6. More extrusion options </h1>
+     </a>
+        <p>
+        	 ALT + E  brings up the Extrude menu, which gives you access to more options, depending on what you have selected:
+</br>
+</br>
+<ul>
+    <li> Region — extrude the entire selected area as one, exactly equivalent to  E . </li>
+    <li> Individual Faces — if you have more than one face selected, then they are extruded separately. In particular, any edge common to two selected faces will give rise to two separate extruded edges, rather than one. </li>
+    <li> Edges Only — extrudes only the edges; new faces are created only connecting the new edges to the existing ones, not between the new edges. </li>
+    <li> Vertices Only — extrudes only the vertices; edges are created only connecting the new vertices to the existing ones, not between the new vertices, and no new faces are created. </li>
+    
+</ul>
+
+        </p>
+        
+        <div class="step_by_step">
+        	<ul>
+            	<li class="clicked white">ALT + E brings up the Extrude menu, which gives you access to more options, depending on what you have selected. This is the menu that appears when you have a face selected:  </li>
+        	<img class="hide small" src="Blender Pics/1_6.jpg" />
+            	
+            <li class="clicked white">ALT + E brings up the Extrude menu, which gives you access to more options, depending on what you have selected. This is the menu that appears when you have an edge selected:  </li>
+        	<img class="hide small" src="Blender Pics/1_6_2.jpg" />    
+            
+             <li class="clicked white">ALT + E brings up the Extrude menu, which gives you access to more options, depending on what you have selected. This is the menu that appears when you have a vertex selected:  </li>
+        	<img class="hide small" src="Blender Pics/1_6_3.jpg" />    
+            </ul>
+        </div>
+        
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="1.7">
+    	<h1>1.7. Duplicating an ojbect </h1>
+     </a>
+        <p>
+        	 Selected  objects  are  duplicated with Shift-D.  Newly  duplicated objects  are  born  in  Grab  transformation  mode,  allowing  you  to move them away from the original object immediately.  It’s  actually  easy  to  make  a  duplicate,  then cancel the transformation, giving you two identical 
+objects sitting on top of one another. You won’t be able  to  see  it  in  the  3D  view,  but  rendering  will produce  a  pattern  of  interfering  faces. </br></br> 
+These duplicated objects are somewhat dependent on one another. Both the new and original objects share 
+a material. Any changes you make to one’s material will affect the other as well. Animation is also duplicated,  but  the  objects  don’t  share  animation  data. </br> </br> 
+This means that if you change the animation of one of  the  objects,  that  change  will  not  be  reflected  in the other object. Likewise, editing the mesh of the new object will not affect the original.
+But what if you wanted all your duplicates to stay linked together? For example, you might be constructing a space battle. There are dozens of little ships zipping around, all of the same type. Halfway through 
+the project, you decide that you want to add an additional engine to that type of ship. You could go in 
+and add that engine to each and every copy you had made, or you could have thought ahead and used 
+instancing. Instancing is the practice of making live, linked copies of a single object. </br></br> 
+To instance, instead of duplicate, use Alt-D. Notice how a lot of Blender’s hotkeys use the Alt or Ctrl 
+modifier to slightly change their behavior. </br></br> 
+Instanced copies of an object all share the same mesh structure. Make a change to one, and it happens to 
+all  instances  simultaneously.  You  can  still  assign  different  materials  and  animation  to  them,  which  you’ll understand in a moment, but the mesh is shared. </br></br> 
+
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="1.8">
+    	<h1>1.8.  Changing the 3D cursor to a vertex of a mesh  </h1>
+     </a>
+        <p>
+        	 To change the cursor to a vertex on an existing mesh; enter in edit mode by pressing TAB and then press Shift + S , from the context menu that appears choose "Cursor to selected"
+
+        </p>
+        
+        <div class="step_by_step">
+        	<ol>
+            	<li class="clicked white">While in Vertex Mode select a vertex:  </li>
+        	<img class="hide small" src="Blender Pics/1_8_1.jpg" />
+            	
+            <li class="clicked white">Press Shift + S to make the Snap menu to appear, then choose "Cursor to Selected":  </li>
+        	<img class="hide small" src="Blender Pics/1_8_2.jpg" />    
+            
+             <li class="clicked white">The 3D cursor will snap to the selected vertex:  </li>
+        	<img class="hide small" src="Blender Pics/1_8_3.jpg" />    
+            </ol>
+        </div>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+
+
+<div class="unit">
+<a name="1.9">
+<h1>1.9.  How to change the pivot point of an object </h1>
+</a>
+<p>
+You can change the pivot point of an object to be either in the center of mass or at the location of the cursor point. To change the pivot point of an object select it first while in object mode and then go to the menu of the 3D Object View Window in  </br> </br>
+Object > Transform > Origin to 3D Cursor
+</br></br>
+In order to put the pivot point back to the center of mass of the object then </br></br>
+Object > Transform > Origin to Center of Mass
+
+</p>
+
+<div class="step_by_step">
+<ol>
+<li class="clicked white">While in Object Mode go to the Object > Transform > Origin to 3D Cursor to change the pivot point of the object to the 3D cursor :  </li>
+<img class="hide medium" src="Blender Pics/1_9_1.jpg" />
+
+<li class="clicked white">The pivot point (indicated by an orange dot) will change where the cursor is:  </li>
+<img class="hide small" src="Blender Pics/1_9_2.jpg" />    
+
+</ol>
+</div>
+
+<div class="step_by_step">
+<ol>
+<li class="clicked white">While in Object Mode go to the Object > Transform > Origin to Center of Mass to change the pivot point of the object back to the center of mass :  </li>
+<img class="hide medium" src="Blender Pics/1_9_3.jpg" />
+
+<li class="clicked white">The pivot point (indicated by an orange dot) will change where the center of mass is:  </li>
+<img class="hide small" src="Blender Pics/1_9_4.jpg" />    
+
+</ol>
+</div>	<!-- /step_by_step -->
+
+<div class="step_by_step">
+     <ol>
+           <li class="clicked white">While in Object Mode go to the Object > Transform > Origin to Geometry to change the pivot point of the object to the center of geometry (alternatively you can choose "Object > Transform > Geometry to Origin" to change the position of the object to where the pivot point is in space) :  </li>
+           <img class="hide medium" src="Blender Pics/1_9_5.jpg" />
+
+           <li class="clicked white">The pivot point (indicated by an orange dot) will change to the center of the geometry:  </li>
+           <img class="hide small" src="Blender Pics/1_9_4.jpg" />    
+         
+    </ol>
+</div> <!-- /step_by_step -->
+
+
+
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+    <a name="1.10">
+		<h1>1.10. Using the Snap feature </h1>
+	</a>
+
+	<p>
+		When you want to move objects precisely you can use the Snap feature
+	</p>
+
+	<div class="step_by_step">
+
+	<ul>
+		<li class="clicked white">To use the Snap feature first you must turn it on. Here is the toolbar icon where you turn it on/off :  </li>
+		<img class="hide small" src="Blender Pics/1_10_1.jpg" />
+
+		<li class="clicked white">You can control how the snapping occurs by using this icon:  </li>
+		<img class="hide small" src="Blender Pics/1_10_2.jpg" />    
+
+		<li class="clicked white">The default snapping behaviour is to snap to the grid:  </li>
+		<img class="hide small" src="Blender Pics/1_10_3.jpg" />    
+		
+        <li class="clicked white">...But you can change this and snap to pivot points for example. This works better in Vertex Mode but can also work in Object Mode. That means whenever you move something it will have 
+        a high chance on snapping to the nearest vertex from it's location:  </li>
+		<img class="hide small" src="Blender Pics/1_10_4.jpg" />  
+          
+		<li class="clicked white">You can also snap the object to where the cursor is. That means the position of the selected object will change to where the cursor is:  </li>
+		<img class="hide small" src="Blender Pics/1_10_5.jpg" />    
+        
+        <li class="clicked white">Also in the snapping menu there are options to change the cursor to different places; like "Cursor to Selected" (change the place of cursor to where the center of the current selected object is), "Cursor to Center" (change the place of the cursor to the center of the world):  </li>
+		<img class="hide small" src="Blender Pics/1_10_6.jpg" />    
+	</ul>
+
+	</div> <!-- /steb-by-step -->
+
+
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+                <a name="1.11">
+		<h1>1.11. Relocating the 3D Cursor to the origin </h1>
+	</a>
+
+	<p>
+		If you want to relocate the 3D Cursor to the origin fast just press Shift + C
+	</p>
+
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#1">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+</div>	<!-- /wrapper -->
+</body>
+</html>

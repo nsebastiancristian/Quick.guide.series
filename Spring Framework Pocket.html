@@ -1,0 +1,5601 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spring Framework Pocket Guide</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="blender_jquery.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+<div id="wrapper">
+
+<a name="1" class="clicked orange" href="#">
+<h1>1. Spring Dependency Injection </h1></a>
+	
+	<div class="hide spaced_X">
+      <a href="#1.1"><h2>1.1. A simple example of using Dependency Injection in Spring</h2> </a> 
+      <a  class="clicked orange" href="#"><h2>1.2. Hello World in Spring </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#1.2.1"><h2 class="">1.2.1. Getting beans with FileSystemXmlApplicationContext</h2> </a>
+   			<a href="#1.2.2"><h2 class="">1.2.2. Getting beans with ClassPathXmlApplicationContext</h2> </a>
+
+		</div> 	<!-- /hide_x --> 
+      
+      <a  class="clicked orange" href="#"><h2>1.3. Constructor Based Dependency Injection </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#1.3.1"><h2 class="">1.3.1. <span class="green">Constructor Arguments</span></h2> </a>
+			<a href="#1.3.2"><h2 class="">1.3.2. Specify the order of the arguments using the <span class="highlight">"index"</span> attribute</h2> </a>
+			<a href="#1.3.3"><h2 class="">1.3.3. Specify the order of the arguments using the <span class="highlight">"name"</span> attribute</h2> </a>
+   			<a href="#1.3.4"><h2 class="">1.3.4. Specify the order of the arguments using the <span class="highlight">"type"</span> attribute</h2> </a>
+   			<a href="#1.3.5"><h2 class="">1.3.5. <span class="green">Injecting a bean</span> inside another bean using the <span class="highlight">"ref"</span> attribute</h2> </a>
+   			<a href="#1.3.6"><h2 class="">1.3.6. <span class="green">Creating a bean</span> using a <span class="highlight">mixed approach</span> (constructors and setters)</h2> </a>
+		</div> 	<!-- /hide_x --> 
+        
+      <a  class="clicked orange" href="#"><h2>1.4. Setter Based Dependency Injection </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#1.4.1"><h2 class="">1.4.1. <span class="green">Setting bean properties</span></h2> </a>
+			<a href="#1.4.2"><h2 class="">1.4.2. Setting bean properties with a <span class="highlight">"value"</span> sub-property</h2> </a>
+   			<a href="#1.4.3"><h2 class="">1.4.3. <span class="green">Injecting a bean</span> inside another bean using the <span class="highlight">"ref"</span> attribute</h2> </a>
+		</div> 	<!-- /hide_x --> 
+
+      <a  class="clicked orange" href="#"><h2>1.5. Bean Scope </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#1.5.1"><h2 class="">1.5.1. <span class="green">Singleton</span> scope</h2> </a>
+			<a href="#1.5.2"><h2 class="">1.5.2. <span class="green">Prototype</span> scope</h2> </a>
+		</div> 	<!-- /hide_x --> 
+        
+      <a  class="clicked orange" href="#"><h2>1.6. Init and Destroy Methods </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#1.6.1"><h2 class="">1.6.1. Init Methods</h2> </a>
+			<a href="#1.6.2"><h2 class="">1.6.2. Destroy Methods</h2> </a>
+		</div> 	<!-- /hide_x --> 
+        
+     <a  class="clicked orange" href="#"><h2>1.7. Factory Beans and Factory Methods </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#1.7.1"><h2 class="">1.7.1. Factory Methods</h2> </a>
+			<a href="#1.7.2"><h2 class="">1.7.2. Factory Beans</h2> </a>
+		</div> 	<!-- /hide_x --> 
+                
+	 <a href="#1.8"><h2>1.8. The p namespace</h2> </a> 
+     <a href="#1.9"><h2>1.9. Inner Beans </h2></a>
+	  
+     <a  class="clicked orange" href="#"><h2>1.10. Collection of Beans </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#1.10.1"><h2 class="">1.10.1. List of primary types (Strings, int etc.)</h2> </a>
+			<a href="#1.10.2"><h2 class="">1.10.2. List of Beans</h2> </a>
+  			<a href="#1.10.3"><h2 class="">1.10.3. List of Beans (with Inner Beans)</h2> </a>
+  			<a href="#1.10.4"><h2 class="">1.10.4. Property Maps (Map&lt;String, String&gt;)</h2> </a>
+  			<a href="#1.10.5"><h2 class="">1.10.5. Arbitrary Maps (Map&lt;String, Object&gt;)</h2> </a>
+  			<a href="#1.10.6"><h2 class="">1.10.6. Arbitrary Maps (Map&lt;String, Object&gt;) with Inner Beans</h2> </a>
+		</div> 	<!-- /hide_x --> 
+                
+        
+    </div>	<!-- /hide -->
+
+<a name="2" class="clicked orange" href="#">
+<h1>2. Working with Databases in Spring </h1></a>
+
+<div class="hide spaced_X">
+    
+        <a  class="clicked orange" href="#"><h2>2.1. Setting up a JDBC Database in a  Non-Web Spring Project </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#2.1.1"><h2 class="">2.1.1. Working on it</h2> </a>
+		</div> 	<!-- /hide_xx --> 
+        
+        <a  class="clicked orange" href="#"><h2>2.2. JDBC Database in a  Non-Web Spring Project </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#2.2.1"><h2 class="">2.2.1. Querying the Database for multiple rows</h2> </a>
+			<a href="#2.2.2"><h2 class="">2.2.2. Querying the Database for a specific row</h2> </a>
+			<a href="#2.2.3"><h2 class="">2.2.3. Deleting a row from the Database</h2> </a>
+			<a href="#2.2.4"><h2 class="">2.2.4. Creating a row into the Database</h2> </a>
+			<a href="#2.2.5"><h2 class="">2.2.5. Updating a row into the Database</h2> </a>
+		</div> 	<!-- /hide_xx --> 
+</div> <!-- /hide spaced_X -->
+
+
+<a name="2" class="clicked orange" href="#">
+<h1>3. Spring MVC </h1></a>
+
+<div class="hide spaced_X">
+    
+        <a  class="clicked orange" href="#"><h2>3.1. Spring Web MVC Example Projects </h2> </a> 
+		<div class="hide spaced_XX">
+			<a href="#3.1.1"><h2 class="">3.1.1. Sample Spring "Hello World!" MVC Project</h2> </a>
+			<a href="#3.1.2"><h2 class="">3.1.2. Sample of a jsp file that uses JSTL</h2> </a>
+		</div> 	<!-- /hide_xx --> 
+        
+        <a  class="clicked orange" href="#"><h2>3.2. Spring Web MVC Database Examples </h2> </a> 
+		<div class="hide spaced_XX">
+        	<a href="#3.2.1"><h2 class="">3.2.1. Connecting a Spring Web MVC Project to a database</h2> </a>
+            <a href="#3.2.2"><h2 class="">3.2.2. Setting up a DAO and Service layer inside a Spring Web MVC Project that connects to a Database</h2> </a>  
+		</div> 	<!-- /hide_xx --> 
+        
+</div> <!-- /hide spaced_X -->
+
+
+<!-- --------------------------------------------------------------------------------------------------- -->
+
+</br>
+</br>
+
+<div class="unit">
+	<a name="1.1"> <h1>1.1. Constructor-based Dependecy Injection </h1> </a>
+    <div class="head"> <span class="title"> TextEditor.java : </span></div>
+    
+    <div class="code_sh">
+    	<pre>
+        package com.tutorialspoint;
+        
+        public class TextEditor {
+        
+            private SpellChecker spellChecker;
+        
+            public TextEditor(SpellChecker spellChecker) {
+                System.out.println("Inside TextEditor constructor." );
+                this.spellChecker = spellChecker;
+            }
+            
+            public void spellCheck() {
+                spellChecker.checkSpelling();
+            }
+        }
+        </pre>
+    </div>
+    
+    <div class="head"> <span class="title">SpellChecker.java :  </span></div>
+    <div class="code_sh">
+    	<pre>
+          package com.tutorialspoint;
+          
+          public class SpellChecker {
+              
+              public SpellChecker(){
+                  System.out.println("Inside SpellChecker constructor." );
+              }
+              
+              public void checkSpelling() {
+                  System.out.println("Inside checkSpelling." );
+              }
+          }
+        </pre>
+    </div>
+    
+    <div class="head"> <span class="title">MainApp.java :  </span></div>
+    
+    <div class="code_sh">
+    	<pre>
+        package com.tutorialspoint;
+        import org.springframework.context.ApplicationContext;
+        import org.springframework.context.support.ClassPathXmlApplicationContext;
+        
+        public class MainApp {
+        
+            public static void main(String[] args) {
+                ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+                TextEditor te = (TextEditor) context.getBean("textEditor");
+                te.spellCheck();
+            }
+        }
+        </pre>
+    </div>
+ 
+    <div class="head"> <span class="title"> Beans.xml :  </span></div>
+    <div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"&gt;
+
+    &lt;!-- Definition for textEditor bean --&gt;
+    &lt;bean id="textEditor" class="com.tutorialspoint.TextEditor"&gt;
+    	&lt;constructor-arg ref="spellChecker"/&gt;
+    &lt;/bean&gt;
+    
+    &lt;!-- Definition for spellChecker bean --&gt;
+    &lt;bean id="spellChecker" class="com.tutorialspoint.SpellChecker"&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+    </pre>
+	</div>
+   
+    <div class="head"> <span class="title">Output :  </span></div>
+   
+<div class="code_sh">
+<pre>
+Inside SpellChecker constructor.
+
+Inside TextEditor constructor.
+
+Inside checkSpelling.
+</pre>
+</div>
+    
+    <p><a href="#1">Home</a></p>
+</div>
+
+
+<div class="unit">
+<a name="1.2.1"> <h1>1.2.1. Getting beans with FileSystemXmlApplicationContext </h1> </a>
+ 
+<div class="head"> <span class="title"> Person.java  :  </span>
+<p>This is the bean.</p>
+</div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new FileSystemXmlApplicationContext("beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		person.speak();
+	}
+
+}
+   </pre>
+</div>
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+   </pre>
+</div>
+
+   
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.2.2"> <h1> 1.2.2. Getting beans with ClassPathXmlApplicationContext </h1> </a>
+
+<div class="head"> <span class="title"> Person.java  :  </span>
+<p>This is the bean.</p>
+</div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		person.speak();
+	}
+
+}
+   </pre>
+</div>
+
+
+
+<div class="head"> <span class="title"> beans.xml :  </span>
+<p> The path for the xml file is "Home/src/main/java/org/sebastian/spring/beans/beans.xml".
+</div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.3"> <h1> 1.3. Constructor Based Dependency Injection </h1> </a>
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public Person() {
+		
+	}
+	
+	public Person(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+
+<div class="head"> <span class="title">  App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		person.speak();
+		System.out.println(person);
+	}
+
+}
+
+   </pre>
+</div>
+
+
+
+<div class="head"> <span class="title">  beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;constructor-arg value="7"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg value="Sebastian"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+
+   </pre>
+</div>
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+Person [id=7, name=Sebastian]
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.3.2"> <h1> 1.3.2. Specify the order of the arguments using the "index" attribute</h1> </a>
+ 
+ <div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public Person() {
+		
+	}
+	
+	public Person(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		Person person2 = (Person) context.getBean("person2");
+		
+		person.speak();
+		System.out.println(person);
+		System.out.println(person2);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;constructor-arg value="7"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg value="Sebastian"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="person2" class="org.sebastian.spring.test.Person"&gt;
+		
+		&lt;constructor-arg value="Mary" index="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg value="123" index="0"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+Person [id=7, name=Sebastian]
+Person [id=123, name=Mary]
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+
+<!-- ..................................................................................................................................... -->
+
+
+
+<div class="unit">
+<a name="1.3.3"> <h1> 1.3.3. Specify the order of the arguments using the "name" attribute</h1> </a>
+ 
+ <div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public Person() {
+		
+	}
+	
+	public Person(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		Person person2 = (Person) context.getBean("person2");
+		
+		person.speak();
+		System.out.println(person);
+		System.out.println(person2);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;constructor-arg value="7"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg value="Sebastian"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="person2" class="org.sebastian.spring.test.Person"&gt;
+		
+		&lt;constructor-arg value="James" name="name"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg value="99" name="id"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+Person [id=7, name=Sebastian]
+Person [id=99, name=James]   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.3.4"> <h1> 1.3.4. Specify the order of the arguments using the "type" attribute</h1> </a>
+ 
+ <div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public Person() {
+		
+	}
+	
+	public Person(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		Person person2 = (Person) context.getBean("person2");
+		
+		person.speak();
+		System.out.println(person);
+		System.out.println(person2);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;constructor-arg value="7"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg value="Sebastian"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="person2" class="org.sebastian.spring.test.Person"&gt;
+		
+		&lt;constructor-arg value="Bobo" type="String"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg value="101" type="int"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+Person [id=7, name=Sebastian]
+Person [id=101, name=Bobo]   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.3.5"> <h1> 1.3.5. Injecting a bean inside another bean using the "ref" attribute</h1> </a>
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private Address address;
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Person(int id, String name, Address address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", address=" + address
+				+ "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Address :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Address {
+	
+	private String street;
+	private String postcode;
+	
+	public Address(String street, String postcode) {
+		super();
+		this.street = street;
+		this.postcode = postcode;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", postcode=" + postcode + "]";
+	}
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		person.speak();
+		System.out.println(person);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;constructor-arg name="id" value="7"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="Steve"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="address" <span class="blue">ref</span>="<span class="green">theAddress</span>"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+	&lt;bean <span class="blue">id</span>="<span class="green">theAddress</span>" class="org.sebastian.spring.beans.Address"&gt;
+		&lt;constructor-arg name="street" value="1 Church Lane"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="postcode" value="1234"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+Person [id=7, name=Steve, address=Address [street=1 Church Lane, postcode=1234]]   </pre>
+</div>
+   
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.3.6"> <h1> 1.3.6. <span class="green">Creating a bean</span> using a <span class="highlight">mixed approach</span> (constructors and setters) </h1> </a>
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private Address address;
+	
+	public Person() {
+		
+	}
+
+
+	public Person(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", address=" + address
+				+ "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> Address.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Address {
+	
+	private String street;
+	private String postcode;
+	
+	public Address(String street, String postcode) {
+		super();
+		this.street = street;
+		this.postcode = postcode;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", postcode=" + postcode + "]";
+	}
+	
+}
+   </pre>
+</div>
+    
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		//person.speak();
+		System.out.println(person);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;constructor-arg name="id" value="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="Bugs"&gt;&lt;/constructor-arg&gt;
+		&lt;property name="address" ref="theAddress"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="theAddress" class="org.sebastian.spring.beans.Address"&gt;
+		&lt;constructor-arg name="street" value="WoodLand Woodsville"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="postcode" value="777"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person [id=1, name=Bugs, address=Address [street=WoodLand Woodsville, postcode=777]]
+   </pre>
+</div>
+
+<p><a href="#1">Home</a></p>
+</div>
+
+
+<!-- ..................................................................................................................................... -->
+
+
+<div class="unit">
+<a name="1.4.1"> <h1> 1.4.1. Setting bean properties </h1> </a>
+
+<div class="head"> <span class="title"> Person.java  :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Person() {
+		
+	}
+	
+	public Person(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		Person person2 = (Person) context.getBean("person2");
+		
+		person.speak();
+		System.out.println(person);
+		System.out.println(person2);
+	}
+
+}
+   </pre>
+</div>
+
+ <!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;property name="id" value="1"&gt;&lt;/property&gt;
+		&lt;property name="name" value="Tom"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+	
+	&lt;bean id="person2" class="org.sebastian.spring.test.Person"&gt;
+		&lt;property name="id" value="2"&gt;&lt;/property&gt;
+		&lt;property name="name" value="Huckleberry"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+Person [id=1, name=Tom]
+Person [id=2, name=Huckleberry]   </pre>
+</div>
+
+   
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.4.2"> <h1> 1.4.2. Setting bean properties with a "value" sub-property </h1> </a>
+
+<div class="head"> <span class="title"> Person.java  :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Person() {
+		
+	}
+	
+	public Person(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		Person person2 = (Person) context.getBean("person2");
+		
+		person.speak();
+		System.out.println(person);
+		System.out.println(person2);
+	}
+
+}
+   </pre>
+</div>
+
+ <!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;property name="id"&gt;
+			&lt;value&gt;1&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="name"&gt;
+			&lt;value&gt;Thomas&lt;/value&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	
+	&lt;bean id="person2" class="org.sebastian.spring.test.Person"&gt;
+		&lt;property name="id"&gt;
+			&lt;value&gt;2&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="name"&gt;
+			&lt;value&gt;Jerry&lt;/value&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+Person [id=1, name=Thomas]
+Person [id=2, name=Jerry]
+</div>
+
+   
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.4.3"> <h1> 1.4.3. <span class="green">Injecting a bean</span> inside another bean using the <span class="highlight">"ref"</span> attribute</h1> </a>
+ 
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private Address address;
+	
+	public Person() {
+		
+	}
+
+	public Person(int id, String name, Address address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+	}
+
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", address=" + address
+				+ "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> Address.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Address {
+	
+	private String street;
+	private String postcode;
+	
+	public Address(String street, String postcode) {
+		super();
+		this.street = street;
+		this.postcode = postcode;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", postcode=" + postcode + "]";
+	}
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		//person.speak();
+		System.out.println(person);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;property name="id" value="123"&gt;&lt;/property&gt;
+		&lt;property name="name" value="Mark"&gt;&lt;/property&gt;
+		&lt;property name="address" <span class="blue">ref</span>=<span class="green">"theAddress"</span>&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean <span class="blue">id</span>=<span class="green">"theAddress"</span> class="org.sebastian.spring.beans.Address"&gt;
+		&lt;constructor-arg name="street" value="Spring Disctrict"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="postcode" value="1234"&gt;&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person [id=123, name=Mark, address=Address [street=Spring Disctrict, postcode=1234]]   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.5.1"> <h1> 1.5.1. <span class="green">Singleton</span> scope </h1> </a>
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public Person() {
+		
+	}
+
+
+	public Person(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		Person person2 = (Person) context.getBean("person");
+		
+		person2.setId(2);
+		person2.setName("Duffy");
+		
+		System.out.println(person);
+		System.out.println(person2);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> beans.xml :  </span>
+<p>Note that singleton is the default scope so there is no reason to explicitly specify the scope in this case (but you can)</p>
+</div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person" <span class="blue">scope</span>=<span class="green">"singleton"</span>&gt;
+		&lt;constructor-arg name="id" value="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="Bugs"&gt;&lt;/constructor-arg&gt;	
+	&lt;/bean&gt;
+
+	
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person [id=2, name=Duffy]
+Person [id=2, name=Duffy]
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.5.2"> <h1> 1.5.2. <span class="green">Prototype</span> scope</h1> </a>
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	
+	public Person() {
+		
+	}
+
+
+	public Person(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
+
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		Person person2 = (Person) context.getBean("person");
+		
+		person2.setId(2);
+		person2.setName("Duffy");
+		
+		System.out.println(person);
+		System.out.println(person2);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+
+<div class="head"> <span class="title"> beans.xml :  </span>
+</div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person" <span class="blue">scope</span>=<span class="green">"prototype"</span>&gt;
+		&lt;constructor-arg name="id" value="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="Bugs"&gt;&lt;/constructor-arg&gt;	
+	&lt;/bean&gt;
+
+	
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person [id=1, name=Bugs]
+Person [id=2, name=Duffy]
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.6.1"> <h1> 1.6.1. Init Methods </h1> </a>
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private int taxId;
+	
+	public Person() {
+		
+	}
+
+
+	public Person(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public void onCreate() {
+		System.out.println("Person Created : " + this);
+	}
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public void setTaxId(int taxId) {
+		this.taxId = taxId;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", taxId=" + taxId + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		System.out.println(person);
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person" <span class="blue">init-method</span>=<span class="green">"onCreate"</span>&gt;
+		&lt;constructor-arg name="id" value="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="John"&gt;&lt;/constructor-arg&gt;
+		&lt;property name="taxId" value="999"&gt;&lt;/property&gt;	
+	&lt;/bean&gt;
+
+	
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person Created : Person [id=1, name=John, taxId=999]
+Person [id=1, name=John, taxId=999]
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.6.2"> <h1> 1.6.2. Destroy Methods </h1> </a>
+  
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private int taxId;
+	
+	public Person() {
+		
+	}
+
+
+	public Person(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public void onDestroy() {
+		System.out.println("Person destroyed.");
+	}
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public void setTaxId(int taxId) {
+		this.taxId = taxId;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", taxId=" + taxId + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+		
+		Person person = (Person) context.getBean("person");
+		
+		System.out.println(person);
+		
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person" <span class="blue">destroy-method</span>=<span class="green">"onDestroy"</span>&gt;
+		&lt;constructor-arg name="id" value="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="John"&gt;&lt;/constructor-arg&gt;
+		&lt;property name="taxId" value="999"&gt;&lt;/property&gt;	
+	&lt;/bean&gt;
+
+	
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person [id=1, name=John, taxId=999]
+Person destroyed.
+   </pre>
+</div>
+  
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.7.1"> <h1> 1.7.1. Factory Methods </h1> </a>
+
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private int taxId;
+	
+	public Person() {
+		
+	}
+
+	public static Person getInstance() {
+		System.out.println("Person created inside the default factory method.");
+		return new Person();
+	}
+	
+	public static Person <span class="blue">getInstance</span>(int id, String name) {
+		System.out.println("Person created inside the factory method.");
+		return new Person(id, name);
+	}
+
+	public Person(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public void onDestroy() {
+		System.out.println("Person destroyed.");
+	}
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public void setTaxId(int taxId) {
+		this.taxId = taxId;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", taxId=" + taxId + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Person person = (Person) context.getBean("person");
+		System.out.println(person);
+		
+		Person person2 = (Person) context.getBean("person2");
+		System.out.println(person2);
+		
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person" <span class="blue">factory-method</span>=<span class="green">"getInstance"</span>&gt;
+		&lt;property name="taxId" value="999"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="person2" class="org.sebastian.spring.test.Person"
+		<span class="blue">factory-method</span>=<span class="green">"getInstance"</span>&gt;
+		&lt;constructor-arg name="id" value="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="John"&gt;&lt;/constructor-arg&gt;
+		&lt;property name="taxId" value="999"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person created inside the default factory method.
+Person created inside the factory method.
+Person [id=0, name=null, taxId=999]
+Person [id=1, name=John, taxId=999]
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.7.2"> <h1> 1.7.2. Factory Beans </h1> </a>
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private int taxId;
+	
+	public Person() {
+		
+	}
+	
+
+	public Person(int id, String name) {
+		
+		this.id = id;
+		this.name = name;
+	}
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public void setTaxId(int taxId) {
+		this.taxId = taxId;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", taxId=" + taxId + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Person person = (Person) context.getBean("person");
+		System.out.println(person);
+	
+			
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> BeanFactory.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+import org.sebastian.spring.test.Person;
+
+public class BeanFactory {
+	
+	public Person getBean(int id, String name) {
+		System.out.println("Creating a bean inside a bean factory.");
+		return new Person(id, name);
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person" <span class="blue">factory-bean</span>=<span class="green">"beanfactory"</span> <span class="blue">factory-method</span>=<span class="green">"getBean"</span> &gt;
+		&lt;constructor-arg name="id" value="1"&gt;&lt;/constructor-arg&gt;
+		&lt;constructor-arg name="name" value="Mike"&gt;&lt;/constructor-arg&gt;
+		&lt;property name="taxId" value="999"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	
+	&lt;bean <span class="blue">id</span>=<span class="green">"beanfactory"</span>
+		class="org.sebastian.spring.beans.BeanFactory"&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+   </pre>
+</div>
+
+ 
+<p><a href="#1">Home</a></p>
+</div>
+
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.8"> <h1> 1.8. The p namespace </h1> </a>
+    
+
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private int taxId;
+	private Address address;
+	
+	public Person() {
+		
+	}
+
+	public Person(int id, String name) {
+		
+		this.id = id;
+		this.name = name;
+	}
+		
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public void setTaxId(int taxId) {
+		this.taxId = taxId;
+	}
+		
+	
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", taxId=" + taxId
+				+ ", theAddress=" + address + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Address.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Address {
+	
+	private String street;
+	private String postcode;
+	
+	
+	public Address(String street, String postcode) {
+		super();
+		this.street = street;
+		this.postcode = postcode;
+	}
+
+	
+	public Address() {
+		
+	}
+
+	
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", postcode=" + postcode + "]";
+	}
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Person person = (Person) context.getBean("person");
+		System.out.println(person);
+	
+			
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"<span class="blue"> p:id</span>=<span class="green">"5"</span>
+		<span class="blue">p:name</span>=<span class="green">"Igor"</span> <span class="blue">p:taxId</span>=<span class="green">"777"</span> <span class="blue">p:address-ref</span>=<span class="green">"theAddress"</span>&gt;
+	&lt;/bean&gt;
+
+	&lt;bean <span class="blue">id</span>=<span class="green">"theAddress"</span> class="org.sebastian.spring.beans.Address"&gt;
+		&lt;property name="street" value="1 Decembrie 1918, nr. 39"&gt;&lt;/property&gt;
+		&lt;property name="postcode" value="999"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person [id=5, name=Igor, taxId=777, theAddress=Address [street=1 Decembrie 1918, nr. 39, postcode=999]]
+   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.9"> <h1> 1.9. Inner Beans </h1> </a>
+ 
+ 
+<div class="head"> <span class="title"> Person.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+
+public class Person {
+	
+	private int id;
+	private String name;
+	private int taxId;
+	private Address address;
+	
+	public Person() {
+		
+	}
+
+	public Person(int id, String name) {
+		
+		this.id = id;
+		this.name = name;
+	}
+		
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public void setTaxId(int taxId) {
+		this.taxId = taxId;
+	}
+		
+	
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", taxId=" + taxId
+				+ ", theAddress=" + address + "]";
+	}
+
+	public void speak() {
+		System.out.println("Hello! I'm a person!");
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Address.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Address {
+	
+	private String street;
+	private String postcode;
+	
+	
+	public Address(String street, String postcode) {
+		super();
+		this.street = street;
+		this.postcode = postcode;
+	}
+
+	
+	public Address() {
+		
+	}
+
+	
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", postcode=" + postcode + "]";
+	}
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.sebastian.spring.beans.FruitBasket;
+import org.sebastian.spring.beans.Jungle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Person person = (Person) context.getBean("person");
+		System.out.println(person);
+	
+		Address address = (Address) context.getBean("address");
+		System.out.println(address);
+		
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+
+
+	&lt;bean id="person" class="org.sebastian.spring.test.Person"&gt;
+		&lt;property name="id" value="1"&gt;&lt;/property&gt;
+		&lt;property name="name" value="Silviu"&gt;&lt;/property&gt;
+		&lt;property name="taxId" value="999"&gt;&lt;/property&gt;
+		&lt;property name="address"&gt;
+			&lt;bean class="org.sebastian.spring.beans.Address"&gt;
+				&lt;property name="street" value="Bd. 1 Decembrie 1918"&gt;&lt;/property&gt;
+				&lt;property name="postcode" value="1234"&gt;&lt;/property&gt;
+			&lt;/bean&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	&lt;bean id="address" class="org.sebastian.spring.beans.Address"&gt;
+		&lt;property name="street" value="1st Ave"&gt;&lt;/property&gt;
+		&lt;property name="postcode" value="555"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Person [id=1, name=Silviu, taxId=999, theAddress=Address [street=Bd. 1 Decembrie 1918, postcode=1234]]
+Address [street=1st Ave, postcode=555]   </pre>
+</div>
+
+    
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.10.1"> <h1> 1.10.1.  List of primary types (Strings, int etc.) </h1> </a>
+
+
+<div class="head"> <span class="title"> FruitBasket.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+import java.util.List;
+
+public class FruitBasket {
+	private String name;
+	private List<String> fruits;
+	
+	public FruitBasket(String name, List<String> fruits) {
+		this.name = name;
+		this.fruits = fruits;
+	}
+
+	@Override
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(name);
+		sb.append(" contains :\n");
+		
+		for (String fruit : fruits) {
+			sb.append(fruit + "\n");
+		}
+		
+		return sb.toString();
+	}
+	
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.sebastian.spring.beans.FruitBasket;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		FruitBasket basket = (FruitBasket) context.getBean("basket");
+		System.out.println(basket);
+	
+			
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="basket" class="org.sebastian.spring.beans.FruitBasket"&gt;
+		&lt;constructor-arg name="name" value="John's Basket"&gt;&lt;/constructor-arg&gt;
+		
+		&lt;constructor-arg name="fruits"&gt;
+			<span class="greenish">&lt;list&gt;</span>
+				<span class="greenish">&lt;value&gt;</span>orange&lt;<span class="greenish">/value&gt;</span>
+				<span class="greenish">&lt;value</span>&gt;</span>banana<span class="greenish">&lt;/value&gt;</span>
+				<span class="greenish">&lt;value</span>&gt;</span>apple<span class="greenish">&lt;/value&gt;</span>
+				<span class="greenish">&lt;value</span>&gt;</span>grapes<span class="greenish">&lt;/value&gt;</span>
+				<span class="greenish">&lt;value</span>&gt;</span>plum<span class="greenish">&lt;/value&gt;</span>
+			<span class="greenish">&lt;/list&gt;</span>
+		&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Hello! I'm a person!
+   </pre>
+</div>
+
+
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.10.2"> <h1> 1.10.2. List of Beans </h1> </a>
+
+
+<div class="head"> <span class="title"> Animal.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Animal {
+	
+	private String name;
+	private String type;
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@Override
+	public String toString() {
+				
+		return "Animal [name=" + name + ", type=" + type + "]";
+	}
+	
+	
+	
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Jungle.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+import java.util.List;
+
+public class Jungle {
+
+	private Animal largest;
+	private List<Animal> animals;
+	
+	public Animal getLargest() {
+		return largest;
+	}
+	
+	public void setLargest(Animal largest) {
+		this.largest = largest;
+	}
+	
+	public List<Animal> getAnimals() {
+		return animals;
+	}
+	
+	public void setAnimals(List<Animal> animals) {
+		this.animals = animals;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Largest animal : ");
+		sb.append(largest + "\n");
+		
+		sb.append("Animals :\n");
+		for (Animal animal : animals) {
+			sb.append(animal.toString() + "\n");
+		}
+		
+		
+		return sb.toString();
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.sebastian.spring.beans.FruitBasket;
+import org.sebastian.spring.beans.Jungle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Jungle jungle = (Jungle) context.getBean("jungle");
+		System.out.println(jungle);
+	
+			
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="jungle" class="org.sebastian.spring.beans.Jungle"&gt;
+		&lt;property name="largest" ref="elephant" &gt;&lt;/property&gt;
+		&lt;property name="animals"&gt;
+			&lt;list&gt;
+				&lt;ref bean="lion" /&gt;
+				&lt;ref bean="elephant" /&gt;
+				&lt;ref bean="snake" /&gt;
+			&lt;/list&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="lion" class="org.sebastian.spring.beans.Animal"&gt;
+		&lt;property name="name" value="Igor"&gt;&lt;/property&gt;
+		&lt;property name="type" value="lion"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="elephant" class="org.sebastian.spring.beans.Animal"&gt;
+		&lt;property name="name" value="Richard"&gt;&lt;/property&gt;
+		&lt;property name="type" value="elephant"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="snake" class="org.sebastian.spring.beans.Animal"&gt;
+		&lt;property name="name" value="Bob"&gt;&lt;/property&gt;
+		&lt;property name="type" value="snake"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Largest animal : Animal [name=Richard, type=elephant]
+Animals :
+Animal [name=Igor, type=lion]
+Animal [name=Richard, type=elephant]
+Animal [name=Bob, type=snake]
+   </pre>
+</div>
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.10.3"> <h1> 1.10.3. List of Beans (with Inner Beans) </h1> </a>
+
+<div class="head"> <span class="title"> Animal.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Animal {
+	
+	private String name;
+	private String type;
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@Override
+	public String toString() {
+				
+		return "Animal [name=" + name + ", type=" + type + "]";
+	}
+	
+	
+	
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Jungle.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+import java.util.List;
+
+public class Jungle {
+
+	private Animal largest;
+	private List<Animal> animals;
+	
+	public Animal getLargest() {
+		return largest;
+	}
+	
+	public void setLargest(Animal largest) {
+		this.largest = largest;
+	}
+	
+	public List<Animal> getAnimals() {
+		return animals;
+	}
+	
+	public void setAnimals(List<Animal> animals) {
+		this.animals = animals;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Largest animal : ");
+		sb.append(largest + "\n");
+		
+		sb.append("Animals :\n");
+		for (Animal animal : animals) {
+			sb.append(animal.toString() + "\n");
+		}
+		
+		
+		return sb.toString();
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.sebastian.spring.beans.FruitBasket;
+import org.sebastian.spring.beans.Jungle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Jungle jungle = (Jungle) context.getBean("jungle");
+		System.out.println(jungle);
+	
+			
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="jungle" class="org.sebastian.spring.beans.Jungle"&gt;
+		&lt;property name="largest"&gt;
+			&lt;bean id="elephant" class="org.sebastian.spring.beans.Animal"&gt;
+				&lt;property name="name" value="Rob"&gt;&lt;/property&gt;
+				&lt;property name="type" value="elephant"&gt;&lt;/property&gt;
+			&lt;/bean&gt;
+		&lt;/property&gt;
+
+		<span class="greenish">&lt;property</span> <span class="magenta">name</span>=<span class="blue">"animals"</span><span class="greenish">&gt;</span>
+			<span class="greenish">&lt;list&gt;</span>
+				<span class="greenish">&lt;bean</span> <span class="magenta">class</span>=<span class="blue">"org.sebastian.spring.beans.Animal"<span class="greenish"</span>>&gt;</span>
+					<span class="greenish">&lt;property</span> <span class="magenta">name</span>="name" <span class="magenta">value</span>="Igor"<span class="greenish">&gt;&lt;/property&gt;</span>
+					<span class="greenish">&lt;property</span> <span class="magenta">name</span>="type" <span class="magenta">value</span>="lion"<span class="greenish">&gt;&lt;/property&gt;</span>
+				<span class="greenish">&lt;/bean&gt;</span>
+
+				<span class="greenish">&lt;bean</span> <span class="magenta">class</span>="org.sebastian.spring.beans.Animal"<span class="greenish">&gt;</span>
+					<span class="greenish">&lt;property</span> <span class="magenta">name</span>="name" <span class="magenta">value</span>="Richard"<span class="greenish">&gt;&lt;/property&gt;</span>
+					<span class="greenish">&lt;property</span> <span class="magenta">name</span>="type" <span class="magenta">value</span>="elephant"<span class="greenish">&gt;&lt;/property&gt;</span>
+				<span class="greenish">&lt;/bean&gt;</span>
+
+				<span class="greenish">&lt;bean</span> <span class="magenta">class</span>="org.sebastian.spring.beans.Animal"<span class="greenish">&gt;</span>
+					<span class="greenish">&lt;property</span> <span class="magenta">name</span>="name" <span class="magenta">value</span>="Bob"<span class="greenish">&gt;&lt;/property&gt;</span>
+					<span class="greenish">&lt;property</span> <span class="magenta">name</span>="type" <span class="magenta">value</span>="snake"<span class="greenish">&gt;&lt;/property&gt;</span>
+				<span class="greenish">&lt;/bean&gt;</span>
+			<span class="greenish">&lt;/list&gt;</span>
+		<span class="greenish">&lt;/property&gt;</span>
+	&lt;/bean&gt;
+
+
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Largest animal : Animal [name=Richard, type=elephant]
+Animals :
+Animal [name=Igor, type=lion]
+Animal [name=Richard, type=elephant]
+Animal [name=Bob, type=snake]
+   </pre>
+</div>
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.10.4"> <h1> 1.10.4. Property Maps (Map&lt;String, String&gt;) </h1> </a>
+
+
+<div class="head"> <span class="title"> Jungle.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Jungle {
+
+	private Map&lt;String, String&gt; foods = new HashMap&lt;String, String&gt;();
+
+	public void setFoods(Map&lt;String, String&gt; foods) {
+		this.foods = foods;
+	}
+
+	@Override
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("Jungle :\n");
+		
+		
+		for(Map.Entry&lt;String, String&gt; entry : foods.entrySet()) {
+			sb.append(entry.getKey() + " : " + entry.getValue() + "\n");
+		}
+		
+		return sb.toString();
+	}
+
+}
+   </pre>
+</div>
+
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.sebastian.spring.beans.FruitBasket;
+import org.sebastian.spring.beans.Jungle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Jungle jungle = (Jungle) context.getBean("jungle");
+		System.out.println(jungle);
+	
+			
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="jungle" class="org.sebastian.spring.beans.Jungle"&gt;
+		<span class="greenish">&lt;property</span> <span class="magenta">name</span>=<span class="blue">"foods"</span><span class="greenish">&gt;</span>
+			<span class="greenish">&lt;props&gt;</span>
+				<span class="greenish">&lt;prop</span> <span class="magenta">key</span>=<span class="blue">"gorilla"</span><span class="greenish">&gt;</span>banana<span class="greenish">&lt;/prop&gt;</span>
+				<span class="greenish">&lt;prop</span> <span class="magenta">key</span>=<span class="blue">"panda"</span><span class="greenish">&gt;</span>bamboo<span class="greenish">&lt;/prop&gt;</span>
+				<span class="greenish">&lt;prop</span> <span class="magenta">key</span>=<span class="blue">"snake"</span><span class="greenish">&gt;</span>eggs<span class="greenish">&lt;/prop&gt;</span>
+			<span class="greenish">&lt;/props&gt;</span>
+		<span class="greenish">&lt;/property&gt;</span>
+	&lt;/bean&gt;
+
+
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Jungle :
+gorilla : banana
+snake : eggs
+panda : bamboo
+   </pre>
+</div>
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.10.5"> <h1> 1.10.5. Arbitrary Maps (Map&lt;String, Object&gt;) </h1> </a>
+ 
+ 
+<div class="head"> <span class="title"> Animal.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Animal {
+	
+	private String name;
+	private String type;
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@Override
+	public String toString() {
+				
+		return "Animal [name=" + name + ", type=" + type + "]";
+	}
+	
+	
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+ 
+<div class="head"> <span class="title"> Jungle.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.sebastian.spring.beans.Animal;
+
+public class Jungle {
+
+	private Map&lt;String, Animal&gt; animals = new HashMap&lt;String, Animal&gt;();
+
+	public void setAnimals(Map&lt;String, Animal&gt; animals) {
+		this.animals = animals;
+	}
+
+	@Override
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("Jungle :\n");
+		
+		
+		for(Map.Entry&lt;String, Animal&gt; entry : animals.entrySet()) {
+			sb.append(entry.getKey() + " : " + entry.getValue() + "\n");
+		}
+		
+		return sb.toString();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.sebastian.spring.beans.FruitBasket;
+import org.sebastian.spring.beans.Jungle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Jungle jungle = (Jungle) context.getBean("jungle");
+		System.out.println(jungle);
+	
+			
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="jungle" class="org.sebastian.spring.beans.Jungle"&gt;
+		<span class="greenish">&lt;property</span> <span class="magenta">name</span>=<span class="blue">"animals"</span><span class="greenish">&gt;</span>
+			<span class="greenish">&lt;map&gt;</span>
+				<span class="greenish">&lt;entry</span> <span class="magenta">key</span>=<span class="blue">"daLion"</span> <span class="magenta">value-ref</span>=<span class="blue">"lion"</span><span class="greenish">&gt;&lt;/entry&gt;</span>
+				<span class="greenish">&lt;entry</span> <span class="magenta">key</span>=<span class="blue">"daPanther"</span> <span class="magenta">value-ref</span>=<span class="blue">"panther"</span><span class="greenish">&gt;&lt;/entry&gt;</span>
+				<span class="greenish">&lt;entry</span> <span class="magenta">key</span>=<span class="blue">"daBear"</span> <span class="magenta">value-ref</span>=<span class="blue">"bear"</span><span class="greenish">&gt;&lt;/entry&gt;</span>
+			<span class="greenish">&lt;/map&gt;</span>
+		<span class="greenish">&lt;/property&gt;</span>
+	&lt;/bean&gt;
+
+	&lt;bean id="lion" class="org.sebastian.spring.beans.Animal"&gt;
+		&lt;property name="name" value="Richard"&gt;&lt;/property&gt;
+		&lt;property name="type" value="lion"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="panther" class="org.sebastian.spring.beans.Animal"&gt;
+		&lt;property name="name" value="Baghera"&gt;&lt;/property&gt;
+		&lt;property name="type" value="panther"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="bear" class="org.sebastian.spring.beans.Animal"&gt;
+		&lt;property name="name" value="Baloo"&gt;&lt;/property&gt;
+		&lt;property name="type" value="bear"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Jungle :
+daLion : Animal [name=Richard, type=lion]
+daPanther : Animal [name=Baghera, type=panther]
+daBear : Animal [name=Baloo, type=bear]
+   </pre>
+</div>
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.10.6"> <h1> 1.10.6. Arbitrary Maps (Map&lt;String, Object&gt;) with Inner Beans </h1> </a>
+ 
+
+<div class="head"> <span class="title"> Animal.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+public class Animal {
+	
+	private String name;
+	private String type;
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@Override
+	public String toString() {
+				
+		return "Animal [name=" + name + ", type=" + type + "]";
+	}
+	
+	
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Jungle.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.beans;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.sebastian.spring.beans.Animal;
+
+public class Jungle {
+
+	private Map&lt;String, Animal&gt; animals = new HashMap&lt;String, Animal&gt;();
+
+	public void setAnimals(Map&lt;String, Animal&gt; animals) {
+		this.animals = animals;
+	}
+
+	@Override
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("Jungle :\n");
+		
+		
+		for(Map.Entry&lt;String, Animal&gt; entry : animals.entrySet()) {
+			sb.append(entry.getKey() + " : " + entry.getValue() + "\n");
+		}
+		
+		return sb.toString();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import org.sebastian.spring.beans.Address;
+import org.sebastian.spring.beans.FruitBasket;
+import org.sebastian.spring.beans.Jungle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		Jungle jungle = (Jungle) context.getBean("jungle");
+		System.out.println(jungle);
+		
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="jungle" class="org.sebastian.spring.beans.Jungle"&gt;
+		&lt;property name="animals"&gt;
+			&lt;map&gt;
+				&lt;entry key="lion"&gt;
+					&lt;bean class="org.sebastian.spring.beans.Animal"&gt;
+						&lt;property name="name" value="Richard"&gt;&lt;/property&gt;
+						&lt;property name="type" value="lion"&gt;&lt;/property&gt;
+					&lt;/bean&gt;
+				&lt;/entry&gt;
+
+				&lt;entry key="panther"&gt;
+					&lt;bean class="org.sebastian.spring.beans.Animal"&gt;
+						&lt;property name="name" value="Baghera"&gt;&lt;/property&gt;
+						&lt;property name="type" value="panther"&gt;&lt;/property&gt;
+					&lt;/bean&gt;
+				&lt;/entry&gt;
+
+				&lt;entry key="bear"&gt;
+					&lt;bean class="org.sebastian.spring.beans.Animal"&gt;
+						&lt;property name="name" value="Baloo"&gt;&lt;/property&gt;
+						&lt;property name="type" value="bear"&gt;&lt;/property&gt;
+					&lt;/bean&gt;
+				&lt;/entry&gt;
+			&lt;/map&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+
+&lt;/beans&gt;   
+</pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Jungle :
+lion : Animal [name=Richard, type=lion]
+panther : Animal [name=Baghera, type=panther]
+bear : Animal [name=Baloo, type=bear]   </pre>
+</div>
+  
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="2.2.1"> <h1> 2.2.1. Querying the Database for multiple rows </h1> </a>
+ 
+ 
+<div class="head"> <span class="title"> Offer.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Offer {
+
+	private int id;
+	private String name;
+	private String email;
+	private String text;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", name=" + name + ", email=" + email
+				+ ", text=" + text + "]";
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> OffersDAO.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component("offersDao")
+public class OffersDAO {
+
+	private NamedParameterJdbcTemplate jdbc;
+	
+	@Autowired
+	public void setDataSource(DataSource jdbc) {
+		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
+	}
+
+	<span class="magenta">public</span> List&lt;Offer&gt; getOffers() {
+		
+		
+		<span class="magenta">return</span> <span class="blue">jdbc</span>.query(<span class="blue">"select * from offers"</span>, <span class="magenta">new</span> RowMapper&lt;Offer&gt;() {
+
+			<span class="magenta">public</span> Offer mapRow(ResultSet rs, <span class="magenta">int</span> rowNum) <span class="magenta">throws</span> SQLException {
+				
+				Offer offer = <span class="magenta">new</span> Offer();
+				
+				offer.setId(rs.getInt(<span class="blue">"id"</span>));
+				offer.setName(rs.getString(<span class="blue">"name"</span>));
+				offer.setEmail(rs.getString(<span class="blue">"email"</span>));
+				offer.setText(rs.getString(<span class="blue">"offer"</span>));
+				
+				<span class="magenta">return</span> offer;
+			}
+			
+		});
+		
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("org/sebastian/spring/beans/beans.xml");
+
+		
+	
+		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
+
+		List&lt;Offer&gt; offers = offersDao.getOffers();
+		
+		<span class="magenta">for</span> (Offer offer : offers) {
+			System.<span class="blue">out</span>.println(offer);
+		}
+			
+		
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+
+	&lt;context:component-scan base-package="org.sebastian.spring.test"&gt;&lt;/context:component-scan&gt;
+
+	
+	&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"&gt;
+
+		&lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+		&lt;property name="url" value="jdbc:mysql://localhost:3306/springtutorial"&gt;&lt;/property&gt;
+		&lt;property name="password" value=""&gt;&lt;/property&gt;
+		&lt;property name="username" value="root"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+ 
+&lt;/beans&gt;   
+</pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Offer [id=1, name=Julie, email=julie@absolutelynowhere.com, text=I can do all sort of things in Java.]
+Offer [id=2, name=Steve, email=steve_jobs@ipad.com, text=iOS programming is my thing!]
+Offer [id=3, name=Boris, email=boris_kratovsky@kremlin.com, text=Oh hi there!]
+   </pre>
+</div>
+
+  
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="2.2.2"> <h1>2.2.2. Querying the Database for a specific row </h1> </a>
+ 
+
+<div class="head"> <span class="title"> Offer.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Offer {
+
+	private int id;
+	private String name;
+	private String email;
+	private String text;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", name=" + name + ", email=" + email
+				+ ", text=" + text + "]";
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> OffersDAO.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component("offersDao")
+public class OffersDAO {
+
+	private NamedParameterJdbcTemplate jdbc;
+
+	@Autowired
+	public void setDataSource(DataSource jdbc) {
+		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
+	}
+
+	<span class="magenta">public</span> Offer getOffer(<span class="magenta">int</span> id) {
+		MapSqlParameterSource params = <span class="magenta">new</span> MapSqlParameterSource();
+		params.addValue(<span class="blue">"id"</span>, id);
+
+		<span class="magenta">return</span> <span class="blue">jdbc</span>.queryForObject(<span class="blue">"select * from offers where id=:id"</span>, params,
+				<span class="magenta">new</span> RowMapper&lt;Offer&gt;() {
+
+					<span class="magenta">public</span> Offer mapRow(ResultSet rs, <span class="magenta">int</span> rowNum)
+							<span class="magenta">throws</span> SQLException {
+						Offer offer = <span class="magenta">new</span> Offer();
+
+						offer.setId(rs.getInt(<span class="blue">"id"</span>));
+						offer.setName(rs.getString(<span class="blue">"name"</span>));
+						offer.setEmail(rs.getString(<span class="blue">"email"</span>));
+						offer.setText(rs.getString(<span class="blue">"offer"</span>));
+
+						<span class="magenta">return</span> offer;
+					}
+				});
+
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	<span class="magenta">public static void main</span>(String[] args) {
+
+		ApplicationContext context = <span class="magenta">new</span> ClassPathXmlApplicationContext(
+				<span class="blue">"org/sebastian/spring/beans/beans.xml"</span>);
+
+		OffersDAO offersDao = (OffersDAO) context.getBean(<span class="blue">"offersDao"</span>);
+
+		Offer offer = offersDao.getOffer(2);
+		System.<span class="blue">out</span>.println(offer);
+
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+
+	&lt;context:component-scan base-package="org.sebastian.spring.test"&gt;&lt;/context:component-scan&gt;
+
+	
+	&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"&gt;
+
+		&lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+		&lt;property name="url" value="jdbc:mysql://localhost:3306/springtutorial"&gt;&lt;/property&gt;
+		&lt;property name="password" value=""&gt;&lt;/property&gt;
+		&lt;property name="username" value="root"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+ 
+&lt;/beans&gt;   
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Offer [id=2, name=Steve, email=steve_jobs@ipad.com, text=iOS programming is my thing!]   </pre>
+</div>
+ 
+  
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="2.2.3"> <h1> 2.2.3. Deleting a row from the Database</h1> </a>
+ 
+ 
+<div class="head"> <span class="title"> Offers.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Offer {
+
+	private int id;
+	private String name;
+	private String email;
+	private String text;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", name=" + name + ", email=" + email
+				+ ", text=" + text + "]";
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> OffersDAO.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component("offersDao")
+public class OffersDAO {
+
+	private NamedParameterJdbcTemplate jdbc;
+
+	@Autowired
+	public void setDataSource(DataSource jdbc) {
+		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
+	}
+		
+	<span class="magenta">public</span> <span class="magenta">boolean</span> delete(int id) {
+		MapSqlParameterSource params = new MapSqlParameterSource("id", id);
+		
+		<span class="magenta">return</span> <span class="blue">jdbc</span>.update(<span class="blue">"delete from offers where id=:id"</span>, params) == 1;
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"org/sebastian/spring/beans/beans.xml");
+
+		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
+
+		boolean result = offersDao.delete(2);
+		System.out.println(result);
+
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+
+	&lt;context:component-scan base-package="org.sebastian.spring.test"&gt;&lt;/context:component-scan&gt;
+
+	
+	&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"&gt;
+
+		&lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+		&lt;property name="url" value="jdbc:mysql://localhost:3306/springtutorial"&gt;&lt;/property&gt;
+		&lt;property name="password" value=""&gt;&lt;/property&gt;
+		&lt;property name="username" value="root"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+ 
+&lt;/beans&gt;   
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+true
+   </pre>
+</div>
+
+  
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="2.2.4"> <h1> 2.2.4. Creating a row into the Database </h1> </a>
+
+
+<div class="head"> <span class="title"> Offer.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Offer {
+
+	private int id;
+	private String name;
+	private String email;
+	private String offer;
+
+
+	public Offer(String name, String email, String offer) {
+		
+		this.name = name;
+		this.email = email;
+		this.offer = offer;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getOffer() {
+		return offer;
+	}
+
+	public void setOffer(String offer) {
+		this.offer = offer;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", name=" + name + ", email=" + email
+				+ ", offer=" + offer + "]";
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> OffersDAO.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component("offersDao")
+public class OffersDAO {
+
+	private NamedParameterJdbcTemplate jdbc;
+
+	@Autowired
+	public void setDataSource(DataSource jdbc) {
+		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
+	}
+		
+	<span class="magenta">public</span> <span class="magenta">boolean</span> create(Offer offer) {
+		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+		
+		<span class="magenta">return</span> jdbc.update(<span class="blue">"insert into offers (name,  offer, email) values (:name, :offer, :email)"</span>, params) == 1;
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"org/sebastian/spring/beans/beans.xml");
+
+		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
+
+		Offer offer1 = new Offer("Dave", "dave@yahoo.com", "I can do stuff");
+		Offer offer2 = new Offer("Sue", "sue_ellen@yahoo-mail.com", "I can cook delicious recipies!");
+		
+		boolean result1 = offersDao.create(offer1);
+		boolean result2 = offersDao.create(offer2);
+		
+		System.out.println(result1);
+		System.out.println(result2);
+		
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+
+	&lt;context:component-scan base-package="org.sebastian.spring.test"&gt;&lt;/context:component-scan&gt;
+
+	
+	&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"&gt;
+
+		&lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+		&lt;property name="url" value="jdbc:mysql://localhost:3306/springtutorial"&gt;&lt;/property&gt;
+		&lt;property name="password" value=""&gt;&lt;/property&gt;
+		&lt;property name="username" value="root"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+
+&lt;/beans&gt; 
+  </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+true
+true
+   </pre>
+</div>
+
+  
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="2.2.5"> <h1> 2.2.5. Updating a row into the Database </h1> </a>
+
+
+<div class="head"> <span class="title"> Offer.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+public class Offer {
+
+	private int id;
+	private String name;
+	private String email;
+	private String offer;
+
+
+	public Offer(int id, String name, String email, String offer) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.offer = offer;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getOffer() {
+		return offer;
+	}
+
+	public void setOffer(String offer) {
+		this.offer = offer;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", name=" + name + ", email=" + email
+				+ ", offer=" + offer + "]";
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> OffersDAO.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component("offersDao")
+public class OffersDAO {
+
+	private NamedParameterJdbcTemplate jdbc;
+
+	@Autowired
+	public void setDataSource(DataSource jdbc) {
+		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
+	}
+		
+	public boolean update(Offer offer) {
+		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+		
+		return jdbc.update("update offers set name=:name, offer=:offer, email=:email where id=:id", params) == 1;
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.spring.test;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"org/sebastian/spring/beans/beans.xml");
+
+		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
+
+		Offer offer = new Offer(3, "John", "john@caveofprogramming.com",
+				"I can do Spring tutorials");
+
+		boolean result = offersDao.update(offer);
+
+		System.out.println(result);
+
+		((ClassPathXmlApplicationContext) context).close();
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> beans.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+
+	&lt;context:component-scan base-package="org.sebastian.spring.test"&gt;&lt;/context:component-scan&gt;
+
+	
+	&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"&gt;
+
+		&lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+		&lt;property name="url" value="jdbc:mysql://localhost:3306/springtutorial"&gt;&lt;/property&gt;
+		&lt;property name="password" value=""&gt;&lt;/property&gt;
+		&lt;property name="username" value="root"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+true
+   </pre>
+</div>
+
+  
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="3.1.1"> <h1> 3.1.1. Sample Spring "Hello World!" MVC Project </h1> </a>
+ 
+ 
+<div class="head"> <span class="title"> pom.xml :  </span>
+<p><b> Path: </b> /SpringWebProject/pom.xml </p>
+</div>
+<div class="code_sh">
+    <pre>
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;org.sebastian.web&lt;/groupId&gt;
+  &lt;artifactId&gt;SpringWebProject&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  &lt;build&gt;
+    &lt;sourceDirectory&gt;src&lt;/sourceDirectory&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.1&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;source&gt;1.7&lt;/source&gt;
+          &lt;target&gt;1.7&lt;/target&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.3&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;warSourceDirectory&gt;WebContent&lt;/warSourceDirectory&gt;
+          &lt;failOnMissingWebXml&gt;false&lt;/failOnMissingWebXml&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+  <span class="greenish">&lt;dependencies&gt;</span>
+  	<span class="greenish">&lt;dependency&gt;</span>
+  		<span class="greenish">&lt;groupId&gt;</span>org.springframework<span class="greenish">&lt;/groupId&gt;</span>
+  		<span class="greenish">&lt;artifactId&gt;</span><span class="blue">spring-beans</span><span class="greenish">&lt;/artifactId&gt;</span>
+  		<span class="greenish">&lt;version&gt;</span>3.0.5.RELEASE<span class="greenish">&lt;/version&gt;</span>
+  <span class="greenish">	&lt;/dependency&gt;</span>
+  	<span class="greenish">&lt;dependency&gt;</span>
+  		<span class="greenish">&lt;groupId&gt;</span>org.springframework<span class="greenish">&lt;/groupId&gt;</span>
+  		<span class="greenish">&lt;artifactId&gt;</span><span class="blue">spring-context</span><span class="greenish">&lt;/artifactId&gt;</span>
+  		<span class="greenish">&lt;version&gt;</span>3.0.5.RELEASE<span class="greenish">&lt;/version&gt;</span>
+  	<span class="greenish">&lt;/dependency&gt;</span>
+  	<span class="greenish">&lt;dependency&gt;</span>
+  		<span class="greenish">&lt;groupId&gt;</span>org.springframework<span class="greenish">&lt;/groupId&gt;</span>
+  		<span class="greenish">&lt;artifactId&gt;</span><span class="blue">spring-core</span><span class="greenish">&lt;/artifactId&gt;</span>
+  		<span class="greenish">&lt;version&gt;</span>3.0.5.RELEASE<span class="greenish">&lt;/version&gt;</span>
+  	<span class="greenish">&lt;/dependency&gt;</span>
+  	<span class="greenish">&lt;dependency&gt;</span>
+  		<span class="greenish">&lt;groupId&gt;</span>org.springframework<span class="greenish">&lt;/groupId&gt;</span>
+  		<span class="greenish">&lt;artifactId&gt;</span><span class="blue">spring-jdbc</span><span class="greenish">&lt;/artifactId&gt;</span>
+  		<span class="greenish">&lt;version&gt;</span>3.2.3.RELEASE<span class="greenish">&lt;/version&gt;</span>
+  	<span class="greenish">&lt;/dependency&gt;</span>
+  	<span class="greenish">&lt;dependency&gt;</span>
+  		<span class="greenish">&lt;groupId&gt;</span>org.springframework<span class="greenish">&lt;/groupId&gt;</span>
+  		<span class="greenish">&lt;artifactId&gt;</span><span class="blue">spring-web</span><span class="greenish">&lt;/artifactId&gt;</span>
+  		<span class="greenish">&lt;version&gt;</span>3.0.5.RELEASE<span class="greenish">&lt;/version&gt;</span>
+  	<span class="greenish">&lt;/dependency&gt;</span>
+  	<span class="greenish">&lt;dependency&gt;</span>
+  		<span class="greenish">&lt;groupId&gt;</span>org.springframework<span class="greenish">&lt;/groupId&gt;</span>
+  		<span class="greenish">&lt;artifactId&gt;</span><span class="blue">spring-webmvc</span><span class="greenish">&lt;/artifactId&gt;</span>
+  		<span class="greenish">&lt;version&gt;</span>3.0.5.RELEASE<span class="greenish">&lt;/version&gt;</span>
+  	<span class="greenish">&lt;/dependency&gt;</span>
+ <span class="greenish"> &lt;/dependencies&gt;</span>
+&lt;/project&gt; 
+  </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> web.xml :  </span>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/web.xml </p>
+
+</div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5"&gt;
+  &lt;display-name&gt;SpringWebProject&lt;/display-name&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.html&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+  
+  &lt;servlet&gt;
+    &lt;description&gt;&lt;/description&gt;
+    &lt;display-name&gt;offers&lt;/display-name&gt;
+    &lt;servlet-name&gt;offers&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;offers&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;   
+</pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> offers-servlet.xml :  </span>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/offers-servlet.xml </p>
+</div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+	&lt;context:component-scan
+		base-package="org.sebastian.web.controllers"&gt;
+	&lt;/context:component-scan&gt;
+	&lt;mvc:annotation-driven /&gt;
+	&lt;bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+	&lt;property name="prefix" value="/WEB-INF/jsps/"&gt;&lt;/property&gt;
+	&lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> home.jsp :  </span>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/home.jsp </p>
+</div>
+<div class="code_sh">
+    <pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;This is a spring web project!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt; 
+  </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> page1.jsp :  </span>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/page1.jsp </p>
+
+</div>
+<div class="code_sh">
+    <pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Session Example Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;This is the session example page!&lt;/h1&gt;
+	&lt;p&gt;
+		Name stored in session:
+		&lt;%=session.getAttribute("name")%&gt;
+	&lt;p&gt;
+		Name stored in session:
+		&lt;%=session.getAttribute("name")%&gt;
+		
+&lt;/body&gt;
+&lt;/html&gt;   
+</pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> page2.jsp :  </span>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/page2.jsp </p>
+
+</div>
+<div class="code_sh">
+    <pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Model and View Example Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;This is the ModelAndView Example Page!&lt;/h1&gt;
+
+	&lt;p&gt;
+		&lt;b&gt;Session&lt;/b&gt;:
+		&lt;%=session.getAttribute("name")%&gt;&lt;/p&gt;
+	&lt;p&gt;
+		&lt;b&gt;Request &lt;/b&gt;:
+		&lt;%=request.getAttribute("name")%&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;b&gt;Request (using EL)&lt;/b&gt;: ${name}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> page3.jsp :  </span>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/page3.jsp </p>
+
+</div>
+<div class="code_sh">
+    <pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Model Example Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;This is the Model Example Page!&lt;/h1&gt;
+
+	&lt;p&gt;
+		&lt;b&gt;Session&lt;/b&gt;:
+		&lt;%=session.getAttribute("name")%&gt;&lt;/p&gt;
+	&lt;p&gt;
+		&lt;b&gt;Request &lt;/b&gt;:
+		&lt;%=request.getAttribute("name")%&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;b&gt;Request (using EL)&lt;/b&gt;: ${name}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> <span class="highlight">OffersController.java</span>  :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.web.controllers;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class OffersController {
+
+	@RequestMapping("/")
+	public String showHome() {
+		return "home";
+	}
+	
+	@RequestMapping("/sessionExamplePage")
+	public String showPage1(HttpSession session) {
+		
+		session.setAttribute("name", "Boris");
+		
+		return "page1";
+	}
+	
+	@RequestMapping("/modelAndViewExamplePage")
+	public ModelAndView showPage2() {
+		
+		ModelAndView mv = new ModelAndView("page2");
+		Map&lt;String, Object&gt; model = mv.getModel();
+		
+		model.put("name", "River");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/modelExamplePage")
+	public String showPage2(Model model) {
+				
+		model.addAttribute("name", "Tiffany");
+		
+		return "page3";
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span>
+<p><b> URL: </b> http://localhost:8080<span class="highlight">/SpringWebProject/</span> </p>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/home.jsp </p>
+
+</div>
+<div class="code_sh">
+    <pre>
+<h1>This is a spring web project!</h1>
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span>
+<p><b> URL: </b> http://localhost:8080/SpringWebProject<span class="highlight">/sessionExamplePage</span> </p>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/page1.jsp </p>
+
+</div>
+<div class="code_sh">
+    
+<h1>This is the session example page!</h1>
+	<p>
+		Name stored in session: Boris
+	<p>
+		Name stored in session: Boris   
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span>
+<p><b> Path: </b> http://localhost:8080/SpringWebProject<span class="highlight">/modelAndViewExamplePage</span> </p>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/page2.jsp </p>
+
+</div>
+<div class="code_sh">
+    
+<h1>This is the ModelAndView Example Page!</h1>
+
+	<p>
+		<b>Session</b>:
+		Boris</p>
+	<p>
+		<b>Request </b>:
+		River</p>
+	<p><b>Request (using EL)</b>: River</p></div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span>
+<p><b> Path: </b> http://localhost:8080/SpringWebProject<span class="highlight">/modelExamplePage"</span> </p>
+<p><b> Path: </b> /SpringWebProject/WebContent/WEB-INF/jsps/page3.jsp </p>
+
+</div>
+<div class="code_sh">
+    
+<h1>This is the Model Example Page!</h1>
+
+	<p>
+		<b>Session</b>:
+		Boris</p>
+	<p>
+		<b>Request </b>:
+		Tiffany</p>
+	<p><b>Request (using EL)</b>: Tiffany</p>
+</div>
+
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="3.1.2"> <h1> 3.1.2. Sample of a jsp file that uses JSTL</h1> </a>
+ 
+ 
+<div class="head"> <span class="title"> pom.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+ <span class="greenish">&lt;dependencies&gt;</span>
+ 		...
+        
+     <span class="greenish">&lt;dependency&gt;</span>
+            <span class="greenish">&lt;groupId&gt;</span>jstl<span class="greenish">&lt;/groupId&gt;</span>
+            <span class="greenish">&lt;artifactId&gt;</span>jstl<span class="greenish">&lt;/artifactId&gt;</span>
+            <span class="greenish">&lt;version&gt;</span>1.2<span class="greenish">&lt;/version&gt;</span>
+     <span class="greenish">&lt;/dependency&gt;</span>
+        
+ <span class="greenish">&lt;/dependencies&gt;</span>
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> OffersController.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package org.sebastian.web.controllers;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class OffersController {
+
+	@RequestMapping("/")
+	public String showHome(Model model) {
+		
+		model.addAttribute("name", "&lt;b&gt;Steve&lt;/b&gt;");
+		
+		return "home";
+	}
+	
+	
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> home.jsp :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%&gt;
+<span class="highlight">&lt;%@</span> <span class="greenish">taglib</span> <span class="magenta">prefix</span>=<span class="blue">"c"</span> <span class="magenta">uri</span>=<span class="blue">"http://java.sun.com/jsp/jstl/core"</span> <span class="highlight">%&gt;</span>
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;This is a spring web project!&lt;/h1&gt;
+
+&lt;p&gt;&lt;b&gt;Request&lt;/b&gt;: &lt;%= request.getAttribute("name") %&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Request (using EL)&lt;/b&gt;: ${name} &lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Request (using JSTL)&lt;/b&gt;: <span class="greenish">&lt;c:out</span> <span class="magenta">value</span>="${name}"<span class="greenish">&gt;&lt;/c:out&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+   </pre>
+</div>
+
+
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Output (home.jsp) :  </span></div>
+<div class="code_sh">
+<h1>This is a spring web project!</h1>
+
+<p><b>Request</b>: <b>Steve</b></p>
+<p><b>Request (using EL)</b>: <b>Steve</b> </p>
+<p><b>Request (using JSTL)</b>: &lt;b&gt;Steve&lt;/b&gt;
+</div>
+
+ 
+  
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="3.2.1"> <h1> 3.2.1. Connecting a Spring Web MVC Project to a database </h1> </a>
+  
+
+<div class="head"> <span class="title"> pom.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;org.sebastian.web&lt;/groupId&gt;
+  &lt;artifactId&gt;SpringWebProject&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  &lt;build&gt;
+    &lt;sourceDirectory&gt;src&lt;/sourceDirectory&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.1&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;source&gt;1.7&lt;/source&gt;
+          &lt;target&gt;1.7&lt;/target&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.3&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;warSourceDirectory&gt;WebContent&lt;/warSourceDirectory&gt;
+          &lt;failOnMissingWebXml&gt;false&lt;/failOnMissingWebXml&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+  &lt;dependencies&gt;
+  	&lt;dependency&gt;
+  		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  		&lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+  		&lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+  	&lt;/dependency&gt;
+  	&lt;dependency&gt;
+  		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  		&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+  		&lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+  	&lt;/dependency&gt;
+  	&lt;dependency&gt;
+  		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  		&lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+  		&lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+  	&lt;/dependency&gt;
+  	&lt;dependency&gt;
+  		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  		&lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+  		&lt;version&gt;3.2.3.RELEASE&lt;/version&gt;
+  	&lt;/dependency&gt;
+  	&lt;dependency&gt;
+  		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  		&lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+  		&lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+  	&lt;/dependency&gt;
+  	&lt;dependency&gt;
+  		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  		&lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+  		&lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+  	&lt;/dependency&gt;
+  	&lt;dependency&gt;
+  		&lt;groupId&gt;jstl&lt;/groupId&gt;
+  		&lt;artifactId&gt;jstl&lt;/artifactId&gt;
+  		&lt;version&gt;1.2&lt;/version&gt;
+  	&lt;/dependency&gt;
+  	<span class="greenish">&lt;dependency&gt;</span>
+  		<span class="greenish">&lt;groupId&gt;</span>mysql<span class="greenish">&lt;/groupId&gt;</span>
+  		<span class="greenish">&lt;artifactId&gt;</span><span class="blue">mysql-connector-java</span><span class="greenish">&lt;/artifactId&gt;</span>
+  		<span class="greenish">&lt;version&gt;</span>5.1.28<span class="greenish">&lt;/version&gt;</span>
+  	<span class="greenish">&lt;/dependency&gt;</span>
+  &lt;/dependencies&gt;
+&lt;/project&gt;  
+ </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> context.xml :  </span>
+<p>You can find the context.xml file if you expand the "Servers" folder inside the Eclipse Project Navigator and expand the Tomcat version of the container you are using (normally it would be only one version). Double click the context.xml file that you find in there.</p>
+<p> Paste the "Resource" tag at the end of the file between the "Context" tags. </p>
+</div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	You under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. --&gt;&lt;!-- The contents of this file will be loaded for each web application --&gt;
+&lt;Context&gt;
+
+	&lt;!-- Default set of monitored resources --&gt;
+	&lt;WatchedResource&gt;WEB-INF/web.xml&lt;/WatchedResource&gt;
+
+	&lt;!-- Uncomment this to disable session persistence across Tomcat restarts --&gt;
+	&lt;!-- &lt;Manager pathname="" /&gt; --&gt;
+
+	&lt;!-- Uncomment this to enable Comet connection tacking (provides events 
+		on session expiration as well as webapp lifecycle) --&gt;
+	&lt;!-- &lt;Valve className="org.apache.catalina.valves.CometConnectionManagerValve" 
+		/&gt; --&gt;
+
+	<span class="greenish">&lt;Resource</span> <span class="magenta">name</span>=<span class="blue">"jdbc/spring"</span> auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" <span class="magenta">username</span>=<span class="blue">"root"</span>
+		<span class="magenta">password</span>=<span class="blue">""</span> driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/springtutorial" <span class="greenish">/&gt;</span>
+&lt;/Context&gt;  
+ </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  web.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5"&gt; 
+     &lt;display-name&gt;SpringWebProject&lt;/display-name&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.html&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+  
+  &lt;servlet&gt;
+    &lt;description&gt;&lt;/description&gt;
+    &lt;display-name&gt;offers&lt;/display-name&gt;
+    &lt;servlet-name&gt;offers&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;offers&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  
+  <span class="greenish">&lt;description&gt;</span>Spring Database<span class="greenish">&lt;/description&gt;</span>
+  <span class="greenish">&lt;resource-ref&gt;</span>
+      <span class="greenish">&lt;description&gt;</span>DB Connection<span class="greenish">&lt;/description&gt;</span>
+      <span class="greenish">&lt;res-ref-name&gt;</span><span class="blue">jdbc/spring</span><span class="greenish">&lt;/res-ref-name&gt;</span>
+      <span class="greenish">&lt;res-type&gt;</span>javax.sql.DataSource<span class="greenish">&lt;/res-type&gt;</span>
+      <span class="greenish">&lt;res-auth&gt;Container&lt;/res-auth&gt;</span>
+  <span class="greenish">&lt;/resource-ref&gt;</span>
+&lt;/web-app&gt;
+   </pre>
+</div>
+
+
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> offers-servlet.xml :  </span>
+<p>Keep in mind that the name of this file must begin with "offers" (offers-servlet.xml) because the value inside the servlet-name tag inside web.xml is "offers" </p>
+</div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+
+	&lt;context:component-scan base-package="com.sebastian.spring.controllers"&gt;
+	&lt;/context:component-scan&gt;
+	&lt;mvc:annotation-driven /&gt;
+
+	&lt;bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+		&lt;property name="prefix" value="/WEB-INF/jsps/"&gt;&lt;/property&gt;
+		&lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> home.jsp :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%&gt;
+
+
+<span class="highlight">&lt;%@</span> <span class="greenish">taglib</span> <span class="magenta">uri</span>=<span class="blue">"http://java.sun.com/jsp/jstl/sql"</span> <span class="magenta">prefix</span>=<span class="blue">"sql"</span><span class="highlight">%&gt;</span>
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%&gt;
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;This is a spring web project!&lt;/h1&gt;
+
+	<span class="greenish">&lt;sql:query</span> <span class="magenta">var</span>=<span class="blue">"rs"</span> <span class="magenta">dataSource</span>=<span class="blue">"jdbc/spring"</span><span class="greenish">&gt;</span>
+		select id, name, email, offer from offers
+	<span class="greenish">&lt;/sql:query&gt;</span>
+	
+	<span class="greenish">&lt;c:forEach</span> <span class="magenta">var</span>=<span class="blue">"row"</span> <span class="magenta">items</span>=<span class="blue">"</span>${rs.rows}<span class="blue">"</span><span class="greenish">&gt;</span>
+	    <span class="greenish">&lt;p&gt;</span>
+	    	Name: ${row.name} <span class="greenish">&lt;/br&gt;</span>
+	    	Email: ${row.email}
+	    <span class="greenish">&lt;/p&gt;</span>
+	<span class="greenish">&lt;/c:forEach&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+<h1>This is a spring web project!</h1>
+
+	    <p>
+	    	Name: Julie </br>
+	    	Email: julie@absolutelynowhere.com
+	    </p>
+	
+	    <p>
+	    	Name: John </br>
+	    	Email: john@caveofprogramming.com
+	    </p>
+	
+	    <p>
+	    	Name: Dave </br>
+	    	Email: dave@yahoo.com
+	    </p>
+	
+	    <p>
+	    	Name: Sue </br>
+	    	Email: sue_ellen@yahoo-mail.com
+	    </p>
+        </div>
+
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="3.2.2"> <h1>3.2.2. Setting up a DAO and Service layer inside a Spring Web MVC Project that connects to a Database </h1> </a>
+
+
+<div class="package_head"> <span class="package_title">  com.sebastian.spring.config   </span></div>
+<div class="package">
+
+
+<div class="head"> <span class="title"> dao-context.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+	&lt;context:component-scan base-package="com.sebastian.spring.dao"&gt;&lt;/context:component-scan&gt;
+	&lt;jee:jndi-lookup jndi-name="jdbc/springtest" id="dataSource"
+		expected-type="javax.sql.DataSource"&gt;
+	&lt;/jee:jndi-lookup&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> service-context.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+
+	&lt;context:annotation-config&gt;&lt;/context:annotation-config&gt;
+	&lt;context:component-scan
+		base-package="com.sebastian.spring.service"&gt;
+	&lt;/context:component-scan&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+</div> <!-- /package -->
+
+<div class="package_head"> <span class="package_title">  com.sebastian.spring.controllers   </span></div>
+<div class="package">
+
+<div class="head"> <span class="title"> HomeController.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sebastian.spring.dao.Offer;
+import com.sebastian.spring.service.OffersService;
+
+@Controller
+public class HomeController {
+
+	private OffersService offersService;
+
+	@Autowired
+	public void setOffersService(OffersService offersService) {
+		this.offersService = offersService;
+	}
+
+	@RequestMapping("/")
+	public String showHome(Model model) {
+		List&lt;Offer&gt; offers = offersService.getCurrent();
+		
+		model.addAttribute("offers", offers);
+		
+		return "hello";
+	}
+
+}
+   </pre>
+</div>
+
+</div> <!-- /package -->
+
+<div class="package_head"> <span class="package_title">  com.sebastian.spring.dao   </span></div>
+<div class="package">
+
+
+<div class="head"> <span class="title"> Offer.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring.dao;
+
+public class Offer {
+
+	private int id;
+	private String name;
+	private String email;
+	private String text;
+
+	public Offer() {
+
+	}
+
+	public Offer(String name, String email, String text) {
+
+		this.name = name;
+		this.email = email;
+		this.text = text;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", name=" + name + ", email=" + email
+				+ ", text=" + text + "]";
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> OffersDao.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component("offersDao")
+public class OffersDao {
+
+	private NamedParameterJdbcTemplate jdbc;
+	
+	public OffersDao() {
+		System.out.println("The OffersDao object has been constructed");
+	}
+	
+	@Autowired
+	public void setDataSource(DataSource jdbc) {
+		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
+	}
+	
+	public List&lt;Offer&gt; getOffers() {
+		return jdbc.query("select * from offers", new RowMapper&lt;Offer&gt;() {
+
+			@Override
+			public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Offer offer = new Offer();
+				
+				offer.setId(rs.getInt("id"));
+				offer.setName(rs.getString("name"));
+				offer.setEmail(rs.getString("email"));
+				offer.setText(rs.getString("text"));
+				
+				return offer;
+			}
+			
+		});
+	}
+}
+   </pre>
+</div>
+
+</div> <!-- /package -->
+
+<div class="package_head"> <span class="package_title">  com.sebastian.spring.service   </span></div>
+<div class="package">
+
+
+<div class="head"> <span class="title"> OffersService :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sebastian.spring.dao.Offer;
+import com.sebastian.spring.dao.OffersDao;
+
+@Service("offersService")
+public class OffersService {
+
+	private OffersDao offersDao;
+	
+	@Autowired
+	public void setOffersDao(OffersDao offersDao) {
+		this.offersDao = offersDao;
+	}
+
+	public List&lt;Offer&gt; getCurrent() {
+		return offersDao.getOffers();
+	}
+}
+   </pre>
+</div>
+</div> <!-- /package -->
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> context.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	You under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. --&gt;&lt;!-- The contents of this file will be loaded for each web application --&gt;
+&lt;Context&gt;
+
+	&lt;!-- Default set of monitored resources --&gt;
+	&lt;WatchedResource&gt;WEB-INF/web.xml&lt;/WatchedResource&gt;
+
+	&lt;!-- Uncomment this to disable session persistence across Tomcat restarts --&gt;
+	&lt;!-- &lt;Manager pathname="" /&gt; --&gt;
+
+	&lt;!-- Uncomment this to enable Comet connection tacking (provides events 
+		on session expiration as well as webapp lifecycle) --&gt;
+	&lt;!-- &lt;Valve className="org.apache.catalina.valves.CometConnectionManagerValve" 
+		/&gt; --&gt;
+
+	&lt;Resource name="jdbc/springtest" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="root" password=""
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/springtest" /&gt;
+
+&lt;/Context&gt; 
+  </pre>
+</div>
+
+
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> web.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5"&gt;
+	&lt;display-name&gt;TestSpringProject&lt;/display-name&gt;
+	&lt;welcome-file-list&gt;
+		&lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+		&lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
+		&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+		&lt;welcome-file&gt;default.html&lt;/welcome-file&gt;
+		&lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;
+		&lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;
+	&lt;/welcome-file-list&gt;
+
+	&lt;servlet&gt;
+		&lt;description&gt;&lt;/description&gt;
+		&lt;display-name&gt;offers&lt;/display-name&gt;
+		&lt;servlet-name&gt;offers&lt;/servlet-name&gt;
+		&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+		&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+	&lt;/servlet&gt;
+	&lt;servlet-mapping&gt;
+		&lt;servlet-name&gt;offers&lt;/servlet-name&gt;
+		&lt;url-pattern&gt;/&lt;/url-pattern&gt;
+	&lt;/servlet-mapping&gt;
+
+	&lt;description&gt;Spring Database&lt;/description&gt;
+	&lt;resource-ref&gt;
+		&lt;description&gt;DB Connection&lt;/description&gt;
+		&lt;res-ref-name&gt;jdbc/springtest&lt;/res-ref-name&gt;
+		&lt;res-type&gt;javax.sql.DataSource&lt;/res-type&gt;
+		&lt;res-auth&gt;Container&lt;/res-auth&gt;
+	&lt;/resource-ref&gt;
+
+	&lt;listener&gt;
+		&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+	&lt;/listener&gt;
+
+	&lt;context-param&gt;
+		&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+		&lt;param-value&gt;
+			classpath:com/sebastian/spring/config/dao-context.xml
+			classpath:com/sebastian/spring/config/service-context.xml
+		&lt;/param-value&gt;
+	&lt;/context-param&gt;
+&lt;/web-app&gt;  
+ </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> offers-servlet.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+
+	&lt;context:component-scan base-package="com.sebastian.spring.controllers"&gt;
+	&lt;/context:component-scan&gt;
+	&lt;mvc:annotation-driven /&gt;
+
+	&lt;bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+		&lt;property name="prefix" value="/WEB-INF/jsps/"&gt;&lt;/property&gt;
+		&lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    
+<h1>Hello! This is a test!</h1>
+
+
+   <p>
+    Name: Roger<br/>
+    Email: roger@yahoo.com</br>
+    Offer: This is my offer! Take it or leave it! <br/>
+   </p>
+
+   <p>
+    Name: Steve<br/>
+    Email: ilikesteves@gmail.com</br>
+    Offer: Captain Planet! He's the hero! Gonna take polution down to zero!<br/>
+   </p>
+   
+</div>
+
+
+<p><a href="#2">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+
+
+
+
+
+
+</div> <!-- /wrapper -->
+</body>
+</html>
+
+

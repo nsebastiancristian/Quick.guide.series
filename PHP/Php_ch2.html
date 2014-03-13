@@ -1,0 +1,1361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2. PHP Language Basics</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="2" class="clicked orange" href="#">
+<h1>2. PHP Language Basics </h1></a>
+	
+	<ul class="no_bullet">
+	    <li><a href="#2.1"><h2>2.1. Using includes</h2> </a> </li>
+        <li><a href="#2.2"><h2>2.2. Using require_once()</h2> </a> </li>
+        
+        <li><a  class="clicked orange" href="#"><h2>2.3. Variables </h2> </a> </li>
+		<li>
+        	<ul>
+				<li><a href="#2.3.1"><h2>2.3.1. Integers </h2> </a></li>
+				<li><a href="#2.3.2"><h2>2.3.2. Floats </h2> </a></li>
+            	<li><a href="#2.3.3"><h2>2.3.3. Strings </h2> </a></li>
+            </ul>
+		</li>
+      
+        <li><a  class="clicked orange" href="#"><h2>2.4. Functions with numbers </h2> </a> </li>
+		<li>
+        	<ul>
+				<li><a href="#2.4.1"><h2>2.4.1 Rounding numbers with round()  </h2> </a></li>
+				<li><a href="#2.4.2"><h2>2.4.2. Rounding floats up to the next integer number with ceil() </h2> </a></li>
+            	<li><a href="#2.4.3"><h2>2.4.3. Rounding floats down to the previous integer number with floor()  </h2> </a></li>
+		    	<li><a href="#2.4.4"><h2>2.4.4. Absolute values with the abs() function   </h2> </a></li>
+				<li><a href="#2.4.5"><h2>2.4.5. Power of numbers (exponential of numbers) with the pow() function  </h2> </a></li>
+            	<li><a href="#2.4.6"><h2>2.4.6. Square root of one number using the sqrt() function</h2></a></li>
+            	<li><a href="#2.4.7"><h2>2.4.7. The remainder of the division of two floating points numbers by using the fmod() function</h2></a></li>
+            	<li><a href="#2.4.8"><h2>2.4.8. Random numbers with the rand() function</h2></a> </li>
+            	<li><a href="#2.4.9"><h2>2.4.9. Random numbers between a minimum and a maximum value with the rand($min, $max) function</h2></a></li>
+            </ul>
+        </li>
+        
+        <li><a  class="clicked orange" href="#"><h2>2.5. Functions with strings </h2> </a> </li>
+		<li>
+        	<ul>
+                <li><a href="#2.5.1"><h2>2.5.1 Concatenating strings  </h2> </a></li>
+                <li><a href="#2.5.2"><h2>2.5.2 Uppercase the letters in a string with strtoupper() function  </h2> </a></li>
+                <li><a href="#2.5.3"><h2>2.5.3 Lowercase the letters in a string with strtolower() function  </h2> </a></li>
+                <li><a href="#2.5.4"><h2>2.5.4 Uppercase the first letter in a string with ucfirst() function  </h2> </a></li>
+                <li><a href="#2.5.5"><h2>2.5.5 Uppercase the words in a string with ucwords() function  </h2> </a></li>
+                <li><a href="#2.5.6"><h2>2.5.6.	Length of a string with strlen() function</h2></a></li>
+                <li><a href="#2.5.7"><h2>2.5.7.	Trim white spaces (and/or other characters) from the beginning and end of a strim with trim() function</h2></a></li>
+                <li><a href="#2.5.8"><h2>2.5.8.	Find a string within another string with the strstr() function </h2></a></li>
+                <li><a href="#2.5.9"><h2>2.5.9.	Replace part of a string with another string with str_replace() function</h2></a></li>
+                <li><a href="#2.5.10"><h2> 2.5.10. Substring making by taking a starting and ending position with substr()</h2></a></li>
+            </ul>
+        </li>
+        
+        <li><a  class="clicked orange" href="#"><h2>2.6. Arrays </h2> </a></li>
+		<li>
+			<ul>
+            	<li><a href="#2.6.1"><h2>2.6.1 Defining and accessing arrays  </h2> </a></li>
+            	<li><a href="#2.6.2"><h2>2.6.2 Defining and accessing associative arrays  </h2> </a></li>
+            </ul>
+        </li> 	
+           
+        <li><a  class="clicked orange" href="#"><h2>2.7. Functions with arrays </h2> </a> </li>
+		<li>
+        	<ul>
+                <li><a href="#2.7.1"><h2>2.7.1 Number of elements in an array with count() </h2> </a></li>
+                <li><a href="#2.7.2"><h2>2.7.2 Search a value into an array with in_array()  </h2> </a></li>
+            </ul>
+        </li> 	
+
+
+		
+
+	</ul>	
+
+
+<!-- ------------------------------------------------------------------------------------------------ -->
+
+
+
+<h1 class="standalone_big"> 2. PHP Language Basics</h1>
+
+<div class="unit">
+	 <a name="2.1">
+    	<h1>2.1. Using includes</h1>
+     </a>
+        <p>You can use the &quot;include()&quot; function if you want to reuse parts of a webpage. For instance if you have a header and footer that are the same for every page in your site there is no reason to write the same html code every time you create a new page. It's more easier to write the header and footer sections in two separated file and then use the &quot;include()&quot; function and all the pages will include now the same header and footer. </br></br>
+       
+        </p>
+       
+        <p>
+        	The best part of this practice is that your is that you modify the header and footer pages all the other pages that have included this files will be automatically updated with the new versions of header and footer.
+        </p> 
+        
+        <div class="step_by_step">
+        	<ul>
+            	<li class="clicked white">This is how the include() function looks like:  </li>
+        	<img class="hide small" src="Php Pics/2_1.jpg" />
+            	         
+            </ul>
+        </div>
+      
+    <div class="code">
+	<pre>
+    		bla bla php functions here  
+    </pre>
+</div>	<!-- /code -->
+        
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.2"><h1>2.2. Using require_once() </h1></a>
+
+	<p>
+	       The require_once() is mostly similar to the include() function but it makes sure that the file included is included only once in the file that is calling the require_once(). For this reason the required_once() is used when you want to include other php file into the main php file (perhaps the other php files that are included with require_once() contain some kind of constants or some functions)
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how the required_once() function looks like :  </li>
+		<img class="hide small" src="Php Pics/2_2.jpg" />
+
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+			require_once("Include Folder/included.php");
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone">2.3. Variables  </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit"> <a name="2.3.1">
+  <h1>2.3.1. Integers </h1>
+  </a>
+  <p> Integers are integer variables, variables that hold integer numerical data</p>
+  <div class="step_by_step">
+    <ul>
+      <li class="clicked white"> This how you use an integer variable : </li>
+      <img class="hide small" src="Php Pics/2_3_1.jpg" />
+      
+    </ul>
+  </div>
+  <!-- /step-by-step -->
+  <div class="code">
+    <pre>
+	$num_int = 5;
+	echo $num_int + 2;
+    </pre>
+  </div>
+</div>
+<!-- /unit -->
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.3.2"><h1>2.3.2. Floats </h1></a>
+
+	<p>
+	       Floating point variables (floats) are variables that hold floating point numerical data. (that means "real" numbers)
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you use a floating point variable :  </li>
+		<img class="hide small" src="Php Pics/2_3_2.jpg" />
+
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+	$num_float = 5.5;
+	echo $num_float + 2;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.3.3"><h1>2.3.3. Strings </h1></a>
+
+	<p>
+	       Strings are variables that hold text.
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you use a string variable :  </li>
+		<img class="hide big" src="Php Pics/2_3_3.jpg" />
+
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+		$name = "Sebastian";
+		$last_name = "Nitu";
+		echo "&lt;p&gt;My name is ".$name." and my last name is ".$last_name." .&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone">2.4. Functions with numbers </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.4.1"><h1>2.4.1 Rounding numbers with round() </h1></a>
+
+	<p>
+	       If you want to round a floating number by using the general rules of rounding (i.e. if it is >= .5 round to the next integer number and if it is < .5 round to the previous integer number). </br></br>
+           
+           For example 5.14 rounded is 5 while 5.55 rounded is 6.
+           
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you use the round() function. Keep in mind that the second parameter of the function is how many decimals we want the floating point number to be rounded (for instance 3.14 rounded with 1 decimal will be 3.1) :  </li>
+		<img class="hide small" src="Php Pics/2_4_1.jpg" />
+
+		
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php	
+    $num_float = 3.14;
+	echo round($num_float, 1);	//3.1
+	echo "&lt;/br&gt;";
+	echo round($num_float);	//3
+?&gt;     
+</pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.4.2"><h1>2.4.2. Rounding floats up to the next integer number with ceil() </h1></a>
+
+	<p>
+	       You can round floats up to the next integer number by using ceil(). For example both 3.1 and 3.9 will be rounded to 4 in this way.
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you use the ceil() function. :  </li>
+		<img class="hide big" src="Php Pics/2_4_2.jpg" />
+
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	$foo = 3.14;
+	$bar = 3.9;
+	echo "&lt;p&gt; By using the ceil() function you can round ".$foo." to ".ceil($foo)."&lt;/p&gt;";
+	echo "&lt;p&gt; By using the ceil() function you can round ".$bar." to ".ceil($bar)."&lt;/p&gt;";
+?>;
+
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.4.3"><h1>2.4.3. Rounding floats down to the previous integer number with floor() </h1></a>
+
+	<p>
+	       You can round floats down to the previous integer number by using ceil(). For example both 3.1 and 3.9 will be rounded to 3 in this way.
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you use the floor() function. :  </li>
+		<img class="hide big" src="Php Pics/2_4_3.jpg" />
+
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	$foo = 3.14;
+	$bar = 3.9;
+	echo "&lt;p&gt; By using the floor() function you can round ".$foo." to ".floor($foo)."&lt;/p&gt;";
+	echo "&lt;p&gt; By using the floor() function you can round ".$bar." to ".floor($bar)."&lt;/p&gt;";
+?>;
+
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="../Php index.html">Home </a></li>
+<li><a  class="show_code">Code </a></li>
+<li><a href="#2">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.4.4"><h1>2.4.4. Absolute values with the abs() function </h1></a>
+
+	<p>
+	       You can get the absolute value of one number by using the abs() function:
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you use the abs() function :  </li>
+		<img class="hide big" src="Php Pics/2_4_4.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	$foo = 3.14;
+	$bar = -3.14;
+	echo "&lt;p&gt; By using the abs() function you can obtain the absolute number of ".$foo." that is ".abs($foo)."&lt;/p&gt;";
+	echo "&lt;p&gt; By using the abs() function you can obtain the absolute number of ".$bar." that is ".abs($bar)."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.4.5"><h1>2.4.5. Power of numbers (exponential of numbers) with the pow() function </h1></a>
+
+	<p>
+	       To calculate the power of a number use the exponential function pow(). 
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the pow() function :  </li>
+		<img class="hide big" src="Php Pics/2_4_5.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	$base = 2;
+	$exponential = 3;
+	echo "&lt;p&gt; The number obtained by using the exponential of ".$base." on the base ".$exponential." is ".pow($base, $exponential)."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.4.6"><h1>2.4.6. Square root of one number using the sqrt() function </h1></a>
+
+	<p>
+	       To calculate the square root of one number use the sqrt() function. 
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the sqrt() function :  </li>
+		<img class="hide big" src="Php Pics/2_4_6.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	$num = 100;
+	echo "&lt;p&gt; The square root of  ".$num." is ".sqrt($num)."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.4.7"><h1>2.4.7. The remainder of the division of two floating points numbers by using the fmod() function </h1></a>
+
+	<p>
+	      To calculate the remainder of the division of two floating points numbers we are using the fmod() function. 
+	</p>
+    <p>Format of the function:</p>
+    
+    <ul>
+    	<li class="no_bullet">float fmod(float $x,float $y)</li>
+    	<li>$x = dividend</li>
+        <li>$y = divisor</li>
+
+    </ul>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the fmod() function :  </li>
+		<img class="hide big" src="Php Pics/2_4_7.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	$x = 5.7;
+	$y = 1.3;
+	$r = fmod($x, $y);
+	echo "&lt;p&gt; The floating point remainder of the division of ".$x." to ".$y." is ".$r."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.4.8"><h1>2.4.8. Random numbers with the rand() function </h1></a>
+
+	<p>
+	      To get random numbers we use the rand() function.
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the rand() function :  </li>
+		<img class="hide big" src="Php Pics/2_4_8.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	echo "&lt;p&gt; Here is one random number ".rand()."&lt;/p&gt;";
+	echo "&lt;p&gt; Here is another randomb number ".rand()."&lt;/p&gt;";
+
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.4.9"><h1>2.4.9. Random numbers between a minimum and a maximum value with the rand($min, $max) function </h1></a>
+
+	<p>
+	      To get random numbers between a minimum and a maximum value we use the rand($min, $max) function.
+	</p>
+    <p>Format of the function:</p>
+    
+    <ul>
+    	<li class="no_bullet distanced">int fmod(int $min,int $max)</li>
+    	<li class="distanced">$min = the lowest value to return (default 0)</li>
+        <li class="distanced">$max = the highest value to return</li>
+
+    </ul>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the rand($min, $max) function :  </li>
+		<img class="hide big" src="Php Pics/2_4_9.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	echo "&lt;p&gt; Here is one randomb number ".rand()."&lt;/p&gt;";
+	echo "&lt;p&gt; Here is another randomb number ".rand()."&lt;/p&gt;";
+
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone">2.5. Functions with strings </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.5.1"><h1>2.5.1 Concatenating strings </h1></a>
+
+	<p>
+    	Here is how you concatenate strings :
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you concatenate strings :  </li>
+		<img class="hide big" src="Php Pics/2_4_1.jpg" />
+
+		
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php	
+    $num_float = 3.14;
+	echo round($num_float, 1);	//3.1
+	echo "&lt;/br&gt;";
+	echo round($num_float);	//3
+?&gt;     
+</pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.2"><h1>2.5.2. Uppercase the letters in a string with strtoupper() function </h1></a>
+
+	<p>
+	      You can uppercase the letters in a string with strtoupper() function
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the strtoupper() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_2.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$text = "The quick fox jumped over the lazy dog";
+	echo "&lt;p&gt;Normal text: ".$text."&lt;/p&gt;";
+	echo "&lt;p&gt;Uppercase: ".strtoupper($text)."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.3"><h1>2.5.3. Lowercase the letters in a string with strtolower() function </h1></a>
+
+	<p>
+	      You can lowercase the letters in a string with strtolower() function
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the strtolower() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_3.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$text = "THE QUICK FOX JUMPED OVER THE LAZY DOG";
+	echo "&lt;p&gt;Normal text: ".$text."&lt;/p&gt;";
+	echo "&lt;p&gt;Lowercase: ".strtolower($text)."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.4"><h1>2.5.4 Uppercase the first letter in a string with ucfirst() function </h1></a>
+
+	<p>
+	      You can uppercase the first letter in a string with ucfirst() function
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the ucfirst() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_4.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$text = "the quick fox jumped over the lazy dog";
+	echo "&lt;p&gt;Normal text: ".$text."&lt;/p&gt;";
+	echo "&lt;p&gt;Uppercase first letter: ".ucfirst($text)."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.5"><h1>2.5.5 Uppercase the words in a string with ucwords() function  </h1></a>
+
+	<p>
+	      You can uppercase the words in a string with ucwords() function
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the ucwords() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_5.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$text = "the quick fox jumped over the lazy dog";
+	echo "&lt;p&gt;Normal text: ".$text."&lt;/p&gt;";
+	echo "&lt;p&gt;Uppercase first letter of every word: ".ucwords($text)."&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.6"><h1>2.5.6.	Length of a string with strlen() function  </h1></a>
+
+	<p>
+	      You can find out the length of a string with strlen() function
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the strlen() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_6.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$name = "Sebastian";
+	$phraze = "The fox is quicker than the hound.";
+	echo "&lt;p&gt;The name ".$name." is ".strlen($name)." letters long.&lt;/p&gt;";
+	echo "&lt;p&gt;The phraze \"".$phraze."\" is ".strlen($phraze)." letters long.&lt;/p&gt;";
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.7"><h1>2.5.7.	Trim white spaces (and/or other characters) from the beginning and end of a strim with trim() function   </h1></a>
+
+	<p>
+	      You can trim white spaces (and/or other characters) from the beginning and end of a strim with trim() function
+	</p>
+    
+    <table class="function_description">
+		<tr>
+        	<td style="text-align: center" colspan="2"> string trim( $str [, $charlist ]) </td>
+        </tr>
+    	<tr>
+	       	<td class="blue bordered_up">$str</td>
+            <td class="bordered_up"> the string that will be trimmed</td>
+   	    </tr>
+    <tr>
+       	<td class="blue bordered_up">$charlist</td>
+        <td class="bordered_up">
+            a list of characters that, if given, will also be trimmed (the list will be given in
+            between "" like "Hdw" which strips the characters 'H','d' and 'w' from the beginning and 
+            end of a string
+       </td>
+   </tr>
+   
+	</table>
+
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the trim() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_7.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$first = "    The quick brown fox    ";
+	$second = "The quick brown fox";
+	$third = trim($second, 'Tox');
+	
+	var_dump($first);
+	var_dump(trim($first));
+	var_dump($third);
+	
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.8"><h1>2.5.8.	Find a string within another string with the strstr() function   </h1></a>
+
+	<p>
+	    You can find a string within another string with the strstr() function: 
+	</p>
+    <p>This is not case sensitive, for case sensitive searches use the stristr() instead.</p>
+    <p>If you only want to determine if a particular needle occurs within haystack, use the faster and less memory intensive function strpos() instead. </p>
+    
+    <table class="function_description">
+		<tr>
+        	<td style="text-align: center" colspan="2"> string strstr( $haystack, $needle ) </td>
+        </tr>
+    	<tr>
+	       	<td class="blue bordered_up">$haystack</td>
+            <td class="bordered_up"> The string where the string to be found may or may not be</td>
+   	    </tr>
+    <tr>
+       	<td class="blue bordered_up">$needle</td>
+        <td class="bordered_up">
+            The string that needs to be found.
+       </td>
+   </tr>
+   <tr>
+       	<td class="blue bordered_up">return</td>
+        <td class="bordered_up">
+            Returns a substring from the start of the first occurence of the $needle in the $haystack to the end of the $haystack string
+       </td>
+   </tr>
+   
+	</table>
+
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the trim() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_8.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$first = "The quick brown fox";
+
+	echo strstr($first, "brown");
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.9"><h1>2.5.9.	Replace part of a string with another string with str_replace() function   </h1></a>
+
+	<p>
+	    You can replace part of a string with another string with str_replace() function: 
+	</p>
+
+<table class="function_description">
+<tr>
+<td style="text-align: center" colspan="2"> string str_replace( $search, $replace, $subject) </td>
+</tr>
+
+<tr>
+<td class="blue bordered_up">$search</td>
+<td class="bordered_up"> The value being searched for, otherwise known as the needle. An array may be used to designate multiple needles.  </td>
+</tr>
+
+<td class="blue bordered_up">$replace</td>
+<td class="bordered_up"> The replacement value that replaces found search values. An array may be used to designate multiple replacements.   </td>
+</tr>
+
+<td class="blue bordered_up">$subject</td>
+<td class="bordered_up"> 
+
+The string or array being searched and replaced on, otherwise known as the haystack. 
+</td>
+</tr>
+
+</table>
+
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the str_replace() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_9.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$first = "The quick brown fox";
+
+	echo strstr($first, "brown");
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.10"><h1>2.5.10. Substring making by taking a starting and ending position with substr()   </h1></a>
+
+	<p>
+	    You can make a substring by taking a starting and ending position with substr(): 
+	</p>
+
+<table class="function_description">
+<tr>
+<td style="text-align: center" colspan="2"> string substr ( $string , $start [,  $length ] ) </td>
+</tr>
+
+<tr>
+<td class="blue bordered_up">$string</td>
+<td class="bordered_up"> The input string. Must be one character or longer.   </td>
+</tr>
+
+<td class="blue bordered_up">$start</td>
+<td class="bordered_up"> <p> If start is non-negative, the returned string will start at the start'th position in string, counting from zero. For instance, in the string 'abcdef', the character at position 0 is 'a', the character at position 2 is 'c', and so forth.</p>
+
+<p>If start is negative, the returned string will start at the start'th character from the end of string.</p>
+
+<p>If string is less than or equal to start characters long, FALSE will be returned.</p>    </td>
+</tr>
+
+<td class="blue bordered_up">$length</td>
+<td class="bordered_up">  <p>If length is given and is positive, the string returned will contain at most length characters beginning from start (depending on the length of string).</p>
+
+<p>
+If length is given and is negative, then that many characters will be omitted from the end of string (after the start position has been calculated when a start is negative). If start denotes the position of this truncation or beyond, false will be returned.
+</p>
+
+<p>If length is given and is 0, FALSE or NULL an empty string will be returned.</p>
+
+<p>
+If length is omitted, the substring starting from start until the end of the string will be returned.
+</p>  
+</td>
+</tr>
+
+
+<td class="blue bordered_up">$subject</td>
+<td class="bordered_up"> 
+
+The string or array being searched and replaced on, otherwise known as the haystack. 
+</td>
+</tr>
+
+</table>
+
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the substr() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_10.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$first = "The quick brown fox";
+
+	echo substr($first, 4, 11);
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.5.11"><h1>2.5.11. Find a position of one substring in another string with strpos()  </h1></a>
+
+	<p>
+	    Find the position of the first occurrence of a substring in a string: 
+	</p>
+
+<table class="function_description">
+<tr>
+<td style="text-align: center" colspan="2"> int strpos( $haystack, $needle ) </td>
+</tr>
+
+<tr>
+<td class="blue bordered_up">$haystack</td>
+<td class="bordered_up"> The string to search in.    </td>
+</tr>
+
+<td class="blue bordered_up">$needle</td>
+<td class="bordered_up"> The string to search for</td>
+</tr>
+
+<td class="blue bordered_up">return</td>
+<td class="bordered_up">  
+Returns the position of the first occurence of the $needle in the haystack
+</td>
+</tr>
+
+</table>
+
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use the strpos() function :  </li>
+		<img class="hide big" src="Php Pics/2_5_11.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$haystack = "The quick brown fox";
+
+	echo strpos($haystack, "brown");
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<h1 class="standalone">2.6. Arrays  </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.6.1"><h1>2.6.1. Defining and accessing arrays </h1></a>
+
+	
+<p>Think of an array like an expandable file folder where you can put items in each of the pockets</p>
+
+<p>There are no limits to how many pockets it can have (not that you'll need to worry about at least)</p>
+
+<p>Then you can reference those items by the pocket number (or "index").
+(This is the "value" of that "position" in the array).
+Be careful! Pockets are numbered starting at 0 (0,1,2,3...) so the index of the 2nd pocket is 1.</p>
+	
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you define and access arrays :  </li>
+		<img class="hide big" src="Php Pics/2_6_1.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php 
+	// defining a simple array
+	$array1 = array(4,8,15,16,23,42);
+	
+	// referencing an array value by its index
+	echo $array1[0];
+?&gt;	
+&lt;br /&gt;
+&lt;pre&gt;
+&lt;?php
+	print_r($array1);
+?&gt;
+&lt;/pre&gt;
+&lt;?php	
+	// arrays can contain a mix of strings, numbers, even other arrays
+	$array2 = array(6,"fox", "dog", array("x", "y", "z"));
+	
+	// referencing an array value that is inside another array
+	echo $array2[3][1];
+?&gt;
+&lt;br /&gt;
+&lt;?php
+
+	// Changing values in an array that has already been defined
+	// It's just like variables but you use the index to reference the array position
+	$array2[3] = "cat";
+	echo "&lt;br /&gt;";
+	echo $array2[3];
+
+?&gt;
+&lt;br /&gt;
+&lt;pre&gt;
+&lt;?php
+	print_r($array2);
+?&gt;
+&lt;/pre&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	<a name="2.6.2"><h1>2.6.2. Defining and accessing asociative arrays </h1></a>
+
+	
+<p> Asociative arrays are like regular arrays but the values are indexed not by numbers but by strings called keys. Every key identifies uniquely a value and all the values along with their respective keys</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> This is how you define and access asociative arrays :  </li>
+		<img class="hide big" src="Php Pics/2_6_2.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    <pre>
+&lt;?php
+		// You can also assign labels to each pocket (called "keys"),
+		$array3 = array("first_name" =&gt; "Kevin", "last_name" =&gt; "Skoglund");
+	
+		// which will allow you to use the key to reference the value in that array position.
+		echo $array3["first_name"] . " " . $array3["last_name"] . "&lt;br /&gt;";
+		$array3["first_name"] = "Larry";
+		echo $array3["first_name"] . " " . $array3["last_name"] . "&lt;br /&gt;";
+?&gt;
+
+&lt;br /&gt;
+
+A good way to see the values inside an array during development:&lt;br /&gt;
+&lt;pre&gt;&lt;?php print_r($array3); ?&gt;&lt;/pre&gt;
+
+    </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+<!- ---------------------------------------------------------------------- ->
+
+<h1 class="standalone">2.7. Functions with arrays  </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+
+<div class="unit">
+	<a name="2.7.1"><h1> 2.7.1 Number of elements in an array with count()</h1></a>
+
+	<p>
+	      You can find out the number of elements in an array with count()
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Here is how you use the count function :  </li>
+		<img class="hide big" src="Php Pics/2_7_1.jpg" />
+
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$array1 = array(1,2,3,4,5,6,7,8,9);
+	
+	echo "The length of the array is ".count($array1).".&lt;br /&gt;";
+	echo "The length of the array is ".count(array(1, "Bobby", 100)).".&lt;/br&gt;";
+?&gt;
+        </pre>
+</div>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+<div class="unit">
+	<a name="2.7.2"><h1> 2.7.2 Search a value into an array with in_array() </h1></a>
+
+	<p>
+	      You can search for a value in a array with in_array():
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Here is how you use the in_array() function :  </li>
+		<img class="hide big" src="Php Pics/2_7_2.jpg" />
+
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	$array1 = array(1, 17, "Larry", 9, "Lobo", "Batman");
+	$needle = "Lobo";
+	
+	echo "Is the word ".$needle." in the array? : ".in_array($needle, $array1);
+	echo "&lt;br /&gt;";
+	echo "Is the word \"Joker\" in the array? : ".in_array("Joker", $array1);
+?&gt;
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#2">Top </a></li>
+</ul>
+
+
+</div>
+</body>
+</html>

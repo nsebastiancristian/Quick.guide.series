@@ -1,0 +1,612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2. Servlets</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="2" class="clicked orange" href="#">
+<h1>2. Servlets </h1></a>
+	
+	<ul class="no_bullet">
+	    <li><a href="#2.1"><h2>2.1. Creating and testing a simple servlet project in Eclipse (the easy way)</h2> </a></li> 
+	    <li><a href="#2.2"><h2>2.2. Creating a servlet in Eclipse and configure it by using the web.xml file</h2> </a></li>
+        
+        <li><a  class="clicked orange" href="#"><h2>2.3. Scopes </h2> </a></li>
+		<li>
+        	<ul>
+                <li><a href="#2.3.1"><h2 class="">2.3.1. Request scope. Passing and getting parameters into/from the request scope </h2> </a></li>
+                <li><a href="#2.3.2"><h2 class="">2.3.2. Session scope. Passing and getting parameters into/from the session scope </h2> </a></li>
+                <li><a href="#2.3.3"><h2 class="">2.3.3. Servlet Context scope. Passing and getting parameters into/from the Servlet Context Scope </h2> </a></li>
+            </ul>
+		</li> 	
+      
+	    <li><a href="#2.4"><h2 class="unfinished">2.4. Init parameters with ServletConfig and web.xml file</h2> </a></li>
+	    <li><a href="#2.5"><h2 class="unfinished">2.5. Init parameters with ServletConfig and annotations</h2> </a></li>
+	    <li><a href="#2.6"><h2 class="unfinished">2.6. Form inputs</h2> </a></li> 
+	    <li><a href="#2.7"><h2 class="unfinished">2.7. Sendredirect pages</h2> </a></li> 
+	    <li><a href="#2.8"><h2 class="unfinished">2.8. RequestDispatcher object (dispatch to other pages on the server)</h2> </a></li>
+    </ul>	
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone_big"> 2. Servlets</h1>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.1"><h1>2.1. Creating and testing a simple servlet project in Eclipse (the easy way) </h1></a>
+
+	<p>
+	       This is how you create a servlet project in Eclipse.
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Go to the menu to File/ New / Other ... :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_1.jpg" />
+
+		<li class="clicked white">Expand the &quot;Web&quot; category that is at the bottom of the list and select &quot;Dynamic Web Project&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_2.jpg" />
+
+		<li class="clicked white"> In the &quot;Project name&quot; section enter the name of your project and click the &quot;Next&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_3.jpg" />
+        
+		<li class="clicked white"> Here you can change the default folder for storing the source files. Leave it alone and click the &quot;Next&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_4.jpg" />
+        
+		<li class="clicked white"> Here you can specify the Context Root and Content Directory. The &quot;Content Directory&quot; will be the folder that will store your new servlet project structure, it will hold the web.xml file and the &quot;WEB-INF&quot; folder. Select the &quot;generate web.xml deployment descriptor&quot; and click the &quot;Finish&quot; button after that :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_5.jpg" />
+        
+		<li class="clicked white"> A new project will be created in the &quot;Project Explorer&quot; tab. You can see the folder structure that has the &quot;WebContent&quot; folder (created in the previous step) along with all the other folders like the &quot;Java Resources&quot; folder that will contain the servlet classes for this project :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_6.jpg" />
+        
+		<li class="clicked white">Here you can see the content of the web.xml file. This is the deployment descriptor file that was created automatically for us by the Eclipse wizard : </li>
+		<img class="hide big" src="Java EE Pics/2_1_7.jpg" />
+        
+		<li class="clicked white"> Now that we have the new project created we are ready to create a new servlet. Expand the &quot;Java Resources&quot; node inside the Project Explorer, right click on the &quot;src&quot; folder and choose New / Servlet from the context menu :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_8.jpg" />
+        
+		<li class="clicked white"> A new dialog box will popup. Here you can give the package name of the new servlet and (more importantly) type the name of your new servlet class in the &quot;Class name&quot; section . Click on the &quot;Next&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_9.jpg" />
+        
+		<li class="clicked white"> This step of the servlet creation process involves specifying the deployment details. Note that if you create a servlet like this (by using this wizard) the servlet will be deployed not by the web.xml file, it will deployed by using annotations.<br />
+		  <br />
+		  In the &quot;Name&quot; section you will give the &quot;name&quot; for your servlet. Note that this is not the actual name but a name that is simillar with the name used inside the &lt;servlet-name&gt; tag inside the web.xml file.<br />
+		  <br />
+		  In the &quot;Description&quot; section  you can give a description (optional) for your servlet.<br />
+		  <br />
+		  In the &quot;Initialization parameters&quot;  section you can add initialization parameters. We don't need initialization parameters here so we leave this at default.<br />
+		  <br />
+		  In the &quot;URL mappings&quot; section 
+you can specify the last part of the URL used when accessing the servlet. If we leave it like this the URL will be &quot;http://localhost:8080/TestProject/HelloServlet&quot;. We leave it as it is.<br />
+<br />
+Again, all this info will not be supplied to the web.xml deployment descriptor, it will exist directly in the servlet java file by means of annotations. There are advantages and disadvantages of using this. We will show how to create a servlet the &quot;bare-hands&quot; way by using the deployment descriptor web.xml in the next tutorial<br />
+<br />
+Click on the &quot;Next&quot; button when you are done
+: </li>
+		<img class="hide big" src="Java EE Pics/2_1_10.jpg" />
+  
+		<li class="clicked white"> Leave everything here to the default and click on the &quot;Finish&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_11.jpg" />
+  
+		<li class="clicked white">A servlet stubb will be generated that extends the HttpServlet class and contains the doGet() methods and doPost() methods ready to be implemented :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_12.jpg" />
+  
+		<li class="clicked white"> Notice this line inside the servlet java file. This is actually the annotation that describes the deployment descriptor info. Here we only have the URL info:  </li>
+		<img class="hide big" src="Java EE Pics/2_1_13.jpg" />
+  
+		<li class="clicked white"> Write this code inside the doGet() method and save the file :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_14.jpg" />
+ 
+		<li class="clicked white"> Right click on the &quot;HelloServlet&quot; java file and choose Run as/ Run on server ... from the contextual menu :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_15.jpg" />
+ 
+		<li class="clicked white">Leave here everything to default and click on the &quot;Next&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_16.jpg" />
+
+		<li class="clicked white">Leave here everything to default and click on the &quot;Finish&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_17.jpg" />
+
+		<li class="clicked white">Click on &quot;Ok&quot; to restart the Tomcat server :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_18.jpg" />
+
+		<li class="clicked white">Here is your new servlet page. It doesn't do much for now but at least it's a servlet and you got it working :  </li>
+		<img class="hide big" src="Java EE Pics/2_1_19.jpg" />
+ 
+        
+	</ol>
+	</div>	
+	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+package org.sebastian.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class HelloServlet
+ */
+@WebServlet("/HelloServlet")
+public class HelloServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public HelloServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		PrintWriter out = response.getWriter();
+		
+		out.println("&lt;h1&gt;Hello world written from a servlet! &lt;/h1&gt;");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#1">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.2"><h1>2.2. Creating a servlet in Eclipse and configure it by using the web.xml file </h1></a>
+
+	<p>
+	      This is how you create a servlet and configure it with the web.xml deployment descriptor
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Right click on the &quot;org.sebastian.web&quot; inside the Project Explorer tab and choose New / Class from the context menu:  </li>
+		<img class="hide big" src="Java EE Pics/2_2_1.jpg" />
+
+		<li class="clicked white"> Because you right clicked on the package name for creating a new class you don't specify name as it is allready filled for you in the &quot;Package&quot; section.<br />
+		  <br />
+		  You have to specify the class name in the &quot;Class&quot; section.<br />
+		  <br />
+		  In the Superclass section you will have to specify &quot;javax.servlet.http.HttpServlet&quot; in order to have your class extend the HttpServlet and be a servlet. You can click on the &quot;Browse&quot; button and find the HttpServlet class more easier than having to type it.<br />
+		  <br />
+		  Leave the rest to the default and click on the &quot;Finish&quot; button
+: </li>
+		<img class="hide big" src="Java EE Pics/2_2_2.jpg" />
+
+		<li class="clicked white">This is how your new generated class will look : </li>
+		<img class="hide big" src="Java EE Pics/2_2_3.jpg" />
+
+		<li class="clicked white"> Write the following code the your new generated servlet java file :  </li>
+		<img class="hide big" src="Java EE Pics/2_2_4.jpg" />
+
+		<li class="clicked white"> Here you change the deployment descriptor to look like this. Remember that you will use the web.xml file to configure the new created servlet instead of using annotations (although you can also use annotations if you prefer this method) :  </li>
+		<img class="hide big" src="Java EE Pics/2_2_5.jpg" />
+
+		<li class="clicked white"> Right click on the XMLServlet file inside the &quot;Java Resources&quot; project in the Project Explorer tab and choose &quot;Run ass...&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/2_2_6.jpg" />
+
+		<li class="clicked white">Click on the &quot;Next&quot; button leaving everything to default : </li>
+		<img class="hide big" src="Java EE Pics/2_2_7.jpg" />
+
+		<li class="clicked white"> Click the &quot;Next&quot; button leaving everything to default :  </li>
+		<img class="hide big" src="Java EE Pics/2_2_8.jpg" />
+
+		<li class="clicked white"> Click on the &quot;Ok&quot; button to restart the Tomcat server in order for your changes to take place :  </li>
+		<img class="hide big" src="Java EE Pics/2_2_9.jpg" />
+
+		<li class="clicked white">This is how your servlet generated page will look like :  </li>
+		<img class="hide big" src="Java EE Pics/2_2_10.jpg" />
+	</ol>
+	</div>	
+	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+        
+//--------------------------------------------------------------------web.xml-----------------------------------------------------------------------------------------------        
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0"&gt;
+  &lt;display-name&gt;TestProject&lt;/display-name&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+  
+  &lt;servlet&gt;
+  		&lt;servlet-name&gt;XMLServ&lt;/servlet-name&gt;
+  		&lt;servlet-class&gt;org.sebastian.web.XMLServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  
+  &lt;servlet-mapping&gt;
+  		&lt;servlet-name&gt;XMLServ&lt;/servlet-name&gt;
+  		&lt;url-pattern&gt;/XMLServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;        
+
+//--------------------------------------------------------------------XMLServlet.java-----------------------------------------------------------------------------------------------        
+package org.sebastian.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class XMLServlet extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//super.doGet(req, resp);
+		
+		PrintWriter out = resp.getWriter();
+		
+		out.println("&lt;h1&gt; Hello world from an xml configured servlet!");
+	}
+}
+
+
+</pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#2">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.3.1"><h1>2.3.1. Request scope. Passing and getting parameters into/from the request scope </h1></a>
+
+	<p>
+	       You can pass data from servlet to servlet or from servlet to a jsp, or any combination of the above by using the request object. 
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Create a new servlet and enter the following code :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_1_1.jpg" />
+
+		<li class="clicked white">Test the servlet and you will see "null" instead of the actual name. That's because you haven't passed any actual parameters inside the request :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_1_2.jpg" />    
+
+		<li class="clicked white">Add "?testParam=Billy" to the page url and press Enter. The page now display a personalized message because you passed the parameter in the url. :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_1_3.jpg" />
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+package org.sebastian.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ServletScopes
+ */
+@WebServlet("/ServletScopes")
+public class ServletScopes extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletScopes() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		PrintWriter out = response.getWriter();
+		
+		//We retrieve the parameter from the request object
+		String name = request.getParameter("testParam");
+		
+		//We output a personalized hello message to the page
+		out.println("&lt;h1&gt;Hello " + name + "!&lt;/h1&gt;");
+	}
+
+
+}
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#2">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.3.2"><h1>2.3.2. Session scope. Passing and getting parameters into/from the session scope </h1></a>
+
+	<p>
+	      Passing parameters through the Request method is great but what happens if you want something to be saved everytime you go to another page : say for example you have a shopping cart application and you want to 
+	save stuff inside as long as you browse the store and until you check out. <br />
+	<br />
+	One way to do this is to store all your data in the request object but that means you have to store everything every time you go to another page . That is tedious and not a good practice.<br />
+	<br />
+	A better suited way is to store the data in the session object.
+    The data will be stored there ready to be retrieved until the session expires (in almost all the cases the session expires when you close the browser window). <br />
+    <br />
+	The data saved in the session object will only be available for one user client , that even means for one browser. If you try to acces the same page  on the same computer but on another browser you will not have acces to the same session data</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Create a new servlet and enter the following code :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_2_1.jpg" />
+
+		<li class="clicked white"> Run the servlet. It will display null instead of actual because you haven't set any actuall parameters inside the request:  </li>
+		<img class="hide big" src="Java EE Pics/2_3_2_2.jpg" />
+
+		<li class="clicked white">Add &quot;?testParam=Bob&quot; to the end of the page url to set some request parameters. After you press Enter you will see that both the request and session have the Bob string as the parameter :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_2_3.jpg" />
+
+		<li class="clicked white"> Delete the &quot;?testParam=Bob&quot; from the end of the url and press Enter. You will see that this time there is no data in the request object so the message is displayed with a null instead of actual data. But the session object stores the Bob string as before :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_2_4.jpg" />
+
+		<li class="clicked white">The session data is valid only per user/client. If we try to access the same page on another browser we can see that both the request and the session hold no data :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_2_5.jpg" />
+
+		<li class="clicked white"> If we add &quot;?testParam=Billy&quot; to the end of the url and press Enter we can see that this time the request and session object have actual data saved. But this time the string testParam is different and since we are in another browser they don't coincide with the &quot;Bob&quot; string testParam stored on the first browser :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_2_6.jpg" />
+
+		<li class="clicked white"> Of course, if we go back to the first browser and refresh the page once again we can see the Bob string as the testParam stored once again in the session for that browser :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_2_7.jpg" />
+
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+package org.sebastian.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class ServletScopes
+ */
+@WebServlet("/ServletScopes")
+public class ServletScopes extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletScopes() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		PrintWriter out = response.getWriter();
+		
+		//We retrieve the parameter from the request object
+		String name = request.getParameter("testParam");
+		
+		//Try to store the parameter from the request into the session
+		if(name != null)
+		{
+			request.getSession().setAttribute("testParam", name);	
+		}
+		
+		HttpSession session = request.getSession();
+		
+		//We output  the parameter stored in the request
+		out.println("&lt;h2&gt;The data stored in the request is " + request.getParameter("testParam") + ".&lt;/h2&gt;");
+		//We output the parameter stored in the session
+		out.println("&lt;h2&gt;The data stored in the session is " + session.getAttribute("testParam")  + ".&lt;/h2&gt;");		
+	}
+
+
+}
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#1">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="2.3.3"><h1>2.3.3. Servlet Context scope. Passing and getting parameters into/from the Servlet Context Scope </h1></a>
+
+	<p>
+The session object is great if you want to store data to be persistent across the different servlets and jsp but this data is not persistent regarding the user/browser. <br />
+<br />
+If you 
+
+	want to have some data to be persistent across all users and browsers : say for example you have a phone number that you want to display on every page inside your application no matter what browser/user acces that page (in other words the data to be consistent within the web application).<br />
+	<br />
+	Here comes the Servlet Context into play. Once you save data into the servlet context object you can acces in any page inside your application and will be the same no matter what user/client access it.<br />
+	<br />
+	Here is how you use the Servlet Context object:
+    </p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> Create a new servlet and enter the following code :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_3_1.jpg" />
+
+		<li class="clicked white">If we try to access the page we will see that all the data displayed is null. This is because we haven't set any parameters inside the request : </li>
+		<img class="hide big" src="Java EE Pics/2_3_3_2.jpg" />
+
+		<li class="clicked white"> If you add the &quot;?testParam=John&quot; to the end of the url we can see that all the data is set to John. The request, session and servlet context all hold the same data :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_3_3.jpg" />
+
+		<li class="clicked white"> If we access the page without the ending termination we can see that now the request object doesn't hold anything while both the session and the servlet context contain the testParam string &quot;John&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_3_4.jpg" />
+
+		<li class="clicked white"> What happens if we try to access the same page from another browser. We can see that even without sending any parameters to the request the servlet context contains the testParam string &quot;John&quot;. That means that data saved in the servlet context is consistent acroos web browsers :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_3_5.jpg" />
+
+		<li class="clicked white"> If we try to access the same page this time with the &quot;?testParam=Doe&quot; ending in the url, we can see that the request, session and context contain the same data :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_3_6.jpg" />
+
+		<li class="clicked white"> Now we try to access the same page from the first browser and we can see that while the session data has remained &quot;John&quot; , the servlet context still holds the &quot;Doe&quot; string while the request object doesn't hold anything :  </li>
+		<img class="hide big" src="Java EE Pics/2_3_3_7.jpg" />
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+package org.sebastian.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class ServletScopes
+ */
+@WebServlet("/ServletScopes")
+public class ServletScopes extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletScopes() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		PrintWriter out = response.getWriter();
+		
+		//We retrieve the parameter from the request object
+		String name = request.getParameter("testParam");
+		
+		//Try to store the parameter from the request into the session
+		if(name != null)
+		{
+			request.getSession().setAttribute("testParam", name);
+			request.getServletContext().setAttribute("testParam", name);
+		}
+		
+		HttpSession session = request.getSession();
+		ServletContext context = request.getServletContext();
+		
+		//We output  the parameter stored in the request
+		out.println("&lt;h2&gt;The data stored in the request is " + request.getParameter("testParam") + ".&lt;/h2&gt;");
+		//We output the parameter stored in the session
+		out.println("&lt;h2&gt;The data stored in the session is " + session.getAttribute("testParam")  + ".&lt;/h2&gt;");	
+		//We output the parameter stored in the session
+		out.println("&lt;h2&gt;The data stored in the servlet context is " + context.getAttribute("testParam")  + ".&lt;/h2&gt;");	
+		
+	}
+
+
+}
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#2">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+</div>
+</body>
+</html>

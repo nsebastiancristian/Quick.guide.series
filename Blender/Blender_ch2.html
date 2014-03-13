@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>2. Selection</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<ul class="no_bullet">
+	<li>
+	<a name="2" class="clicked orange" href="#"><h1>2. Selection </h1></a>
+    </li>
+    <li>
+    	<ul>
+            <li><a href="#2.1"><h2>2.1. Selection Mode Hotkeys </h2> </a></li>        
+            <li><a href="#2.2"><h2>2.2. Inverting selections </h2> </a></li>	
+            <li><a href="#2.3"><h2>2.3. Border Select (Box Selection) & Circle Select (Brush Selection) </h2> </a></li>	
+            <li><a href="#2.4"><h2>2.4. Select More, Select Less </h2> </a></li>    
+            <li><a href="#2.5"><h2>2.5. Hiding Things </h2> </a></li>   
+            <li><a href="#2.6"><h2>2.6. Linked selections </h2> </a></li>
+            <li><a href="#2.7"><h2>2.7. Edge loop selection </h2> </a></li>
+            <li><a href="#2.8"><h2>2.8. Ring loop selection </h2> </a></li>
+            <li><a href="#2.9"><h2>2.9. Brush selection </h2> </a></li>
+        </ul>
+	</li>
+</ul>
+       
+ 
+<h1 class="standalone_big"> 2. Selection </h1>
+
+<div class="unit">
+	 <a name="2.1">
+    	<h1>2.1. Selection Mode Hotkeys </h1>
+     </a>
+        <p>
+        	You can also switch selection modes with  CTRL + TAB . In the menu that appears, you can switch to a single selection mode by selecting it with the mouse or up/down-arrow keys and pressing  ENTER  or  LMB . But if you press  SHIFT + ENTER  or  SHIFT + LMB  instead, then that toggles the enabling of just that selection mode, without affecting the state of the others—just like shift-clicking on the icons above does.	</br> </br> 
+
+In common with other Blender popup menus, you can quickly select an item from the  CTRL + TAB  menu and immediately confirm by pressing one of  1KEY ,  2KEY  or  3KEY  to select the first (vertex), second (edge) or third (face) item in the menu. Or alternatively,  SHIFT + 1KEY ,  SHIFT + 2KEY  and  SHIFT + 3KEY  while the menu is up will toggle the enabling of vertex, edge and face-select modes respectively.
+        </p>
+        
+        <div class="step_by_step">
+        	<ul>
+            	<li class="clicked white">If you press CTRL + TAB (while in Edit Mode) a menu will appear that will let you quickly select Vertex, Edge of Face Mode to work with :  </li>
+        	<img class="hide small" src="Blender Pics/2_1.jpg" />
+            	         
+            </ul>
+        </div>
+        
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="2.2">
+    	<h1>2.2. Inverting selections </h1>
+     </a>
+        <p>
+        	You can use  SHIFT + RMB  to select multiple things, and  CTRL + I  to invert the selection, just like in Object mode. Only here the “things” are vertices, edges or faces, depending on the selection mode in effect. The active (last-selected) part is shown in white, while the rest of the selection (if any) is drawn in the usual orangey-yellow colour.  </br> </br> 
+
+As already mentioned above,  A  works in a similar way to Object mode, only instead of applying to everything, it applies to all parts of the object being edited.
+        </p>
+</div>	<!-- /unit -->
+ 
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+   
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="2.3">
+    	<h1>2.3. Border Select (Box Selection) & Circle Select (Brush Selection) </h1>
+     </a>
+        <p>
+        	 B  and  C  work analogously to how they do in Object mode, to select multiple things by drawing a box or by “painting” over them.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="2.4">
+    	<h1>2.4. Select More, Select Less </h1>
+     </a>
+        <p>
+        	Edit mode has some additional selection capabilities. To demonstrate them, let’s mess with something other than the default cube, for a change.  TAB  back to Object mode, and delete the cube. Now add ( SHIFT + A ) a Grid object instead.  TAB  into Edit mode, and you will see, that the grid is made up of 9×9 faces, or 10×10 vertices. Initially they will all be selected; use  A  to unselect them, then  C  to brush-select a few vertices in the middle. End brush-select mode with  RMB  or  ESC . Now watch what happens to the selection when you press  CTRL + NUM+  (select more); additional vertices adjacent to those already selected are added to the selection. Now try  CTRL + NUM−  (select less), and you will see that the vertices on the edge of the selection are removed from it.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="2.5">
+    	<h1>2.5. Hiding Things </h1>
+     </a>
+        <p>
+        	 H ,  SHIFT + H  and  ALT + H  work in an analogous way to their behaviour in Object mode. Again, instead of applying to everything, they apply to all parts of the object being edited.
+</br> </br> 
+Remembering What’s Hidden: If you switch out of Edit mode with some parts hidden, they will reappear, then disappear again when you re-enter Edit mode. So each object remembers what was hidden when you last edited it.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="2.6">
+    	<h1>2.6. Linked selections </h1>
+     </a>
+        <p>
+        	If you have some part of a mesh selected, pressing  CTRL + L  will select all other parts of the mesh that are connected to the already-selected parts. In the above case of the object made up of two disconnected cubes, you can  RMB  on a single vertex of one cube, then use  CTRL + L  to select all the rest of that cube but not the other.
+
+Another way to do linked selections is to simply move the mouse over some part of the piece you want to select, and press  L  to immediately select everything connected to that. Conversely,  SHIFT + L  will unselect everything connected to the vertex under the mouse.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="2.7">
+    	<h1>2.7. Edge loop selection </h1>
+     </a>
+        <p>
+        	Edge loops are an important concept when constructing meshes. They are so important that Blender provides a shortcut for selecting an entire edge loop with one click:  ALT + SHIFT + RMB  on an edge or vertex that is part of the loop you want to select, and it will select the entire loop. Or, if the part you click on is already selected, it will deselect the entire loop.
+</br> </br> 
+For example, try experimenting with a UV sphere: every line of “latitude” and “longitude” in this mesh is an edge loop.
+        </p>
+        <p>
+        	If you are in edge selection mode you can also press ALT + RMB on an edge to select an entire edge loop.
+        </p>
+        <p>
+        	If you are in face mode and press ALT + RMB on a face you can select an entire edge loop made out of faces.
+        </p>
+        <p> Note that the nature of the edge loop (horizontal or vertical) depends on what edge or face you select with the RMB. I've noticed that edges or faces that are closer to the center of the screen are going to give vertical edge loops when selected.</p>
+      
+	<div class="step_by_step">
+
+	<ul>
+		<li class="clicked white"> This is how an edge loop selection looks :  </li>
+		<img class="hide medium" src="Blender Pics/2_7.jpg" />
+
+	</ul>
+
+	</div> <!-- /steb-by-step -->
+
+      
+      
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+                <a name="2.8">
+		<h1>2.8.  Ring loop selection </h1>
+	</a>
+
+	<p>
+	Ring loop selections are somewhat similar to edge loops but look a bit different like in the picture. To select a ring loop when in edge press CTRL + ALT + RMB on an edge to select a ring loop.</p>
+
+	<div class="step_by_step">
+
+	<ul>
+		<li class="clicked white"> This is how a ring loop selection looks :  </li>
+		<img class="hide medium" src="Blender Pics/2_8.jpg" />
+
+	</ul>
+
+	</div> <!-- /steb-by-step -->
+
+
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+
+<div class="unit">
+	 <a name="2.9">
+    	<h1>2.9. Brush selection tool </h1>
+     </a>
+        <p>
+        	Brush selection tool can be accesed by pressing the C key. You can control the size of the brush by rolling the mouse wheel up or down. The brush selection tool is the same as the one from photoshop, when using it you can "paint" the screen and select the vertices that are located under the painted area.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#2">Top </a>
+
+ 
+   
+
+</div>
+</body>
+</html>

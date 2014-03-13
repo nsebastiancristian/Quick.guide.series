@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>5. PHP in Eclipse</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="5" class="clicked orange" href="#"><h1>5. PHP in Eclipse </h1></a>
+	
+	<ul class="no_bullet">
+	    <li><a href="#5.1"> <h2>5.1.  Debugging PHP in Eclipse with XAMPP and XDebug</h2> </a> </li>
+        
+	</ul>	 
+
+<h1 class="standalone_big"> 5. PHP in Eclipse </h1>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="5.1"><h1>5.1. Debugging PHP in Eclipse with XAMPP and XDebug </h1></a>
+
+	<p>
+	      This is how you setup Eclipse to be able to debug inside the IDE your php scripts
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white">Remember that this tutorial will work if you have XAMPP instaled on your computer. In the XAMPP control panel window go to the &quot;Config&quot; button and choose the &quot;PHP(php.ini)&quot; :  </li>
+		<img class="hide big" src="Php Pics/5_1_1.jpg" />
+
+		<li class="clicked white"> Open the php.ini config file and scroll to the bottom of the file , after the [XDebug] you must uncomment by deleting the ; in front of the lines the following two lines shown by the pointers in the picture. After you uncomment the second line that is shown the picture change from &quot;xdebug.remote_enable = 0&quot; to &quot;xdebug.remote_enable =1&quot; as it is shown in the picture: </li>
+		<img class="hide big" src="Php Pics/5_1_2.jpg" />
+
+		<li class="clicked white"> If you go to back to the phpinfo() page and see a line symilar with the one marked with the arrow in the picture it means you are ready to go for debugging :  </li>
+		<img class="hide big" src="Php Pics/5_1_2a.jpg" />
+
+		<li class="clicked white"> Fire up Eclipse:  </li>
+		<img class="hide big" src="Php Pics/5_1_3.jpg" />
+
+		<li class="clicked white">In the menu go to File / Switch Workspace ... , choose the &quot;Other...&quot; part of the menu. :  </li>
+		<img class="hide big" src="Php Pics/5_1_4.jpg" />
+
+		<li class="clicked white"> Choose the workspace to be inside the &quot;htdocs&quot; folder of the &quot;xampp&quot; folder:  </li>
+		<img class="hide big" src="Php Pics/5_1_5.jpg" />
+
+		<li class="clicked white">Create a new php project inside the new workspace and then go to Window / Preferences in the menu:  </li>
+		<img class="hide big" src="Php Pics/5_1_6.jpg" />
+
+		<li class="clicked white"> In the new dialog box that appears expand the PHP node inside the left list and then choose the Debug option inside the sublist. On the right side of the window choose xDebug from the drop-down list next to &quot;PHP Debugger&quot; and uncheck the &quot;Break at first line&quot; checkbox :  </li>
+		<img class="hide big" src="Php Pics/5_1_7.jpg" />
+
+		<li class="clicked white"> Close the dialog box by pressing finnish and then create a small test.php file with a basic for loop that echoes something and put a break point inside the loop :  </li>
+		<img class="hide big" src="Php Pics/5_1_8.jpg" />
+
+		<li class="clicked white"> Right click on the new created php file and then choose &quot;Debug As&quot; / &quot;PHP Web Application&quot; from the list:  </li>
+		<img class="hide big" src="Php Pics/5_1_9.jpg" />
+
+		<li class="clicked white"> There will be a message box that will advise that the best way to debug a php script is inside a &quot;PHP Debug View&quot; so click on &quot;Yes&quot; to go to that view :  </li>
+		<img class="hide big" src="Php Pics/5_1_10.jpg" />
+
+		<li class="clicked white"> You will see this view after you press &quot;Yes&quot;. This is the PHP Debug View. Here you can do all the debugging :  </li>
+		<img class="hide big" src="Php Pics/5_1_11.jpg" />
+
+	</ol>
+	</div>	
+	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+			Here be code
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#4">Top </a></li>
+</ul>
+
+
+
+</div>
+</body>
+</html>

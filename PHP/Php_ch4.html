@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>4. Debugging</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="4" class="clicked orange" href="#"><h1>4. Debugging </h1></a>
+	
+	<ul class="no_bullet">
+	    <li><a href="#4.1"> <h2>4.1.  var_export() function used to find out class composition</h2> </a> </li>
+        
+	</ul>
+
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<h1 class="standalone_big"> 4. Debugging </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="4.1"><h1>4.1. var_export() function used to find out class composition</h1></a>
+
+	<p>
+	      You can debug and display the composition of one object at one time by using the var_export() method
+	</p>
+
+	<div class="step_by_step">
+	<ul>
+		<li class="clicked white"> Here is how you use var_export() :  </li>
+		<img class="hide big" src="Php Pics/4_1.jpg" />
+	</ul>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+&lt;?php
+	class Person {
+		public $name;
+		public $last_name;
+		public $age;	
+	}
+	
+	$pers = new Person();
+	
+	echo "&lt;h2&gt;Object of type Person with undefined properties&lt;/h2&gt;";
+	echo "&lt;pre&gt;".var_export($pers, 1)."&lt;/pre&gt;";
+	
+	$pers-&gt;name = "John";
+	$pers-&gt;last_name = "Doe";
+	$pers-&gt;age = 29;
+	
+	echo "&lt;h2&gt;Object of type Person with defined properties&lt;/h2&gt;";
+	echo "&lt;pre&gt;".var_export($pers, 1)."&lt;/pre&gt;";
+?&gt;
+
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+    <li><a  href="../Php index.html">Home </a></li>
+    <li><a  class="show_code">Code </a></li>
+    <li><a href="#4">Top </a></li>
+</ul>
+
+
+</div>
+</body>
+</html>

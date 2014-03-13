@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3. Vertices</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+
+</head>
+
+<body>
+<div id="wrapper">
+    	
+        <a name="3" class="clicked orange" href="#"><h1>3. Vertices </h1></a>
+<ul class="no_bullet">
+   
+   <li>
+        <a  class="clicked orange" href="#"><h2>3.1. Adding new vertices to an existing mesh </h2> </a> 
+   </li>
+   <li>
+        <ul>
+             <li><a href="#3.1.1"><h2>3.1.1. Creating new vertices and adding them to the mesh (including creating new faces with those vertices) </h2> </a></li>
+             <li><a href="#3.1.2"><h2>3.1.2. Creating new vertices by subdividing an edge </h2> </a></li>
+         </ul>
+   </li>     
+      
+    <li>    
+        <a href="#3.2"><h2>3.2. Merging two vertices </h2> </a> 
+    </li>
+</ul>  
+
+
+
+<h1 class="standalone">3.1. Adding new vertices to an existing mesh  </h1>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="3.1.1">
+    	<h1>3.1.1. Creating new vertices and adding them to the mesh (including creating new faces with those vertices) </h1>
+     </a>
+        <p>
+        	Back to the default cube, and Edit mode. Ensure you are in vertex-select mode, with nothing selected. Left-click with the control key down ( CTRL + LMB ) somewhere near the cube. Do you see a little orangey-yellow dot appear where you clicked? You just added a new, unconnected vertex to the mesh.
+</br> </br> 
+Undo your addition ( CTRL + Z ). Select an existing vertex with  RMB . Now  CTRL + LMB  to add a new vertex again, and you will notice that it is connected to the previously-selected vertex by a newly-added edge as well. Since the newly-added vertex is now the selected vertex, doing  CTRL + LMB  again at another position, and so on repeatedly, lets you construct a whole chain of new edges in this way. But what good are edges and vertices without faces?
+</br> </br> 
+To construct a face, you need a closed loop of edges. To close a loop of edges, select all the vertices in the chain, and press  F ; this will add another edge joining the first and last vertex into a complete loop of edges, and at the same time it will fill in the loop with a new face.
+</br> </br> 
+Alternatively, if you just wanted to close the loop without filling in the face, then select only the first and last vertex in the chain before pressing  F ; since only two vertices are selected, this will not construct a new face, it will only add an edge joining those vertices.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#3">Top </a>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="3.1.2">
+    	<h1>3.1.2. Creating new vertices by subdividing an edge </h1>
+     </a>
+        <p>
+        	You create a new vertex in the middle of an edge (or even several vertices) if (while in edge select mode) you select an edge and you press the subdivide button in the the tools shelf. (or by pressing W and then select the subdivide option from the context menu that appears). If you then enter vertex select mode and press A to unselect all vertices you can the see the new vertex that was created in the middle of that edge. </br></br>
+            If you want several vertices created in this way you can go to the bottom of the tools shelf were you can grab a slider and select how many vertices you want to be created. (the slider has "Number of cuts" as a title)
+            
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#3">Top </a>
+
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+	 <a name="3.2">
+    	<h1>3.2. Merging two vertices </h1>
+     </a>
+        <p>
+        	It is possible to remove vertices without leaving holes behind in the mesh, by merging two or more vertices into one. Select the vertices you want to merge, and press  ALT + M ; a menu will popup with some options, including whether to position the resulting vertex in the middle of the ones being merged, or at the position of the first or last one you selected. The resulting vertex inherits all the edges that were connected to the vertices being merged, as well as the faces connected between those edges.
+</br></br>
+Alternatively, sometimes an operation might create duplicate vertices in exactly the same positions, or very close together. You can merge these en masse by ensuring you have selected all possible candidate vertices (e.g. the whole mesh), bringing up the Vertex Specials menu ( W ) and selecting the “Remove Doubles” item. Look for a message to flash up briefly in the Info window, saying “Removed n vertices”; if n is 0, then nothing was done. But if you look in the lower left of the Toolshelf, you will see a “Remove Doubles” panel has appeared, with a “Merge Distance” slider that governs the maximum distance allowed between vertices that are merged; change this value as appropriate (either by clicking on the left- and right-arrows, or by clicking and typing in a new value and pressing  ENTER ), and the Remove Doubles operation is immediately redone, and a new message will flash up indicating how many vertices were removed this time. Simply keep on adjusting the value until you are satisfied that you haven’t removed too many or too few vertices.
+        </p>
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="../Blender index.html">Home </a>
+<a class="bread_crumb" href="#3">Top </a>
+
+
+</div>
+</body>
+</html>

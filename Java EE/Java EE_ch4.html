@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>4. Struts 2</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="4" class="clicked orange" href="#">
+<h1>4. Struts 2 </h1></a>
+	
+	<ul class="no_bullet">
+	    <li><a href="#4.1"><h2 class="unfinished">4.1. How to install Struts 2 and create a simple Struts project with Eclipse </h2> </a> </li>
+
+      	<li><a  class="clicked orange" href="#"><h2>4.2. Scopes </h2> </a> </li>
+		<li>
+			<ul>
+            	<li><a href="#4.2.1"><h2 class="unfinished">4.2.1. Request scope. Passing and getting parameters into/from the request scope </h2> </a></li>
+            </ul>
+        </li> 	
+
+	</ul>	
+
+
+<h1 class="standalone_big"> 4. Struts 2</h1>
+
+<!- ---------------------------------------------------------------------- ->
+
+<div class="unit">
+	<a name="4.1"><h1>4.1. How to install Struts 2 and create a simple Struts project with Eclipse </h1></a>
+
+	<p>
+	       Struts 2 is a framework for creating web based application using the MVC (Model View Controller) pattern. It makes the whole creation process of a project with servlets and jsp's a whole lot easier. Here is how you install the framework and create a new simple project inside Eclipse.
+	</p>
+
+	<div class="step_by_step">
+	<ol>
+		<li class="clicked white"> First you need to go to the website of Apache Software Foundation and download the latest version of the Struts framework.  :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_1.jpg" />
+
+		<li class="clicked white"> Download the zip files and unpack inside a folder on disk. Here is where I've unpacked myne:  </li>
+		<img class="hide big" src="Java EE Pics/4_1_2.jpg" />
+
+		<li class="clicked white"> Open up Eclipse and go to File -&gt; New ... -&gt; Other ... to create a new web project  :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_3.jpg" />
+
+		<li class="clicked white">Select Dynamic Web Project from the list and press Next :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_4.jpg" />
+
+		<li class="clicked white"> In the &quot;Project name&quot; section enter a name for your new project. I have entered &quot;StrutsTestingProject&quot; for my project. In the &quot;Target runtime&quot; section choose a platform to run your project on (i.e. a server).<br />
+In order to do that you must allready have a server set up. If you don't have one than check the servlet creation tutorials to find out how to do this. I have selected Apache as my server<br />
+<br />
+Click &quot;Next&quot;
+: </li>
+		<img class="hide big" src="Java EE Pics/4_1_5.jpg" />
+
+		<li class="clicked white"> Click &quot;Next&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_6.jpg" />
+
+		<li class="clicked white"> Inside the content directory box type &quot;web&quot; and check the &quot;Generate web.xml deployment descriptor&quot; checkbox<br />
+		  <br />
+		  Click on &quot;Finish&quot;
+	    : </li>
+		<img class="hide big" src="Java EE Pics/4_1_7.jpg" />
+
+		<li class="clicked white">A new web project will be generated for you. Here is the folder structure of the project to the left in the &quot;Project Explorer&quot; view :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_8.jpg" />
+
+		<li class="clicked white">Now you have to specify the Struts jar files that are going to be associated with this new project so right click on the name of the project in the list and choose &quot;Properties...&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_9.jpg" />
+
+		<li class="clicked white"> In the dialog box select &quot;Java Build Path&quot; from the list on the left, click on the &quot;Libraries&quot; tab and then click on the &quot;Add Library...&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_10.jpg" />
+
+		<li class="clicked white"> Select &quot;User Library&quot; from the list and click on &quot;Next&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_11.jpg" />
+
+		<li class="clicked white"> You will see a list with all the user libraries (collection of jar files) that can be added to your project. As you can see there is allready a Struts2 library in the list. That's because I have done this before, but for the purpose of this tutorial we will create another user library with all the necessary Struts jar files that need to be added. <br />
+		  <br />
+		  Click on the &quot;User Libraries...&quot;
+	    : </li>
+		<img class="hide big" src="Java EE Pics/4_1_12.jpg" />
+
+		<li class="clicked white">Click on the &quot;New...&quot; button  :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_13.jpg" />
+
+		<li class="clicked white"> Give a name to your new library. Myne is called &quot;Struts2Tutorial&quot; to differentiate from the &quot;Struts2&quot; library I allready have created.<br />
+		  <br />
+		  Click on &quot;Ok&quot;
+	    : </li>
+		<img class="hide big" src="Java EE Pics/4_1_14.jpg" />
+
+		<li class="clicked white"> Click on the &quot;Struts2Tutorial&quot; library from the list and then click on the &quot;Add External JARs...&quot; button to add the jar files :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_15.jpg" />
+
+		<li class="clicked white">Go to the struts lib folder where you have unpacked your Struts files that you have downloaded and select the jar files needed (hold Ctrl while you click on the files to select several files). You don't need all the files from the &quot;lib&quot; folder so select just the ones needed. You will see the file that you need to select in the next screenshot.<br />
+		  <br />
+		  Click on the &quot;Open&quot; button when you are done
+: </li>
+		<img class="hide big" src="Java EE Pics/4_1_16.jpg" />
+
+		<li class="clicked white"> Here are all the jar files that you had to select in the previous step. <br />
+		  <br />
+		  Click on the &quot;Ok&quot; button when you are ready
+	    : </li>
+		<img class="hide big" src="Java EE Pics/4_1_17.jpg" />
+
+		<li class="clicked white">Select the &quot;Struts2Tutorial&quot; checkbox and then press &quot;Finish&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_18.jpg" />
+
+		<li class="clicked white"> Select the &quot;Struts2Tutorial&quot; library in the list and press &quot;Ok&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_19.jpg" />
+
+		<li class="clicked white"> Here you see that &quot;Struts2Tutorial&quot; library of jar files has been added (expand the &quot;Libraries&quot; node of the project in order to see that) :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_20.jpg" />
+
+		<li class="clicked white"> Now you must tell Eclipse to copy the Struts library files inside the /WEB-INF/lib folder during deployment time because if you don't the project will not work.<br />
+		  <br />
+		  So, again press right click on the name of the project and choose &quot;Properties...&quot; from the context menu. <br />
+		  <br />
+		  Go to the &quot;Deployment Assembly&quot; on the list on the left and you will see something like in the screenshot. <br />
+		  <br />
+		  Press the &quot;Add...&quot; button 
+: </li>
+		<img class="hide big" src="Java EE Pics/4_1_21.jpg" />
+
+		<li class="clicked white"> Select &quot;Java Build Path Entries&quot; from the list and press the &quot;Next&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_22.jpg" />
+
+		<li class="clicked white">Select the &quot;Struts2Tutorial&quot; (if it isn't the only one in the list) and press &quot;Finish&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_23.jpg" />
+
+		<li class="clicked white">The dialog box will look like in the picture . Press the &quot;Apply&quot; button :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_24.jpg" />
+
+		<li class="clicked white"> Press the &quot;Ok&quot; button to finish :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_25.jpg" />
+
+		<li class="clicked white"> You must create a new folder named &quot;classes&quot; inside the &quot;WEB-INF&quot; folder of your project so right click the &quot;WEB-INF&quot; folder inside the Project Explorer view and choose New/Folder and name it &quot;classes&quot;:  </li>
+		<img class="hide big" src="Java EE Pics/4_1_26.jpg" />
+
+		<li class="clicked white">Create a new struts.xml file inside this &quot;classes&quot; folder. The first part of the file should look like in the srcreenshot :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_27.jpg" />
+
+		<li class="clicked white"> Now for this project we are going to create an action class that will &quot;talk&quot; to the model. This class will be named HelloAction and will be mapped to an url that will contain &quot;getHello&quot; in the last part of it. <br />
+		  <br />
+		  The last part of the file should look like in the screenshot
+	    : </li>
+		<img class="hide big" src="Java EE Pics/4_1_28.jpg" />
+
+		<li class="clicked white">Now create that class named HelloAction (give it the correct package like the one entered in the &quot;struts.xml&quot; file) :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_29.jpg" />
+
+		<li class="clicked white"> Here is the code that the HelloAction will contain.<br />
+		  <br />
+		  As you can see it contains a public method named execute() that returns strings. This method will be executed every the matching url will be entered. Here you have the chance to make behind the scenes updates and do stuff like update or check a database. <br />
+		  <br />
+		  In our execute method we don't do much to keep things simple, we only right to the console a message to see that the HelloAction.execute() method is called 
+: </li>
+		<img class="hide big" src="Java EE Pics/4_1_30.jpg" />
+
+		<li class="clicked white"> Before we start the project to test it there is one more thing we have to do; as we stand right now there is no mapping inside the web.xml to a specific servlet , actually we haven't done anything to the web.xml file. <br />
+		  <br />
+		  We have to tell the Tomcat server and Eclipse &quot;don't worry, everything is fine, the servlet are allready mapped by Struts&quot;. So open the web.xml file and add the filter and filter-mapping nodes like in the screenshot
+	    : </li>
+		<img class="hide big" src="Java EE Pics/4_1_31.jpg" />
+
+		<li class="clicked white"> Actually there is more thing we forgot to do. We forgot to make the jsp file that will be displayed to the user (this represents the &quot;view&quot; part of the MVC model) . So create a jsp file inside the &quot;web&quot; folder of our project and enter the following code :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_32.jpg" />
+
+		<li class="clicked white"> Now we are ready to run. So right click on the project name and choose Run As / Run on Server from the list :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_33.jpg" />
+
+		<li class="clicked white">Press &quot;Next&quot; :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_34.jpg" />
+
+		<li class="clicked white"> And press &quot;Ok&quot; to restart the Tomcat server :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_35.jpg" />
+
+		<li class="clicked white">Once the Tomcat server is restarted you should see this. Don't worry, it is perfectly normal. That's because the url doesn't end with the getHello string. So add the &quot;getHello.action&quot; to the url and press Enter to reload:  </li>
+		<img class="hide big" src="Java EE Pics/4_1_36.jpg" />
+
+		<li class="clicked white"> Now you will be able to see the view jsp :  </li>
+		<img class="hide big" src="Java EE Pics/4_1_37.jpg" />
+	</ol>
+	</div>	<!-- /step-by-step -->
+
+<div class="code">
+    	<pre>
+			Here be code
+        </pre>
+</div>
+
+
+</div>	<!-- /unit -->
+
+<ul class="menu">
+	<li><a  href="#1">Home </a></li>
+	<li><a  class="show_code">Code </a></li>
+</ul>
+
+
+
+</div>
+</body>
+</html>

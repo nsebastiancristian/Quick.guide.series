@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>1. Java EE General</title>
+
+<!-- **** CSS STYLES **** -->
+<link href="../main_styles.css" rel="stylesheet" type="text/css" />
+
+<!-- **** JQuery LIBS **** -->
+<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../blender_jquery.js"></script>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<a name="1" class="clicked orange" href="#">
+<h1>1. Java EE General </h1></a>
+	
+	<ul class="no_bullet">
+	    <li><a href="#1.1"> <h2>1.1. Setting up a server container like Tomcat inside Eclipse</h2> </a> </li>
+        <li><a href="#1.2"> <h2>1.2. How does a WAR file look like?</h2> </a> </li>
+	</ul>	
+
+
+<h1 class="standalone_big"> 1. Java EE General</h1>
+
+<div class="unit">
+	 <a name="1.1">
+    	<h1>1.1. Setting up a server container like Tomcat inside Eclipse </h1>
+     </a>
+        <p>Before you can start coding your first servlets and jsp's you need to have a servlet container like Tomcat installed and up and running on your computer. Installing Tomcat is easy aspecially if you have it installed with a bundled installation like XAMPP. The next step after you have installed Tomcat is to have it configured in Eclipse so as to more conveniently start it and shut it down directly from Eclipse. This is how you do it:       </p>
+        
+         <div class="step_by_step">
+        	<ol>
+            <li class="clicked white">You need to specify to Eclipse the Tomcat server you are using. If you haven't installed the Apache server with the Tomcat container you will need to do this first. Just click on the "No servers are available. Click this link to create a new server.". Note that in order to program servlets and jsp's in Eclipse and to see the "Servers" tab you must have the Java EE version of Eclipse installed  . :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_1.jpg" />
+            	
+            <li class="clicked white">In the new dialog that appears we select first <span class="orange">(1)</span> the type of server (Tomcat v7.0 in here). We must also provide the server's host name (myne is called "localhost") <span class="orange">(2)</span>. Click on the "Add" link that is next to the "Server Environment" section and ...:  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_2.jpg" />    
+
+            <li class="clicked white"> ... a new dialog box will appear. Here you will provide the Tomcat installation directory path <span class="orange">(1)</span> and than select the JRE to use (I have left the default Eclispe JRE but you can use your Java JRE here) <span class="orange">(1)</span>. Click "Finish" when you are done and than click on "Next" in the previous dialog box :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_7.jpg" />    
+            	
+            <li class="clicked white"><p>In the next section of the dialog box we must make the "transfer" for the "old" projects that we have in our workspace to use the new created Tomcat server. That means making the necessary configurations for those projects in order to work with the new Tomcat server container.</p>
+            <p>
+            	Normally you don't have to do here anything but if you allready had a few projects that used a previous version of the Tomcat server you will select them on the left tab and click on the "Add" (or just press the "Add All" button to add all the projects).
+            </p>
+            <p>
+            	If you are doing this for the first time than you don't have to do anything at this step. Just press the "Finish" button:
+            </p>  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_3.jpg" />    
+
+            <li class="clicked white">
+            You will see the newly created Tomcat server in the "Servers" tab on the bottom part of the Eclipse UI
+             :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_4.jpg" />
+            
+            <li class="clicked white">
+            You can start the Tomcat server directly from the Eclipse IDE by right clicking on the Tomcat server listed in the "Servers" tab and choosing "Start" from the contextual menu that appears
+             :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_5.jpg" />
+            
+            <li class="clicked white">
+You can check if the Tomcat container was started succesfully if you go to the "Console" tab and see "Server startup in 1338 ms". Of course the number of milliseconds will likely differ for your computer but this is the message to look for to see that Tomcat is started succesfully :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_6.jpg" />
+            
+            <li class="clicked white">
+You can also test that by going to your browser and typing "http://localhost:8080" in the url box. The 8080 number is the number of the port that Tomcat is using. If all goes well you should see the following page :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_8.jpg" />
+            
+            <li class="clicked white">
+... if it doesn't go well you may see this. But don't worry, you can fix this as we will see in the next step :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_9.jpg" />
+            
+            <li class="clicked white">
+... In order to fix the problem right click on the Tomcat server in the Servers tab and choose Properties from the contextual menu. A new dialog box will appear . Click on the "Switch Location" button. :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_10.jpg" />
+            
+            <li class="clicked white">
+... The location will be changed as you can see in the picture. Click on the Ok button :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_11.jpg" />
+            
+            <li class="clicked white">
+ If you go to the "Project Explorer" tab and expand the "Servers" node you will see that a new entry with the Tomcat server has been created. This was created when you clicked that button in the previous dialog box :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_12.jpg" />
+            
+            <li class="clicked white">
+Double click on the newly created entry with the Tomcat server and a new properties tab will appear as is shown here :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_13.jpg" />
+            
+            <li class="clicked white">
+Make sure that the option shown by the orange arrow is checked. If this isn't checked that is the reason you get a 404 error message when try to acces the Tomcat greetings page. Note that you can't change this radio button (it is greyed) if you have previously transfered some projects to your new created Tomcat server (the thing you may have done or not in step 4) :  </li>
+        	<img class="hide big" src="Java EE Pics/1_1_14.jpg" />
+            
+            <li class="clicked white">
+Now if you open your browser and try to enter the adress "http://localhost:8080/" you will see the Tomcat greeting page as shown: </li>
+        	<img class="hide big" src="Java EE Pics/1_1_8.jpg" />
+            </ol>
+        </div>
+        
+
+        
+</div>	<!-- /unit -->
+
+<ul class="menu">
+<li><a  href="#1">Home </a></li>
+
+</ul>
+
+<!- ------------------------------------------------------------------------------------------------ -->
+
+<div class="unit">
+                <a name="1.2">
+		<h1> 1.2. How does a WAR file look like? </h1>
+	</a>
+
+	<p>
+		This is how a typical WAR file looks like (look at the screenshot bellow)
+	</p>
+
+	<div class="step_by_step">
+
+	<ul>
+		<li class="clicked white">This is how a typical WAR file looks like :  </li>
+		<img class="hide medium" src="Java EE Pics/1_2.gif" />
+	</ul>
+
+	</div> <!-- /steb-by-step -->
+
+
+</div>	<!-- /unit -->
+
+<a class="bread_crumb" href="#1">Home </a>
+
+
+
+</div>
+</body>
+</html>
