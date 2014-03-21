@@ -83,7 +83,11 @@
      <a  class="clicked orange" href="#"><h2>1.11. SPEL (Spring Expression Language) </h2> </a> 
 		<div class="hide spaced_XX">
 		  <a href="#1.11.1"><h2 class="">1.11.1. Using SPEL to set a property of a bean by copying the property of another bean</h2> </a>
-		  <a href="#1.11.2"><h2 class="">1.11.2. Using a bean's method to set up a property of another bean by using SPEL </h2> </a>  			
+		  <a href="#1.11.2"><h2 class="">1.11.2. Using a bean's method to set up a property of another bean by using SPEL </h2> </a>
+          <a href="#1.11.3"><h2 class="">1.11.3. Using a static method to set up a property of a bean by using SPEL's T() function </h2> </a> 
+           <a href="#1.11.4"><h2 class="">1.11.4. Using operators with SPEL </h2> </a>
+           <a href="#1.11.5"><h2 class="">1.11.5. Comparing values with SPEL </h2> </a> 
+           <a href="#1.11.6"><h2 class="">1.11.6. Conditionaly evaluating with SPEL </h2> </a> 	 			
     	</div>	<!-- /hide -->
 
 <a name="2" class="clicked orange" href="#">
@@ -3867,10 +3871,419 @@ Tam Tam Tam
 </div>
 
 
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.11.3"> <h1> 1.11.3. Using a static method to set up a property of a bean by using SPEL's T() function </h1> </a>
+
+
+<div class="head"> <span class="title"> spring.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="flute" class="com.sebastian.spring.Flute"&gt;
+	&lt;/bean&gt;
+	
+	<span class="greenish">&lt;bean</span> id="Jester" class="com.sebastian.spring.Instrumentalist"<span class="greenish">&gt;</span>
+		<span class="greenish">&lt;property</span> <span class="magenta">name</span>=<span class="blue">&quot;song&quot;</span> <span class="magenta">value</span>=<span class="blue">&quot;#{T(com.sebastian.spring.JukeBox).getSong()}&quot;</span><span class="greenish">&gt;&lt;/property&gt;</span>
+		&lt;property name="instrument" ref="flute"&gt;&lt;/property&gt;
+	<span class="greenish">&lt;/bean&gt;</span>	
+	<span class="greenish"></span><span class="greenish"></span>	<span class="greenish"></span>
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> JukeBox.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+import java.util.Random;
+
+public class JukeBox {
+	private static String[] songtitles = {"Push it", "Juanita", "Californication", "Love in an elevator", "The gods made Heavy Metal"};
+	
+	public static String getSong() {
+		Random generator = new Random();
+		int n = songtitles.length;
+		int index = generator.nextInt(n);
+		
+		return songtitles[index];
+		
+	}
+}
+   </pre>
+</div>
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Instrument.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public interface Instrument {
+	public void play();
+}
+
+   </pre>
+</div>
+
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Flute.java  :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class Flute implements Instrument {
+
+	@Override
+	public void play() {
+		System.out.println("Tam Tam Tam");
+	}
+
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Performer.java  :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public interface Performer {
+	public void perform() ;
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Instrumentalist.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class Instrumentalist implements Performer {
+
+	private String song;
+	private Instrument instrument;
+
+	public String getSong() {
+		return song;
+	}
+
+	public void setSong(String song) {
+		this.song = song;
+	}
+
+	public Instrument getInstrument() {
+		return instrument;
+	}
+
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
+	}
+
+	@Override
+	public void perform() {
+		System.out.println("Playing the song '" + song + "'");
+		instrument.play();
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/sebastian/spring/spring.xml");
+		
+		Instrumentalist jester = (Instrumentalist) context.getBean("Jester");
+		
+		System.out.println("Jester is playing");
+		jester.perform();
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Jester is playing
+Playing the song 'Californication'
+Tam Tam Tam
+   </pre>
+</div>
+
+  
+<p><a href="#1">Home</a></p>
+</div>
 
 
 <!-- ..................................................................................................................................... -->
 
+<div class="unit">
+<a name="1.11.4"> <h1> 1.11.4. Using operators with SPEL </h1> </a>
+
+
+<div class="head"> <span class="title"> Examples :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;property name="adjustedAmount" value="#{counter.total + 42}"/&gt;
+
+&lt;property name="adjustedAmount" value="#{counter.total - 20}"/&gt;
+
+&lt;property name="circumference"  value="#{2 * T(java.lang.Math).PI * circle.radius}"/&gt;
+
+&lt;property name="average" value="#{counter.total / counter.count}"/&gt;
+
+&lt;property name="remainder" value="#{counter.total % counter.count}"/&gt;
+
+&lt;property name="area" value="#{T(java.lang.Math).PI * circle.radius ^ 2}"/&gt;
+
+&lt;property name="fullName" value="#{performer.firstName+''+performer.lastName}"/&gt;
+   </pre>
+</div>
+
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+
+<div class="unit">
+<a name="1.11.5"> <h1> 1.11.5. Comparing values with SPEL </h1> </a>
+
+
+<div class="head"> <span class="title"> Examples :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;property name="equal" value="#{counter.total == 100}"/&gt;
+
+&lt;property name="hasCapacity" value="#{counter.total le 100000}"/&gt;
+
+&lt;property name="largeCircle" value="#{shape.kind == 'circle' and shape.perimeter gt 10000}"/&gt;
+
+&lt;property name="outOfStock" value="#{!product.available}"/&gt;
+is equivalent to
+&lt;property name="outOfStock" value="#{not product.available}"/&gt;
+   </pre>
+</div>
+
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+
+<div class="unit">
+<a name="1.11.6"> <h1> 1.11.6. Conditionaly evaluating with SPEL </h1> </a>
+
+
+<div class="head"> <span class="title"> Examples :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;property name="instrument" value="#{songSelector.selectSong()=='Jingle Bells'?piano:saxophone}"/&gt;
+
+&lt;property name="song" value="#{kenny.song != null ? kenny.song : 'Greensleeves'}"/&gt;
+
+&lt;property name="song" value="#{kenny.song ?: 'Greensleeves'}"/&gt;
+   </pre>
+</div>
+
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+
+
+<!-- ..................................................................................................................................... -->
+
+
+<div class="unit">
+<a name="1.11.7"> <h1> 1.11.7. Accessing collection members with SPEL </h1> </a>
+
+
+<div class="head"> <span class="title"> spring.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"&gt;
+
+	&lt;util:list id="cities"&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="Chicago" p:state="IL"
+			p:population="2853114" /&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="Atlanta" p:state="GA"
+			p:population="537958" /&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="Dallas" p:state="TX"
+			p:population="1279910" /&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="Houston" p:state="TX"
+			p:population="2242193" /&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="Odessa" p:state="TX"
+			p:population="90943" /&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="El Paso" p:state="TX"
+			p:population="613190" /&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="Jal" p:state="NM"
+			p:population="1996" /&gt;
+		&lt;bean class="com.sebastian.spring.City" p:name="Las Cruces"
+			p:state="NM" p:population="91865" /&gt;
+	&lt;/util:list&gt;
+
+	&lt;bean id="organizer" class="com.sebastian.spring.SummerOlympicsOrganizer"&gt;
+		&lt;property name="chosenCity" value="#{cities[2]}" /&gt;
+	&lt;/bean&gt;
+	
+	&lt;bean id="secondOrganizer" class="com.sebastian.spring.SummerOlympicsOrganizer"&gt;
+		&lt;property name="chosenCity" value="#{cities[T(java.lang.Math).random() * cities.size()]}" /&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> City.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class City {
+	private String name;
+	private String state;
+	private int population;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(int population) {
+		this.population = population;
+	}
+
+	public void organize() {
+		System.out.println("The city " + name + " is organizing the Summer Olympics.");
+	}
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> SummerOlympicsOrganizer.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class SummerOlympicsOrganizer {
+
+	private City chosenCity;
+
+	public City getChosenCity() {
+		return chosenCity;
+	}
+
+	public void setChosenCity(City chosenCity) {
+		this.chosenCity = chosenCity;
+	}
+	
+	public void organize() {
+		System.out.println("This year:");
+		chosenCity.organize();
+	}
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/sebastian/spring/spring.xml");
+		
+		SummerOlympicsOrganizer organizer = (SummerOlympicsOrganizer) context.getBean("organizer");
+		SummerOlympicsOrganizer secondOrganizer = (SummerOlympicsOrganizer) context.getBean("secondOrganizer");
+		
+		organizer.organize();
+		secondOrganizer.organize();
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+This year:
+The city Dallas is organizing the Summer Olympics.
+This year:
+The city Chicago is organizing the Summer Olympics.   </pre>
+</div>
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
 
 
 
