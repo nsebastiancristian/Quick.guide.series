@@ -78,10 +78,13 @@
   			<a href="#1.10.4"><h2 class="">1.10.4. Property Maps (Map&lt;String, String&gt;)</h2> </a>
   			<a href="#1.10.5"><h2 class="">1.10.5. Arbitrary Maps (Map&lt;String, Object&gt;)</h2> </a>
   			<a href="#1.10.6"><h2 class="">1.10.6. Arbitrary Maps (Map&lt;String, Object&gt;) with Inner Beans</h2> </a>
-		</div> 	<!-- /hide_x --> 
+ 		</div> 	<!-- /hide_x --> 
                 
-        
-    </div>	<!-- /hide -->
+     <a  class="clicked orange" href="#"><h2>1.11. SPEL (Spring Expression Language) </h2> </a> 
+		<div class="hide spaced_XX">
+		  <a href="#1.11.1"><h2 class="">1.11.1. Using SPEL to set a property of a bean by copying the property of another bean</h2> </a>
+		  <a href="#1.11.2"><h2 class="">1.11.2. List of Beans</h2> </a>  			
+    	</div>	<!-- /hide -->
 
 <a name="2" class="clicked orange" href="#">
 <h1>2. Working with Databases in Spring </h1></a>
@@ -3511,6 +3514,178 @@ bear : Animal [name=Baloo, type=bear]   </pre>
 <!-- ..................................................................................................................................... -->
 
 <div class="unit">
+<a name="1.11.1"> <h1> 1.11.1 Using SPEL to set a property of a bean by copying the property of another bean</h1> </a>
+  
+  
+<div class="head"> <span class="title">  spring.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="flute" class="com.sebastian.spring.Flute"&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="piano" class="com.sebastian.spring.Piano"&gt;
+	&lt;/bean&gt;
+
+	<span class="greenish">&lt;bean</span> <span class="magenta">id</span>=<span class="blue">"Bob"</span> <span class="magenta">class</span>=<span class="blue">"com.sebastian.spring.Instrumentalist"</span><span class="greenish">&gt;</span>
+		&lt;property name="song" value="Balada cavalerului"&gt;&lt;/property&gt;
+		&lt;property name="instrument" ref="flute"&gt;&lt;/property&gt;	
+	<span class="greenish">&lt;/bean&gt;</span>
+	
+	&lt;bean id="Jester" class="com.sebastian.spring.Instrumentalist"&gt;
+		<span class="greenish">&lt;property</span> <span class="magenta">name</span>=<span class="blue">"song"</span> <span class="magenta">value</span>=<span class="blue">"#{Bob.song}"</span><span class="greenish">&gt;&lt;/property&gt;</span>
+		&lt;property name="instrument" ref="piano"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Performer.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public interface Performer {
+	public void perform() ;
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Instrumentalist.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class Instrumentalist implements Performer {
+
+	private String song;
+	private Instrument instrument;
+
+	public String getSong() {
+		return song;
+	}
+
+	public void setSong(String song) {
+		this.song = song;
+	}
+
+	public Instrument getInstrument() {
+		return instrument;
+	}
+
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
+	}
+
+	@Override
+	public void perform() {
+		System.out.println("Playing the song " + song);
+		instrument.play();
+	}
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Instrument.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public interface Instrument {
+	public void play();
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Flute.java  :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class Flute implements Instrument {
+
+	@Override
+	public void play() {
+		System.out.println("Tam Tam Tam");
+	}
+
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Piano.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class Piano implements Instrument {
+
+	@Override
+	public void play() {
+		System.out.println("Trilu Lilu Lilu");
+	}
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/sebastian/spring/spring.xml");
+		
+		Instrumentalist bob = (Instrumentalist) context.getBean("Bob");
+		Instrumentalist jester = (Instrumentalist) context.getBean("Jester");
+
+		System.out.println("Bob is playing");
+		bob.perform();
+		
+		System.out.println("Jester is playing");
+		jester.perform();
+	}
+}
+
+   </pre>
+</div>
+
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+<!-- ..................................................................................................................................... -->
+
+
+
+
+<div class="unit">
 <a name="2.2.1"> <h1> 2.2.1. Querying the Database for multiple rows </h1> </a>
  
  
@@ -5178,7 +5353,7 @@ public class OffersController {
 	    	Name: Sue </br>
 	    	Email: sue_ellen@yahoo-mail.com
 	    </p>
-        </div>
+    </div>
 
 <p><a href="#2">Home</a></p>
 </div>
