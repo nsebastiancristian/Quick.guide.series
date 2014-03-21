@@ -83,7 +83,7 @@
      <a  class="clicked orange" href="#"><h2>1.11. SPEL (Spring Expression Language) </h2> </a> 
 		<div class="hide spaced_XX">
 		  <a href="#1.11.1"><h2 class="">1.11.1. Using SPEL to set a property of a bean by copying the property of another bean</h2> </a>
-		  <a href="#1.11.2"><h2 class="">1.11.2. List of Beans</h2> </a>  			
+		  <a href="#1.11.2"><h2 class="">1.11.2. Using a bean's method to set up a property of another bean by using SPEL </h2> </a>  			
     	</div>	<!-- /hide -->
 
 <a name="2" class="clicked orange" href="#">
@@ -3675,10 +3675,199 @@ public class App {
    </pre>
 </div>
 
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Bob is playing
+Playing the song Balada cavalerului
+Tam Tam Tam
+Jester is playing
+Playing the song Balada cavalerului
+Trilu Lilu Lilu
+   </pre>
+</div>
 
   
 <p><a href="#1">Home</a></p>
 </div>
+
+<!-- ..................................................................................................................................... -->
+
+<div class="unit">
+<a name="1.11.2"> <h1> 1.11.2. Using a bean's method to set up a property of another bean by using SPEL </h1> </a>
+
+
+<div class="head"> <span class="title"> spring.xml :  </span></div>
+<div class="code_sh">
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+	&lt;bean id="flute" class="com.sebastian.spring.Flute"&gt;
+	&lt;/bean&gt;
+	
+	<span class="greenish">&lt;bean</span> id="Jester" class="com.sebastian.spring.Instrumentalist"<span class="greenish">&gt;</span>
+		<span class="greenish">&lt;property</span> <span class="magenta">name</span>=<span class="blue">&quot;song&quot;</span> <span class="magenta">value</span>=<span class="blue">&quot;#{JukeBox.getSong()}&quot;</span><span class="greenish">&gt;&lt;/property&gt;</span>
+		&lt;property name="instrument" ref="flute"&gt;&lt;/property&gt;
+	<span class="greenish">&lt;/bean&gt;</span>
+	
+	<span class="greenish">&lt;bean</span> <span class="magenta">id</span>=<span class="blue">"JukeBox"</span> <span class="magenta">class</span>=<span class="blue">"com.sebastian.spring.JukeBox"</span><span class="greenish">&gt;</span>
+	<span class="greenish">&lt;/bean&gt;</span>
+&lt;/beans&gt;
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> JukeBox.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+import java.util.Random;
+
+public class JukeBox {
+	private static String[] songtitles = {"Push it", "Juanita", "Californication", "Love in an elevator", "The gods made Heavy Metal"};
+	
+	public static String getSong() {
+		Random generator = new Random();
+		int n = songtitles.length;
+		int index = generator.nextInt(n);
+		
+		return songtitles[index];
+		
+	}
+}
+   </pre>
+</div>
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Instrument.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public interface Instrument {
+	public void play();
+}
+
+   </pre>
+</div>
+
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Flute.java  :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class Flute implements Instrument {
+
+	@Override
+	public void play() {
+		System.out.println("Tam Tam Tam");
+	}
+
+}
+
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Performer.java  :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public interface Performer {
+	public void perform() ;
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> Instrumentalist.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+public class Instrumentalist implements Performer {
+
+	private String song;
+	private Instrument instrument;
+
+	public String getSong() {
+		return song;
+	}
+
+	public void setSong(String song) {
+		this.song = song;
+	}
+
+	public Instrument getInstrument() {
+		return instrument;
+	}
+
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
+	}
+
+	@Override
+	public void perform() {
+		System.out.println("Playing the song '" + song + "'");
+		instrument.play();
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title"> App.java :  </span></div>
+<div class="code_sh">
+    <pre>
+package com.sebastian.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/sebastian/spring/spring.xml");
+		
+		Instrumentalist jester = (Instrumentalist) context.getBean("Jester");
+		
+		System.out.println("Jester is playing");
+		jester.perform();
+	}
+}
+   </pre>
+</div>
+
+<!-- _____________________________________________-->
+
+<div class="head"> <span class="title">  Output :  </span></div>
+<div class="code_sh">
+    <pre>
+Jester is playing
+Playing the song 'Californication'
+Tam Tam Tam
+   </pre>
+</div>
+
+  
+<p><a href="#1">Home</a></p>
+</div>
+
+
+
 
 <!-- ..................................................................................................................................... -->
 
